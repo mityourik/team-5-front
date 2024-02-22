@@ -1,9 +1,15 @@
-.body {
+@import url(../vendor/normalize.css);
+@import url(../vendor/fonts.css);
+
+body {
   background-color: #1A1B22;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
 }
 
-@import url(../vendor/normalize.css);
-@import url(../vendor/fonts.css);
+#root {
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: 0;
+}

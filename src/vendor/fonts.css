@@ -1,12 +1,13 @@
 @font-face {
-    font-family: 'Inter';
-    src: url('./fonts/Inter-Regular.woff2') format('woff2'),
-         url('./fonts/Inter-Regular.woff') format('woff');
+    font-family: 'YS Text';
+    src: url('./fonts/YS Text-Regular.woff2') format('woff2'),
+         url('./fonts/YS Text-Regular.woff') format('woff'),
+         url('./fonts/YS Text-Regular.ttf') format('truetype');
     font-weight: 400;
     font-style: normal;
 }
 
-@font-face {
+/* @font-face {
     font-family: 'Inter';
     src: url('./fonts/Inter-Medium.woff2') format('woff2'),
          url('./fonts/Inter-Medium.woff') format('woff');
@@ -20,4 +21,4 @@
          url('./fonts/Inter-Black.woff') format('woff');
     font-weight: 900;
     font-style: normal;
-}
+} */
