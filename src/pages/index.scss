@@ -2,14 +2,19 @@
 @import '../vendor/fonts.css';
 
 body {
-  background-color: #1A1B22;
+  background-color: #fff;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
 }
 
-#root {
-  max-width: 1920px;
+.page {
   margin: 0 auto;
+  font-family: 'YS Text', 'Arial', sans-serif;
+  min-width: 320px;
+  max-width: 1920px;
+}
+
+#root {
   padding: 0;
 }

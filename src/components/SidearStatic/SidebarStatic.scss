@@ -1,0 +1,66 @@
+$YSText: 'YS Text';
+
+.sidebar-static {
+    background-color: #1A1B22;
+    max-width: 64px;
+    width: 100%;
+    min-height: 960px;
+    height: 100%;
+    display: flex;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+    cursor: pointer;
+    z-index: 2000;
+
+    &:hover {
+        opacity: 0.9;
+        .sidebar-static__span {
+            opacity: 0;
+            visibility: hidden;
+        }
+    }
+
+    &__container {
+        display: flex;
+        flex-direction: column;
+        margin: 43px 0 0;
+    }
+
+    &__item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0;
+        cursor: pointer;
+        min-width: 64px;
+        width: 100%;
+        margin: 0 0 26px 0;
+    }
+
+    &__separator {
+        height: 580px;
+    }
+
+    &__icon {
+        display: flex;
+        opacity: 1;
+        transition: opacity 0.3s ease;
+        cursor: pointer;
+
+        &:hover {
+            opacity: 0.7;
+        }
+    }
+
+    &__span {
+        color: #B5B5B7;
+        display: flex;
+        font-family: $YSText;
+        font-size: 9px;
+        font-weight: 400;
+        line-height: 12px;
+        margin: 4px 0 0 0;
+        opacity: 1; 
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+}

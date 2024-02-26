@@ -1,13 +1,14 @@
 $white: #fff;
-$YSText: 'YS Text';
+$YSTextRegular: 'YS-Text-Regular';
+$YSDisplayRegular: 'YS-Display-Regular';
 
 .header {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 100%;
     min-height: 64px;
-    padding: 0 60px 0 22px;
+    padding: 0 58px 0 16px;
+    background-color: #1A1B22;
 
     &__container {
         display: flex;
@@ -22,12 +23,38 @@ $YSText: 'YS Text';
         width: 32px;
         height: 32px;
         padding: 0;
-        margin: 11px 0 0 0;
+        // margin: 7px 0 0;
         transition: transform 1s;
         cursor: pointer;
 
         &:hover {
             transform: rotate(360deg);
+        }
+    }
+
+    &__logo-content {
+        display: flex;
+        align-items: center;
+        margin: 6px 0 0 0;
+    }
+
+    &__ambassadors {
+        margin: 0 0 0 12px;
+        padding: 0;
+        color: $white;
+        font-family: $YSDisplayRegular;
+        font-size: 28px;
+        line-height: 20px;
+        min-height: 28px;
+
+        &_opened {
+            padding: 0;
+            margin: 0 0 0 12px;
+            color: $white;
+            font-family: $YSDisplayRegular;
+            font-size: 28px;
+            line-height: 20px;
+            min-height: 28px;
         }
     }
 
@@ -41,7 +68,7 @@ $YSText: 'YS Text';
             width: 16px;
             height: 19.5px;
             display: flex;
-            padding: 3px 0 0 0;
+            padding: 0;
             margin-right: 56px;
             transition: opacity 0.3s ease;
             opacity: 1;
@@ -56,18 +83,18 @@ $YSText: 'YS Text';
             display: flex;
             width: 40px;
             height: 40px;
-            padding: 4px 12px 0 0;
+            padding: 0 12px 0 0;
         }
 
         &_title {
             display: flex;
             flex-direction: column;
-            padding: 4px 0 0 0;
+            padding: 0;
             align-items: flex-start;
 
             &_name {
                 color: $white;
-                font-family: $YSText;
+                font-family: $YSTextRegular;
                 font-weight: 400;
                 font-size: 16px;
                 line-height: 20px;
@@ -84,7 +111,7 @@ $YSText: 'YS Text';
 
             &_position {
                 color: #B5B5B7;
-                font-family: $YSText;
+                font-family: $YSTextRegular;
                 font-weight: 400;
                 font-size: 14px;
                 line-height: 20px;
@@ -92,5 +119,5 @@ $YSText: 'YS Text';
                 margin: 0;
             }
         }
-    }
+    } 
 }

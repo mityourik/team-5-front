@@ -1,13 +1,17 @@
+import PropTypes from 'prop-types';
 import headerLogo from '../../assets/header__logo.svg';
 import headerProfileImage from '../../assets/header__user-content_image.png';
 import headerBellImage from '../../assets/header__bell-image.svg';
 import './Header.scss';
 
-function Header() {
+function Header({ isOpen }) {
   return (
     <header className="header">
       <div className="header__container">
-        <img className="header__logo" alt="Логотип Яндекс" src={headerLogo} />
+        <div className="header__logo-content">
+          <img className="header__logo" alt="Логотип Яндекс" src={headerLogo} />
+          <h1 className={isOpen ? 'header__ambassadors_opened' : 'header__ambassadors'}>Амбассадоры</h1>
+        </div>
         <div className="header__user-content">
           <img
             className="header__user-content_bell"
@@ -32,5 +36,9 @@ function Header() {
     </header>
   );
 }
+
+Header.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+};
 
 export default Header;

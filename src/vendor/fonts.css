@@ -1,8 +1,17 @@
 @font-face {
-    font-family: 'YS Text';
+    font-family: 'YS-Text-Regular';
     src: url('./fonts/YSText-Regular.woff2') format('woff2'),
          url('./fonts/YSText-Regular.woff') format('woff'),
          url('./fonts/YSText-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'YS-Display-Regular';
+    src: url('./fonts/YSDisplay-Regular.woff2') format('woff2'),
+         url('./fonts/YSDisplay-Regular.woff') format('woff'),
+         url('./fonts/YSDisplay-Regular.ttf') format('truetype');
     font-weight: 400;
     font-style: normal;
 }
