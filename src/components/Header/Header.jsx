@@ -9,8 +9,8 @@ function Header({ isOpen }) {
     <header className="header">
       <div className="header__container">
         <div className="header__logo-content">
-          <img className="header__logo" alt="Логотип Яндекс" src={headerLogo} />
-          <h1 className={isOpen ? 'header__ambassadors_opened' : 'header__ambassadors'}>Амбассадоры</h1>
+          <a href="#index" className="header__home-link"><img className="header__logo" alt="Логотип Яндекс" src={headerLogo} /></a>
+          <h1 className={`header__ambassadors ${isOpen ? 'header__ambassadors_visible' : ''}`}>Амбассадоры</h1>
         </div>
         <div className="header__user-content">
           <img

@@ -23,13 +23,7 @@ $YSDisplayRegular: 'YS-Display-Regular';
         width: 32px;
         height: 32px;
         padding: 0;
-        // margin: 7px 0 0;
-        transition: transform 1s;
         cursor: pointer;
-
-        &:hover {
-            transform: rotate(360deg);
-        }
     }
 
     &__logo-content {
@@ -39,7 +33,9 @@ $YSDisplayRegular: 'YS-Display-Regular';
     }
 
     &__ambassadors {
-        margin: 0 0 0 12px;
+        opacity: 0;
+        transition: opacity 0.2s ease-in-out;
+        margin: 8px 0 0 15px;
         padding: 0;
         color: $white;
         font-family: $YSDisplayRegular;
@@ -47,14 +43,8 @@ $YSDisplayRegular: 'YS-Display-Regular';
         line-height: 20px;
         min-height: 28px;
 
-        &_opened {
-            padding: 0;
-            margin: 0 0 0 12px;
-            color: $white;
-            font-family: $YSDisplayRegular;
-            font-size: 28px;
-            line-height: 20px;
-            min-height: 28px;
+        &_visible {
+            opacity: 1;
         }
     }
 
