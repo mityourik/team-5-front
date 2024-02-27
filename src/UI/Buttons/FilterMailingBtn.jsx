@@ -69,7 +69,7 @@ FilterMailingBtn.defaultProps = {
   backgroundImageHover: './assets/AmbFilterBtnHover.svg',
   backgroundImageActive: './assets/AmbFilterBtnHover.svg',
   backgroundImageFocus: './assets/AmbFilterBtnHover.svg',
-  text: 'Фильтр',
+  text: 'Фильтры',
   children: null,
 };
 
