@@ -1,0 +1,71 @@
+// Variables
+$label-text-color: #797981;
+$text-color: #1A1B22;
+
+.input__container {
+	display: flex;
+	flex-direction: column;
+	padding: 4px 0;
+	text-transform: none;
+	width: calc(424px - (24px*2));
+}
+
+.input__label {
+	color: $label-text-color;
+	font-family: "YS-Text-Regular", "Arial", sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 20px;
+	text-transform: none;
+}
+
+.input__error-container {
+	margin-top: 5px;
+	min-height: 19px;
+	max-height: 32px;
+	display: block;
+}
+
+.input__error {
+	margin: 0;
+	font-family: "YS-Text-Regular", "Arial", sans-serif;
+	font-size: 13px;
+	font-weight: 400;
+	line-height: 14px;
+	text-align: left;
+	color: #f92e2e;
+}
+
+.input {
+	margin: 0;
+	margin-top: 8px;
+	padding: 10px 12px;
+	display: flex;
+	width: calc(100% - (12px*2));
+	//width: 425px;
+	border: 1px solid #c9d1e5;
+	align-items: flex-start;
+	border-radius: var(--xs, 4px);
+	text-transform: none;
+	-webkit-border-radius: var(--xs, 4px);
+	-moz-border-radius: var(--xs, 4px);
+	-ms-border-radius: var(--xs, 4px);
+	-o-border-radius: var(--xs, 4px);
+}
+
+.input::placeholder {
+    font-family: "YS-Text-Regular", "Arial", sans-serif;
+	color: $text-color;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+}
+
+.input:focus {
+	outline: 1px solid var(--Accent, #1478ff);
+	text-transform: none;
+}
+
+.input-error {
+	outline: 1px solid #f92e2e;
+}

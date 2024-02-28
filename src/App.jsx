@@ -1,6 +1,8 @@
 // import { useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
 // import Header from './components/Header/Header';
 // import NavBar from './components/NavBar/NavBar';
+import AmbassadorPage from './components/AmbassadorPage/AmbassadorPage';
 import DropdownButton from './UI/Buttons/DropdownButton1/DropdownButton1';
 import FilterMailingBtn from './UI/Buttons/FilterMailingBtn';
 import SearchBar from './UI/SearchBar/SearchBar';
@@ -45,6 +47,9 @@ function App() {
       <FilterMailingBtn
         backgroundImage={imgFilter}
       />
+      <Routes>
+        <Route path="/ambassador-page" element={<AmbassadorPage />} />
+      </Routes>
     </>
   );
 }

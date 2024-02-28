@@ -10,7 +10,11 @@ body {
 
 .page {
   margin: 0 auto;
-  font-family: 'YS Text', 'Arial', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  sans-serif;
+  // font-family: 'YS-Text-Regular', 'Arial', sans-serif;
+  // font-family: 'YS Text', 'Arial', sans-serif;
   min-width: 320px;
   max-width: 1920px;
 }
