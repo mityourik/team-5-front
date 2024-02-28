@@ -1,11 +1,12 @@
 // Variables
 $label-text-color: #797981;
 $text-color: #1A1B22;
+$error-color: #FF0200;
 
 .input__container {
 	display: flex;
 	flex-direction: column;
-	padding: 4px 0;
+	padding: 0;
 	text-transform: none;
 	width: calc(424px - (24px*2));
 }
@@ -20,20 +21,22 @@ $text-color: #1A1B22;
 }
 
 .input__error-container {
-	margin-top: 5px;
-	min-height: 19px;
-	max-height: 32px;
+	margin-top: 2px;
+	// min-height: 13px;
+	// max-height: 20px;
+	height: 18px;
 	display: block;
 }
 
 .input__error {
 	margin: 0;
 	font-family: "YS-Text-Regular", "Arial", sans-serif;
-	font-size: 13px;
+	font-size: 11px;
 	font-weight: 400;
-	line-height: 14px;
+	line-height: 12px;
 	text-align: left;
-	color: #f92e2e;
+	display: block;
+	color: $error-color;
 }
 
 .input {
@@ -62,10 +65,10 @@ $text-color: #1A1B22;
 }
 
 .input:focus {
-	outline: 1px solid var(--Accent, #1478ff);
+	outline: 1px solid #5A9BFF;
 	text-transform: none;
 }
 
 .input-error {
-	outline: 1px solid #f92e2e;
+	outline: 1px solid $error-color;
 }

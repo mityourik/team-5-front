@@ -7,8 +7,9 @@ import {
   // getAmbassadorData,
 } from '../../services/selectors/ambassadorSelector';
 // import { getAmbassadorInfo } from '../../services/thunks/ambassadorThunk';
+import AmbassadorSectionTitle from './AmbassadorSectionTitle';
 import InputName from '../../Inputs/InputName';
-import InputEducation from '../../Inputs/InputEducation';
+import DropdownField from '../../Inputs/DropdownField';
 import InputEmail from '../../Inputs/InputEmail';
 import InputPhoneNumber from '../../Inputs/InputPhoneNumber';
 import InputWebsite from '../../Inputs/InputWebsite';
@@ -32,7 +33,7 @@ export default function AmbassadorPersInfo() {
   // }, [dispatch]);
 
   return (
-    <article className="ambassador-page__data">
+    <article className={`ambassador-page__data ${isAmbassadorDataEditing && 'ambassador-page__data_editing'}`}>
       {isAmbassadorDataEditing ? (
         <>
           <Formik
@@ -40,18 +41,25 @@ export default function AmbassadorPersInfo() {
               name: 'Василий Васильевич Пупкин',
               education: 'UI/UX дизайнер',
             }}
-            className="ambassador-page__info"
             // onSubmit={handleSubmit}
             // validate={validate}
           >
             {() => (
               <Form>
                 <InputName name="name" />
-                <InputEducation />
+                <DropdownField
+                  inputId="education"
+                  labelText="Программа обучения"
+                  ddClassName="select-education"
+                >
+                  <option className="select-option" value="">Выберите из списка</option>
+                  <option className="select-option" value="UI/UX дизайнер">UI/UX дизайнер</option>
+                  <option className="select-option" value="Продакт-менеджер для специалистов с опытом">Продакт-менеджер для специалистов с опытом</option>
+                </DropdownField>
               </Form>
             )}
           </Formik>
-          <h3 className="ambassador-page__contacts">Контакты</h3>
+          <AmbassadorSectionTitle title="Контакты" />
           <Formik
             initialValues={{
               email: 'vladimir@gmail.com',
@@ -59,12 +67,12 @@ export default function AmbassadorPersInfo() {
               telegram_handle: '@telega',
               blog_url: 'pupkinmadeontilda.com',
             }}
-            className="ambassador-page__info"
+            // className="ambassador-page__info"
             // onSubmit={handleSubmit}
             // validate={validate}
           >
             {() => (
-              <Form>
+              <Form className="ambassador-page__info-form">
                 <InputEmail />
                 <InputPhoneNumber />
                 <InputName name="telegram_handle" />
@@ -77,11 +85,11 @@ export default function AmbassadorPersInfo() {
         <>
           <div className="ambassador-page__info">
             <h2 className="ambassador-page__name">Василий Васильевич Пупкин</h2>
-            {/* <h1 className="ambassador-page__name">{ambassador?.name}</h1> */}
+            {/* <h2 className="ambassador-page__name">{ambassador?.name}</h2> */}
             <p className="ambassador-page__position">UI/UX дизайнер</p>
           </div>
           <div className="ambassador-page__info">
-            <h3 className="ambassador-page__contacts">Контакты</h3>
+            <AmbassadorSectionTitle title="Контакты" />
             <ul className="ambassador-page__contacts-list">
               <li className="ambassador-page__contacts-item">
                 <img className="ambassador-page__icon" alt="Иконка несколько конвертов" src={emailIcon} />

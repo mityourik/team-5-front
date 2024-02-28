@@ -10,8 +10,9 @@ import {
 import Header from '../Header/Header';
 import NavBar from '../NavBar/NavBar';
 import goBackIcon from '../../assets/AmbassadorsPage/go-back-button-icon.svg';
-import editIcon from '../../assets/AmbassadorsPage/Vector.svg';
+import editIcon from '../../assets/AmbassadorsPage/edit-button-icon.svg';
 import AmbassadorPersInfo from './AmbassadorPersInfo';
+import AmbassadorGeneralInfo from './AmbassadorGeneralInfo';
 import './AmbassadorPage.scss';
 
 export default function AmbassadorPage() {
@@ -81,7 +82,7 @@ export default function AmbassadorPage() {
         </nav>
         <section className="ambassador-page__content">
           <AmbassadorPersInfo />
-
+          <AmbassadorGeneralInfo />
         </section>
       </main>
     </>
