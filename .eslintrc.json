@@ -26,6 +26,11 @@
         "react/react-in-jsx-scope": "off",
         "react/jsx-uses-react": "off",
         "no-shadow": "off",
-        "import/no-extraneous-dependencies": ["error", {"devDependencies": true}]
+        "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
+        "jsx-a11y/label-has-associated-control": [ 2, {
+            "required": {
+              "some": [ "nesting", "id" ]
+            }
+        }]
     }
 }
