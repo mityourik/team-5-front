@@ -7,18 +7,20 @@
     font-style: normal;
 }
 
-/* @font-face {
-    font-family: 'Inter';
-    src: url('./fonts/Inter-Medium.woff2') format('woff2'),
-         url('./fonts/Inter-Medium.woff') format('woff');
+ @font-face {
+    font-family: 'YS Text';
+    src: url('./fonts/YandexSansText-Medium.woff2') format('woff2'),
+         url('./fonts/YandexSansText-Medium.woff') format('woff'),
+         url('./fonts/YandexSansText-Medium.ttf') format('truetype');
     font-weight: 500;
     font-style: normal;
 }
 
-@font-face {
-    font-family: 'Inter';
-    src: url('./fonts/Inter-Black.woff2') format('woff2'),
-         url('./fonts/Inter-Black.woff') format('woff');
-    font-weight: 900;
+/* @font-face {
+    font-family: 'YS Text';
+    src: url('./fonts/YandexSansText-Medium.woff2') format('woff2'),
+         url('./fonts/YandexSansText-Medium.woff') format('woff'),
+         url('./fonts/YandexSansText-Medium.ttf') format('truetype');
+    font-weight: 400;
     font-style: normal;
 } */

@@ -1,8 +1,18 @@
+import './App.scss';
+import { AmbassodrsContext } from './Contexts/AmbassodrsContext';
+import Ambassodrs from './components/Ambassodrs/Ambassodrs';
 import Header from './components/Header/Header';
+import SideNavigation from './components/SideNavigation/SideNavigation';
 
 function App() {
   return (
-    <Header />
+    <>
+      <Header />
+      <section className='main'>
+        <SideNavigation />
+        <Ambassodrs />
+      </section>
+    </>
   );
 }
 
