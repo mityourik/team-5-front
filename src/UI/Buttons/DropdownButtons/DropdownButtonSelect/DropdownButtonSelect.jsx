@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import './DropdownButtonSelect.scss';
 
 function DropdownButtonSelect({ options, onSelect }) {
-  const [selectedOption, setSelectedOption] = useState(options[0]);
+  const [selectedOption, setSelectedOption] = useState('');
   const [isOpen, setIsOpen] = useState(false);
-  const [inputValue, setInputValue] = useState(options[0]);
+  const [inputValue, setInputValue] = useState('');
 
   const handleSelect = (option) => {
     setSelectedOption(option);
@@ -27,10 +27,11 @@ function DropdownButtonSelect({ options, onSelect }) {
   return (
     <div className="dropdown">
       <input
+        placeholder="Выберите программу"
         type="text"
-        className="dropdown__input"
+        className={`dropdown__input ${inputValue ? 'dropdown__input_active' : ''}`}
         onClick={toggleDropdown}
-        value={inputValue}
+        value={inputValue || ''}
         readOnly
       />
       {isOpen && (
@@ -41,7 +42,7 @@ function DropdownButtonSelect({ options, onSelect }) {
                 type="button"
                 onClick={() => handleSelect(option)}
                 onKeyDown={(event) => handleKeyDown(event, option)}
-                className={`dropdown__button ${selectedOption === option ? 'dropdown__button--selected' : ''}`}
+                className={`dropdown__button ${selectedOption === option ? 'dropdown__button_selected' : ''}`}
                 tabIndex={0}
               >
                 {option}

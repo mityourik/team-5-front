@@ -8,74 +8,103 @@ $caretHoverImagePath: '../assets/AmbAddDropdownCaretHover.svg';
   font-size: 14px;
   line-height: 20px;
   font-weight: 400;
-  color: $color-black-900;
+  color: $color-black-500;
   width: fit-content;
-  border: 1px solid $color-black-100;
   border-radius: 4px;
   background-color: $color-white;
+
+  &__input {
+    padding: 10px 40px 10px 11px;
+    background-color: $color-white;
+    border: 1px solid $color-black-100;
+    border-radius: 4px;
+    text-align: left;
+    cursor: pointer;
+    background-image: url('../../assets/dropdownCaretGrey.svg');
+    background-repeat: no-repeat;
+    background-position: right 11px center;
+    background-size: 24px 24px;
+    color: $color-black-500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 170px; // check
+
+    &_active {
+      color: $color-black-900;
+      background-image: url('../../assets/dropdownCaretBlack.svg');
+    }
+  }
+
+  &__list {
+    min-width: 99%;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: 0px 4px 6px rgba(176, 190, 197, 0.3);
+    border: 1px solid $color-black-300;
+    border-radius: 4px;
+    background-color: $color-white;
+    font-family: $font-body2-regular;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+    color: $color-black-900;
+    max-height: 216px;
+    overflow-y: auto;
+  }
+
+  &__item {
+    margin: 0;
+  }
+
+  &__button {
+    text-align: left;
+    width: 100%;
+    padding: 8px 12px;
+    background-color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: #e9e9e9;
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(0,123,255,.5);
+    }
+
+    &_selected {
+      background-color: $color-blue-bg;
+      color: #000;
+
+      &::after {
+        content: url('../../assets/checkedImg.svg');
+        width: 16.59px;
+        height: 11.54px;
+        float: right;
+      }
+    }
+  }
 }
 
-.dropdown__input {
-  padding: 8px 12px;
-  background-color: $color-white;
-  border: 1px solid $color-black-100;
-  border-radius: 4px;
-  text-align: left;
-  cursor: pointer;
-  background-image: url('../../assets/dropdownCaretBlack.svg');
-  background-repeat: no-repeat;
-  background-position: right 7px center;
-  background-size: 24px 24px;
-}
 
-.dropdown__list {
-  position: absolute;
-  z-index: 1000;
-  width: 100%;
-  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  background-color: #fff;
-}
 
-.dropdown__list::-webkit-scrollbar {
-  display: none;
-}
-.dropdown__list {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
-}
 
-.dropdown__item {
-  margin: 0;
-}
 
-.dropdown__button {
-  text-align: left;
-  width: 100%;
-  padding: 8px 12px;
-  background-color: #fff;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
 
-.dropdown__button:hover {
-  background-color: #e9e9e9;
-}
 
-.dropdown__button--selected {
-  background-color: #e0e0e0;
-  color: #000;
-}
 
-.dropdown__button--selected::after {
-  content: '✓';
-  float: right;
-}
 
-.dropdown__button:focus {
-  outline: none;
-  box-shadow: 0 0 0 2px rgba(0,123,255,.5);
-}
+
+
+
+
+
+
+
+
+
 
