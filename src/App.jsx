@@ -1,4 +1,5 @@
 // import { useState } from 'react';
+// import { Routes, Route } from 'react-router-dom';
 // import Header from './components/Header/Header';
 // import NavBar from './components/NavBar/NavBar';
 // import FilterMailingBtn from './UI/Buttons/FilterMailingBtn';
@@ -45,12 +46,8 @@ function App() {
   // ];
 
   return (
-    <div style={{ padding: '64px' }}>
+    <div style={{ padding: '100px 0 0 0' }}>
       <Filter />
-      {/* <DropdownButton
-        buttonLabel="ываЫВа"
-        menuOptions={menuOptions}
-      /> */}
     </div>
   );
 }

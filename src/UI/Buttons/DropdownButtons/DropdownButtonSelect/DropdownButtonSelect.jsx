@@ -1,17 +1,31 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import './DropdownButtonSelect.scss';
 
 function DropdownButtonSelect({
-  options, onSelect, id, selectedValue,
+  options, onSelect, id, selectedValue, placeholder,
 }) {
   const [selectedOption, setSelectedOption] = useState('');
   const [isOpen, setIsOpen] = useState(false);
   const [inputValue, setInputValue] = useState('');
+  const wrapperRef = useRef(null);
 
   useEffect(() => {
     setInputValue(selectedValue);
   }, [selectedValue]);
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   const handleSelect = (option) => {
     setSelectedOption(option);
@@ -31,9 +45,9 @@ function DropdownButtonSelect({
   };
 
   return (
-    <div className="dropdown">
+    <div className="dropdown" ref={wrapperRef}>
       <input
-        placeholder="Захардкожено"
+        placeholder={placeholder}
         type="text"
         className={`dropdown__input ${inputValue ? 'dropdown__input_active' : ''}`}
         onClick={toggleDropdown}
@@ -67,6 +81,7 @@ DropdownButtonSelect.defaultProps = {
 };
 
 DropdownButtonSelect.propTypes = {
+  placeholder: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
   options: PropTypes.arrayOf(PropTypes.string).isRequired,
   onSelect: PropTypes.func.isRequired,

@@ -142,7 +142,7 @@ function Filter() {
   return (
     <form className="filter-form" onSubmit={handleSubmit}>
 
-      <div className="filter-form__area filter-form__area--gender">
+      <div className="filter-form__area filter-form__area__gender">
         <label htmlFor="genderSelect" className="filter-form__label">
           Пол
           <DropdownButtonSelect
@@ -150,11 +150,12 @@ function Filter() {
             onSelect={(option) => handleSelection(option, 'gender')}
             selectedValue={gender}
             id="genderSelect"
+            placeholder="Выберите пол"
           />
         </label>
       </div>
 
-      <div className="filter-form__area filter-form__area--program">
+      <div className="filter-form__area filter-form__area__program">
         <label htmlFor="programSelect" className="filter-form__label">
           Программа обучения
           <DropdownButtonSelect
@@ -162,11 +163,12 @@ function Filter() {
             onSelect={(option) => handleSelection(option, 'program')}
             selectedValue={program}
             id="programSelect"
+            placeholder="Выберите программу"
           />
         </label>
       </div>
 
-      <div className="filter-form__area filter-form__area--status">
+      <div className="filter-form__area filter-form__area__status">
         <label htmlFor="statusSelect" className="filter-form__label">
           Статус
           <DropdownButtonSelect
@@ -174,11 +176,12 @@ function Filter() {
             onSelect={(option) => handleSelection(option, 'status')}
             selectedValue={status}
             id="statusSelect"
+            placeholder="Выберите статус"
           />
         </label>
       </div>
 
-      <div className="filter-form__area filter-form__area--city">
+      <div className="filter-form__area ilter-form__area__city">
         <label htmlFor="citySelect" className="filter-form__label">
           Город
           <DropdownButtonSelect
@@ -186,11 +189,12 @@ function Filter() {
             onSelect={(option) => handleSelection(option, 'city')}
             selectedValue={city}
             id="citySelect"
+            placeholder="Выберите город"
           />
         </label>
       </div>
 
-      <div className="filter-form__area filter-form__area--date-range">
+      <div className="filter-form__area ifilter-form__area__date-range">
         <label htmlFor="dateSelect" className="filter-form__label">
           Дата регистрации
           <RangeDatePicker
@@ -203,12 +207,20 @@ function Filter() {
         </label>
       </div>
 
-      <div className="filter-form__area filter-form__area--reset">
-        <span className="filter-form__span filter-form__span__reset" />
-        <button type="button" className="filter-form__button filter-form__button--reset" onClick={resetFilters}>Очистить фильтры</button>
+      <div className="filter-form__area filter-form__area__reset">
+        <button
+          type="button"
+          className="filter-form__button filter-form__button__reset"
+          onClick={resetFilters}
+          aria-label="Очистить фильтры"
+        >
+          <span className="filter-form__span__reset-icon" />
+          Очистить фильтры
+        </button>
       </div>
-      <div className="filter-form__area filter-form__area--apply">
-        <button type="submit" className="filter-form__button filter-form__button--apply">Применить</button>
+
+      <div className="filter-form__area filter-form__area__apply">
+        <button type="submit" className="filter-form__button filter-form__button__apply">Применить</button>
       </div>
     </form>
   );

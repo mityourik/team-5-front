@@ -43,19 +43,6 @@
     }
   }
 
-  // .example-custom-input {
-  //   background-color: $color-white;
-  //   border: 1px solid #ccc;
-  //   border-radius: 6px;
-  //   padding: 0.5rem 1rem;
-  //   margin-right: 0.5rem;
-  //   font-size: 1rem;
-    
-  //   &:hover {
-  //     background-color: #f2f2f2;
-  //   }
-  // }
-
   .react-datepicker {
     border: none;
 
@@ -187,8 +174,8 @@ input {
   background-size: 24px 24px;
   background-position: 11px 7px;
   box-sizing: border-box;
-  width: auto;
-  max-width: 149px;
+  max-width: 197px;
+  min-width: 188px;
 
   &::placeholder {
     font-size: 13px;
