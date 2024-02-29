@@ -36,6 +36,13 @@ $caretHoverImagePath: '../assets/AmbAddDropdownCaretHover.svg';
       color: $color-black-900;
       background-image: url('../../assets/dropdownCaretBlack.svg');
     }
+
+    &::placeholder {
+      font-size: 14px;
+      font-weight: 400;
+      font-family: $font-body2-regular;
+      color: $color-black-500;
+    }
   }
 
   &__list {
