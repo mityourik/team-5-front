@@ -24,6 +24,14 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'YS-Display-Regular-Medium';
+    src: url('./fonts/YSDisplay-Medium-Regular.woff2') format('woff2'),
+         url('./fonts/YSDisplay-Medium-Regular.woff') format('woff'),
+        url('./fonts/YSDisplay-Medium-Regular.ttf') format('truetype');
+    font-weight: 500;
+}
+
 /* @font-face {
     font-family: 'Inter';
     src: url('./fonts/Inter-Medium.woff2') format('woff2'),

@@ -4,6 +4,7 @@
 $caretHoverImagePath: '../assets/AmbAddDropdownCaretHover.svg';
 
 .dropdown {
+  position: relative;
   font-family: $font-body2-regular;
   font-size: 14px;
   line-height: 20px;
@@ -12,6 +13,7 @@ $caretHoverImagePath: '../assets/AmbAddDropdownCaretHover.svg';
   width: fit-content;
   border-radius: 4px;
   background-color: $color-white;
+  margin-top: 5px;
 
   &__input {
     padding: 10px 40px 10px 11px;
@@ -28,16 +30,24 @@ $caretHoverImagePath: '../assets/AmbAddDropdownCaretHover.svg';
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 170px; // check
+    max-width: fit-content; // check
 
     &_active {
       color: $color-black-900;
       background-image: url('../../assets/dropdownCaretBlack.svg');
     }
+
+    &::placeholder {
+      font-size: 14px;
+      font-weight: 400;
+      font-family: $font-body2-regular;
+      color: $color-black-500;
+    }
   }
 
   &__list {
-    min-width: 99%;
+    position: absolute;
+    min-width: 98%;
     list-style: none;
     padding: 0;
     margin: 0;
@@ -77,34 +87,19 @@ $caretHoverImagePath: '../assets/AmbAddDropdownCaretHover.svg';
     }
 
     &_selected {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       background-color: $color-blue-bg;
-      color: #000;
+      // color: #000;
+
 
       &::after {
         content: url('../../assets/checkedImg.svg');
         width: 16.59px;
         height: 11.54px;
-        float: right;
+        margin-left: 10px;
       }
     }
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

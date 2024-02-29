@@ -1,11 +1,11 @@
 // import { useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
 // import Header from './components/Header/Header';
 // import NavBar from './components/NavBar/NavBar';
 // import FilterMailingBtn from './UI/Buttons/FilterMailingBtn';
 // import SearchBar from './UI/SearchBar/SearchBar';
 // import imgFilter from './UI/Buttons/assets/AmbFilterButtonImg.svg';
 
-// import DropdownButton from './UI/Buttons/DropdownButtons/DropdownButton/DropdownButton';
 import Filter from './components/FilterBar/Filter';
 
 function App() {
@@ -45,18 +45,28 @@ function App() {
   //   },
   // ];
 
-  // const handleSelection = (selectedOption) => {
-  //   console.log('Выбранная опция:', selectedOption);
-  // };
-
   return (
-    <div style={{ padding: '64px' }}>
-      <Filter />
-      {/* <DropdownButton
-        buttonLabel="ываЫВа"
-        menuOptions={menuOptions}
+    <>
+      {/* <Header isOpen={isOpen} />
+      <NavBar
+        isOpen={isOpen}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
       /> */}
-    </div>
+      {/* <SearchBar
+        onSearch={handleSearch}
+      />
+      <DropdownButton
+        buttonLabel="Добавить амбассадора"
+        menuOptions={menuOptions}
+      />
+      <FilterMailingBtn
+        backgroundImage={imgFilter}
+      /> */}
+      <Routes>
+        <Route path="/ambassador-page" element={<AmbassadorPage />} />
+      </Routes>
+    </>
   );
 }
 
