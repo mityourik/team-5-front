@@ -1,11 +1,17 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import './DropdownButtonSelect.scss';
 
-function DropdownButtonSelect({ options, onSelect, id }) {
+function DropdownButtonSelect({
+  options, onSelect, id, selectedValue,
+}) {
   const [selectedOption, setSelectedOption] = useState('');
   const [isOpen, setIsOpen] = useState(false);
   const [inputValue, setInputValue] = useState('');
+
+  useEffect(() => {
+    setInputValue(selectedValue);
+  }, [selectedValue]);
 
   const handleSelect = (option) => {
     setSelectedOption(option);
@@ -56,10 +62,15 @@ function DropdownButtonSelect({ options, onSelect, id }) {
   );
 }
 
+DropdownButtonSelect.defaultProps = {
+  selectedValue: '',
+};
+
 DropdownButtonSelect.propTypes = {
   id: PropTypes.string.isRequired,
   options: PropTypes.arrayOf(PropTypes.string).isRequired,
   onSelect: PropTypes.func.isRequired,
+  selectedValue: PropTypes.string,
 };
 
 export default DropdownButtonSelect;

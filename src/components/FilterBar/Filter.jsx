@@ -4,13 +4,12 @@ import './Filter.scss';
 import DropdownButtonSelect from '../../UI/Buttons/DropdownButtons/DropdownButtonSelect/DropdownButtonSelect';
 
 function Filter() {
+  const [gender, setGender] = useState('');
+  const [program, setProgram] = useState('');
+  const [status, setStatus] = useState('');
+  const [city, setCity] = useState('');
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
-
-  const resetFilters = () => {
-    setStartDate(null);
-    setEndDate(null);
-  };
 
   const optionsProgram = [
     'IT-рекрутер',
@@ -89,19 +88,67 @@ function Filter() {
     'Сочи',
   ];
 
-  const handleSelection = (selectedOption) => {
+  const resetFilters = () => {
+    setGender('');
+    setProgram('');
+    setStatus('');
+    setCity('');
+    setStartDate(null);
+    setEndDate(null);
+  };
+
+  const handleSelection = (selectedOption, field) => {
     console.log('Выбранная опция:', selectedOption);
+    switch (field) {
+      case 'gender':
+        setGender(selectedOption);
+        break;
+      case 'program':
+        setProgram(selectedOption);
+        break;
+      case 'status':
+        setStatus(selectedOption);
+        break;
+      case 'city':
+        setCity(selectedOption);
+        break;
+      default:
+        break;
+    }
+  };
+
+  const areAllFieldsEmpty = () => !gender && !program && !status && !city && !startDate && !endDate;
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (areAllFieldsEmpty()) {
+      console.log('Все поля пусты!');
+      return;
+    }
+
+    const filterData = {
+      gender,
+      program,
+      status,
+      city,
+      startDate,
+      endDate,
+    };
+    console.log('handlSub', filterData);
+    // отправить тут
   };
 
   return (
-    <form className="filter-form">
+    <form className="filter-form" onSubmit={handleSubmit}>
 
       <div className="filter-form__area filter-form__area--gender">
         <label htmlFor="genderSelect" className="filter-form__label">
           Пол
           <DropdownButtonSelect
             options={optionsGender}
-            onSelect={handleSelection}
+            onSelect={(option) => handleSelection(option, 'gender')}
+            selectedValue={gender}
             id="genderSelect"
           />
         </label>
@@ -112,7 +159,8 @@ function Filter() {
           Программа обучения
           <DropdownButtonSelect
             options={optionsProgram}
-            onSelect={handleSelection}
+            onSelect={(option) => handleSelection(option, 'program')}
+            selectedValue={program}
             id="programSelect"
           />
         </label>
@@ -123,7 +171,8 @@ function Filter() {
           Статус
           <DropdownButtonSelect
             options={optionsStatus}
-            onSelect={handleSelection}
+            onSelect={(option) => handleSelection(option, 'status')}
+            selectedValue={status}
             id="statusSelect"
           />
         </label>
@@ -134,7 +183,8 @@ function Filter() {
           Город
           <DropdownButtonSelect
             options={optionsCity}
-            onSelect={handleSelection}
+            onSelect={(option) => handleSelection(option, 'city')}
+            selectedValue={city}
             id="citySelect"
           />
         </label>
