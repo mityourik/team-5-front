@@ -142,7 +142,7 @@ function Filter() {
   return (
     <form className="filter-form" onSubmit={handleSubmit}>
 
-      <div className="filter-form__area filter-form__area--gender">
+      <div className="filter-form__area filter-form__area__gender">
         <label htmlFor="genderSelect" className="filter-form__label">
           Пол
           <DropdownButtonSelect
@@ -155,7 +155,7 @@ function Filter() {
         </label>
       </div>
 
-      <div className="filter-form__area filter-form__area--program">
+      <div className="filter-form__area filter-form__area__program">
         <label htmlFor="programSelect" className="filter-form__label">
           Программа обучения
           <DropdownButtonSelect
@@ -168,7 +168,7 @@ function Filter() {
         </label>
       </div>
 
-      <div className="filter-form__area filter-form__area--status">
+      <div className="filter-form__area filter-form__area__status">
         <label htmlFor="statusSelect" className="filter-form__label">
           Статус
           <DropdownButtonSelect
@@ -181,7 +181,7 @@ function Filter() {
         </label>
       </div>
 
-      <div className="filter-form__area filter-form__area--city">
+      <div className="filter-form__area ilter-form__area__city">
         <label htmlFor="citySelect" className="filter-form__label">
           Город
           <DropdownButtonSelect
@@ -194,7 +194,7 @@ function Filter() {
         </label>
       </div>
 
-      <div className="filter-form__area filter-form__area--date-range">
+      <div className="filter-form__area ifilter-form__area__date-range">
         <label htmlFor="dateSelect" className="filter-form__label">
           Дата регистрации
           <RangeDatePicker
@@ -207,10 +207,10 @@ function Filter() {
         </label>
       </div>
 
-      <div className="filter-form__area filter-form__area--reset">
+      <div className="filter-form__area filter-form__area__reset">
         <button
           type="button"
-          className="filter-form__button filter-form__button--reset"
+          className="filter-form__button filter-form__button__reset"
           onClick={resetFilters}
           aria-label="Очистить фильтры"
         >
@@ -219,8 +219,8 @@ function Filter() {
         </button>
       </div>
 
-      <div className="filter-form__area filter-form__area--apply">
-        <button type="submit" className="filter-form__button filter-form__button--apply">Применить</button>
+      <div className="filter-form__area filter-form__area__apply">
+        <button type="submit" className="filter-form__button filter-form__button__apply">Применить</button>
       </div>
     </form>
   );
