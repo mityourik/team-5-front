@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './DropdownButton1.scss';
+import './DropdownButton.scss';
 import PropTypes from 'prop-types';
 
 function DropdownButton({ buttonLabel, menuOptions }) {
