@@ -12,11 +12,12 @@ function CustomInput({ value, onClick }) {
 }
 
 function RangeDatePicker({
-  startDate, setStartDate, endDate, setEndDate,
+  startDate, setStartDate, endDate, setEndDate, id,
 }) {
   return (
     <div className="date-picker-container">
       <DatePicker
+        id={id}
         selected={startDate}
         onChange={(date) => setStartDate(date)}
         selectsStart
@@ -41,6 +42,7 @@ function RangeDatePicker({
       &thinsp;&mdash;&thinsp;
       </p>
       <DatePicker
+        id={id}
         selected={endDate}
         onChange={(date) => setEndDate(date)}
         selectsEnd
@@ -73,6 +75,7 @@ CustomInput.propTypes = {
 };
 
 RangeDatePicker.propTypes = {
+  id: PropTypes.string.isRequired,
   startDate: PropTypes.instanceOf(Date),
   endDate: PropTypes.instanceOf(Date),
   setStartDate: PropTypes.func.isRequired,

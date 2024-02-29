@@ -5,9 +5,7 @@
 // import SearchBar from './UI/SearchBar/SearchBar';
 // import imgFilter from './UI/Buttons/assets/AmbFilterButtonImg.svg';
 
-// import DropdownButton from './UI/Buttons/DropdownButtons/DropdownButton/DropdownButton';
-import DropdownButtonSelect from './UI/Buttons/DropdownButtons/DropdownButtonSelect/DropdownButtonSelect';
-// import Filter from './components/FilterBar/Filter';
+import Filter from './components/FilterBar/Filter';
 
 function App() {
   // const [isOpen, setIsOpen] = useState(false);
@@ -46,23 +44,13 @@ function App() {
   //   },
   // ];
 
-  const options = ['IT-рекрутер', 'Аналитик данных', 'Python-разработчик', 'Веб-разработчик', 'C++'];
-
-  const handleSelection = (selectedOption) => {
-    console.log('Выбранная опция:', selectedOption);
-  };
-
   return (
     <div style={{ padding: '64px' }}>
-      {/* <Filter /> */}
+      <Filter />
       {/* <DropdownButton
         buttonLabel="ываЫВа"
         menuOptions={menuOptions}
       /> */}
-      <DropdownButtonSelect
-        options={options}
-        onSelect={handleSelection}
-      />
     </div>
   );
 }

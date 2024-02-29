@@ -2,7 +2,7 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import './DropdownButtonSelect.scss';
 
-function DropdownButtonSelect({ options, onSelect }) {
+function DropdownButtonSelect({ options, onSelect, id }) {
   const [selectedOption, setSelectedOption] = useState('');
   const [isOpen, setIsOpen] = useState(false);
   const [inputValue, setInputValue] = useState('');
@@ -27,7 +27,7 @@ function DropdownButtonSelect({ options, onSelect }) {
   return (
     <div className="dropdown">
       <input
-        placeholder="Выберите программу"
+        placeholder="Захардкожено"
         type="text"
         className={`dropdown__input ${inputValue ? 'dropdown__input_active' : ''}`}
         onClick={toggleDropdown}
@@ -39,6 +39,7 @@ function DropdownButtonSelect({ options, onSelect }) {
           {options.map((option) => (
             <li key={option} className="dropdown__item">
               <button
+                id={id}
                 type="button"
                 onClick={() => handleSelect(option)}
                 onKeyDown={(event) => handleKeyDown(event, option)}
@@ -56,6 +57,7 @@ function DropdownButtonSelect({ options, onSelect }) {
 }
 
 DropdownButtonSelect.propTypes = {
+  id: PropTypes.string.isRequired,
   options: PropTypes.arrayOf(PropTypes.string).isRequired,
   onSelect: PropTypes.func.isRequired,
 };
