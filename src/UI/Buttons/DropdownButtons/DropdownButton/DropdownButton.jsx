@@ -1,9 +1,8 @@
 import { useState } from 'react';
-import { useLocation } from 'react-router-dom';
-import './DropdownButton1.scss';
+import './DropdownButton.scss';
 import PropTypes from 'prop-types';
 
-function DropdownButton({ buttonLabel, menuOptions, btnClassName }) {
+function DropdownButton({ buttonLabel, menuOptions }) {
   const [isActive, setIsActive] = useState(false);
 
   const handleOptionClick = (action) => {
@@ -23,20 +22,18 @@ function DropdownButton({ buttonLabel, menuOptions, btnClassName }) {
     }
   };
 
-  const location = useLocation();
-
   return (
     <div className="dropdown">
       <button
         onClick={() => setIsActive(!isActive)}
         onKeyDown={handleKeyDown}
-        className={`dropdown-btn ${btnClassName}`}
+        className="dropdown-btn"
         type="button"
         aria-haspopup="true"
         aria-expanded={isActive}
       >
         {buttonLabel}
-        {location.pathname !== '/ambassador-page' && <span className="caret" />}
+        <span className="caret" />
       </button>
       {isActive && (
         <div className="dropdown-content">
@@ -64,7 +61,6 @@ DropdownButton.propTypes = {
     label: PropTypes.string.isRequired,
     action: PropTypes.func.isRequired,
   })).isRequired,
-  btnClassName: PropTypes.string.isRequired,
 };
 
 export default DropdownButton;
