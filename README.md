@@ -7,3 +7,4 @@ Frontend part of CRM app for participating in Yandex Hackaton 2024
 4. стэк технологий
 5. ссылки на сторонние фреймворки, библиотеки, иконки и шрифты если использовались
 6. ключевые точки для media queries
+7. >>>>>>
