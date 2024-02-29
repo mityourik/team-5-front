@@ -1,5 +1,5 @@
 // import { useState } from 'react';
-import { Routes, Route } from 'react-router-dom';
+// import { Routes, Route } from 'react-router-dom';
 // import Header from './components/Header/Header';
 // import NavBar from './components/NavBar/NavBar';
 // import FilterMailingBtn from './UI/Buttons/FilterMailingBtn';
@@ -46,27 +46,9 @@ function App() {
   // ];
 
   return (
-    <>
-      {/* <Header isOpen={isOpen} />
-      <NavBar
-        isOpen={isOpen}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-      /> */}
-      {/* <SearchBar
-        onSearch={handleSearch}
-      />
-      <DropdownButton
-        buttonLabel="Добавить амбассадора"
-        menuOptions={menuOptions}
-      />
-      <FilterMailingBtn
-        backgroundImage={imgFilter}
-      /> */}
-      <Routes>
-        <Route path="/ambassador-page" element={<AmbassadorPage />} />
-      </Routes>
-    </>
+    <div style={{ padding: '100px 0 0 0' }}>
+      <Filter />
+    </div>
   );
 }
 

@@ -96,19 +96,26 @@
   margin-bottom: 8px;
 }
 
-.filter-form__span__reset {
-  background-image: url("/src/components/FilterBar/assets/delete.svg");
-  background-repeat: no-repeat;
-  width: 20px;
-  height: 20px;
-  display: flex;
-  margin-right: 5px;
-}
-
 .filter-form__button--reset {
   display: flex;
+  align-items: center;
+  justify-content: flex-start; 
+  background-color: transparent;
+  border: none;
   padding: 0;
   margin: 0;
+  min-width: 147px;
+  width: 100%;
+  cursor: pointer;
+}
+
+.filter-form__span__reset-icon {
+  background-image: url("/src/components/FilterBar/assets/delete.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 20px;
+  height: 20px;
+  margin: 0 4px 2px 7px;
 }
 
 .filter-form__area--apply {

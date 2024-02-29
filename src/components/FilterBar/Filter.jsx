@@ -150,6 +150,7 @@ function Filter() {
             onSelect={(option) => handleSelection(option, 'gender')}
             selectedValue={gender}
             id="genderSelect"
+            placeholder="Выберите пол"
           />
         </label>
       </div>
@@ -162,6 +163,7 @@ function Filter() {
             onSelect={(option) => handleSelection(option, 'program')}
             selectedValue={program}
             id="programSelect"
+            placeholder="Выберите программу"
           />
         </label>
       </div>
@@ -174,6 +176,7 @@ function Filter() {
             onSelect={(option) => handleSelection(option, 'status')}
             selectedValue={status}
             id="statusSelect"
+            placeholder="Выберите статус"
           />
         </label>
       </div>
@@ -186,6 +189,7 @@ function Filter() {
             onSelect={(option) => handleSelection(option, 'city')}
             selectedValue={city}
             id="citySelect"
+            placeholder="Выберите город"
           />
         </label>
       </div>
@@ -204,9 +208,17 @@ function Filter() {
       </div>
 
       <div className="filter-form__area filter-form__area--reset">
-        <span className="filter-form__span filter-form__span__reset" />
-        <button type="button" className="filter-form__button filter-form__button--reset" onClick={resetFilters}>Очистить фильтры</button>
+        <button
+          type="button"
+          className="filter-form__button filter-form__button--reset"
+          onClick={resetFilters}
+          aria-label="Очистить фильтры"
+        >
+          <span className="filter-form__span__reset-icon" />
+          Очистить фильтры
+        </button>
       </div>
+
       <div className="filter-form__area filter-form__area--apply">
         <button type="submit" className="filter-form__button filter-form__button--apply">Применить</button>
       </div>

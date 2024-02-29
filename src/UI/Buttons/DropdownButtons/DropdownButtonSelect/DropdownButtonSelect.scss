@@ -30,7 +30,6 @@ $caretHoverImagePath: '../assets/AmbAddDropdownCaretHover.svg';
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: fit-content; // check
 
     &_active {
       color: $color-black-900;
