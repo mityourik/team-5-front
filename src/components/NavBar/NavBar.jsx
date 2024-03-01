@@ -57,7 +57,7 @@ function NavBar({ isOpen, onMouseEnter, onMouseLeave }) {
         </ul>
       </nav>
       )}
-      <div className={isOpen ? 'nav-bar__separator' : 'nav-bar__separator_closed'} />
+      {/* <div className={isOpen ? 'nav-bar__separator' : 'nav-bar__separator_closed'} /> */}
       {isOpen && (
         <nav className="nav-bar__container">
           <ul className="nav-bar__list">

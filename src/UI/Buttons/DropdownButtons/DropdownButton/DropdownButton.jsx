@@ -2,7 +2,9 @@ import { useState } from 'react';
 import './DropdownButton.scss';
 import PropTypes from 'prop-types';
 
-function DropdownButton({ buttonLabel, menuOptions }) {
+function DropdownButton({
+  buttonLabel, menuOptions,
+}) {
   const [isActive, setIsActive] = useState(false);
 
   const handleOptionClick = (action) => {
@@ -27,7 +29,7 @@ function DropdownButton({ buttonLabel, menuOptions }) {
       <button
         onClick={() => setIsActive(!isActive)}
         onKeyDown={handleKeyDown}
-        className="dropdown-btn"
+        className={`dropdown-btn ${isActive ? 'active' : ''}`}
         type="button"
         aria-haspopup="true"
         aria-expanded={isActive}

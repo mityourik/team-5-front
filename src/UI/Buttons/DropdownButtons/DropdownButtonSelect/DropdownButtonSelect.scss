@@ -13,10 +13,11 @@ $caretHoverImagePath: '../assets/AmbAddDropdownCaretHover.svg';
   width: fit-content;
   border-radius: 4px;
   background-color: $color-white;
-  margin-top: 5px;
+  margin: 5px 0 0 0;
+  
 
   &__input {
-    padding: 10px 40px 10px 11px;
+    padding: 10px;
     background-color: $color-white;
     border: 1px solid $color-black-100;
     border-radius: 4px;
@@ -30,7 +31,13 @@ $caretHoverImagePath: '../assets/AmbAddDropdownCaretHover.svg';
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: fit-content; // check
+    min-width: 197px;
+    box-sizing: border-box;
+    width: 100%;
+
+    &:active {
+      border: 1px solid $color-blue-main;
+    }
 
     &_active {
       color: $color-black-900;

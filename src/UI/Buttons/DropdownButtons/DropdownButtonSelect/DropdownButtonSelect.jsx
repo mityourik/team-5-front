@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './DropdownButtonSelect.scss';
 
 function DropdownButtonSelect({
-  options, onSelect, id, selectedValue,
+  options, onSelect, id, selectedValue, placeholder,
 }) {
   const [selectedOption, setSelectedOption] = useState('');
   const [isOpen, setIsOpen] = useState(false);
@@ -33,7 +33,7 @@ function DropdownButtonSelect({
   return (
     <div className="dropdown">
       <input
-        placeholder="Захардкожено"
+        placeholder={placeholder}
         type="text"
         className={`dropdown__input ${inputValue ? 'dropdown__input_active' : ''}`}
         onClick={toggleDropdown}
@@ -64,6 +64,7 @@ function DropdownButtonSelect({
 
 DropdownButtonSelect.defaultProps = {
   selectedValue: '',
+  placeholder: 'Выбрать',
 };
 
 DropdownButtonSelect.propTypes = {
@@ -71,6 +72,7 @@ DropdownButtonSelect.propTypes = {
   options: PropTypes.arrayOf(PropTypes.string).isRequired,
   onSelect: PropTypes.func.isRequired,
   selectedValue: PropTypes.string,
+  placeholder: PropTypes.string,
 };
 
 export default DropdownButtonSelect;

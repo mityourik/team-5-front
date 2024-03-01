@@ -1,8 +1,8 @@
 @import '../../../../styles/variables';
 @import '../../../../styles/typography';
 
-$caretImagePath: '../assets/AmbAddDropdownCaret.svg';
-$caretHoverImagePath: '../assets/AmbAddDropdownCaretHover.svg';
+$caretImg: '../../assets/arrow_down.svg';
+$caretImgWhite: '../../assets/arrow_down_white.svg';
 
 .dropdown {
   position: relative;
@@ -23,34 +23,25 @@ $caretHoverImagePath: '../assets/AmbAddDropdownCaretHover.svg';
     display: flex;
     justify-content: space-between;
     width: 100%;
+    transition: background-color 0.3s, color 0.3s, border 0.3s;
 
     .caret {
-      background-image: url($caretImagePath);
+      background-image: url($caretImg);
       background-repeat: no-repeat;
       width: 20px;
       height: 20px;
       display: inline-block;
       margin-left: 9px;
+      transition: background-image 0.3s;
     }
 
-    &:hover, &:focus {
+    &:hover, &:focus, &.active {
       background-color: $color-blue-main;
-      color: $color-white;
-      border: 1px solid $color-blue-main;
-
-      .caret {
-        background-image: url($caretHoverImagePath);
-        background-position: center;
-      }
-    }
-
-    &:active {
-      background-color: $color-blue;
       color: $color-white;
       border: 1px solid $color-blue;
 
       .caret {
-        background-image: url($caretHoverImagePath);
+        background-image: url($caretImgWhite);
       }
     }
   }

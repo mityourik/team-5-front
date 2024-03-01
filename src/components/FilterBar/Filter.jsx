@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import RangeDatePicker from '../../UI/Calendar/RangeDatePicker';
-import './Filter.scss';
 import DropdownButtonSelect from '../../UI/Buttons/DropdownButtons/DropdownButtonSelect/DropdownButtonSelect';
+import './Filter.scss';
 
 function Filter() {
   const [gender, setGender] = useState('');
@@ -140,77 +140,83 @@ function Filter() {
   };
 
   return (
-    <form className="filter-form" onSubmit={handleSubmit}>
+    <>
+      <form className="filter-form" onSubmit={handleSubmit}>
 
-      <div className="filter-form__area filter-form__area--gender">
-        <label htmlFor="genderSelect" className="filter-form__label">
-          Пол
-          <DropdownButtonSelect
-            options={optionsGender}
-            onSelect={(option) => handleSelection(option, 'gender')}
-            selectedValue={gender}
-            id="genderSelect"
-          />
-        </label>
-      </div>
+        <div className="filter-form__area filter-form__area--gender">
+          <label htmlFor="genderSelect" className="filter-form__label">
+            Пол
+            <DropdownButtonSelect
+              options={optionsGender}
+              onSelect={(option) => handleSelection(option, 'gender')}
+              selectedValue={gender}
+              id="genderSelect"
+              placeholder="Выберите пол"
+            />
+          </label>
+        </div>
 
-      <div className="filter-form__area filter-form__area--program">
-        <label htmlFor="programSelect" className="filter-form__label">
-          Программа обучения
-          <DropdownButtonSelect
-            options={optionsProgram}
-            onSelect={(option) => handleSelection(option, 'program')}
-            selectedValue={program}
-            id="programSelect"
-          />
-        </label>
-      </div>
+        <div className="filter-form__area filter-form__area--program">
+          <label htmlFor="programSelect" className="filter-form__label">
+            Программа обучения
+            <DropdownButtonSelect
+              options={optionsProgram}
+              onSelect={(option) => handleSelection(option, 'program')}
+              selectedValue={program}
+              id="programSelect"
+              placeholder="Выберите программу"
+            />
+          </label>
+        </div>
 
-      <div className="filter-form__area filter-form__area--status">
-        <label htmlFor="statusSelect" className="filter-form__label">
-          Статус
-          <DropdownButtonSelect
-            options={optionsStatus}
-            onSelect={(option) => handleSelection(option, 'status')}
-            selectedValue={status}
-            id="statusSelect"
-          />
-        </label>
-      </div>
+        <div className="filter-form__area filter-form__area--status">
+          <label htmlFor="statusSelect" className="filter-form__label">
+            Статус
+            <DropdownButtonSelect
+              options={optionsStatus}
+              onSelect={(option) => handleSelection(option, 'status')}
+              selectedValue={status}
+              id="statusSelect"
+              placeholder="Выберите статус"
+            />
+          </label>
+        </div>
 
-      <div className="filter-form__area filter-form__area--city">
-        <label htmlFor="citySelect" className="filter-form__label">
-          Город
-          <DropdownButtonSelect
-            options={optionsCity}
-            onSelect={(option) => handleSelection(option, 'city')}
-            selectedValue={city}
-            id="citySelect"
-          />
-        </label>
-      </div>
+        <div className="filter-form__area filter-form__area--city">
+          <label htmlFor="citySelect" className="filter-form__label">
+            Город
+            <DropdownButtonSelect
+              options={optionsCity}
+              onSelect={(option) => handleSelection(option, 'city')}
+              selectedValue={city}
+              id="citySelect"
+              placeholder="Выберите город"
+            />
+          </label>
+        </div>
 
-      <div className="filter-form__area filter-form__area--date-range">
-        <label htmlFor="dateSelect" className="filter-form__label">
-          Дата регистрации
-          <RangeDatePicker
-            id="dateSelect"
-            startDate={startDate}
-            setStartDate={setStartDate}
-            endDate={endDate}
-            setEndDate={setEndDate}
-          />
-        </label>
-      </div>
+        <div className="filter-form__area filter-form__area--date-range">
+          <label htmlFor="dateSelect" className="filter-form__label">
+            Дата регистрации
+            <RangeDatePicker
+              id="dateSelect"
+              startDate={startDate}
+              setStartDate={setStartDate}
+              endDate={endDate}
+              setEndDate={setEndDate}
+            />
+          </label>
+        </div>
 
-      <div className="filter-form__area filter-form__area--reset">
-        <span className="filter-form__span filter-form__span__reset" />
-        <button type="button" className="filter-form__button filter-form__button--reset" onClick={resetFilters}>Очистить фильтры</button>
-      </div>
+        <div className="filter-form__area filter-form__area--reset">
+          <span className="filter-form__span filter-form__span__reset" />
+          <button type="button" className="filter-form__button filter-form__button--reset" onClick={resetFilters}>Очистить фильтры</button>
+        </div>
+      </form>
       <div className="filter-form__area filter-form__area--apply">
         <button type="submit" className="filter-form__button filter-form__button--apply">Применить</button>
       </div>
-    </form>
+    </>
   );
 }
 
