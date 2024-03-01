@@ -5,8 +5,9 @@ import { Routes, Route } from 'react-router-dom';
 // import FilterMailingBtn from './UI/Buttons/FilterMailingBtn';
 // import SearchBar from './UI/SearchBar/SearchBar';
 // import imgFilter from './UI/Buttons/assets/AmbFilterButtonImg.svg';
+import AmbassadorPage from './components/AmbassadorPage/AmbassadorPage';
 
-import Filter from './components/FilterBar/Filter';
+// import Filter from './components/FilterBar/Filter';
 
 function App() {
   // const [isOpen, setIsOpen] = useState(false);
