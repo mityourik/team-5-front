@@ -1,0 +1,250 @@
+@import '../../styles/typography';
+@import '../../styles/variables';
+
+.date-picker-line {
+  padding: 0;
+  margin: 0;
+}
+
+.date-picker-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-family: 'Arial', sans-serif;
+  margin: 5px 0 0 0;
+
+  .buttons-container {
+    display: flex;
+    justify-content: space-between;
+
+    .clear-button,
+    .save-button {
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      font-family: "YS Text Regular", "Helvetica", sans-serif;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 20px;
+      padding: 0;
+      margin: 0;
+      position: absolute;
+      bottom: 12px;
+    }
+
+    .clear-button {
+      left: 39px;
+      color: $color-black-900;
+    }
+
+    .save-button {
+      right: 39px;
+      color: $color-blue-main;
+    }
+  }
+
+  .react-datepicker {
+    border: none;
+
+    &__header {
+      background-color: $color-white;
+      border: none;
+      padding: 0;
+    }
+
+    &__current-month,
+    &__month {
+      font-family: $font-body2-medium;
+      color: $color-black-500;
+      font-size: 14px;
+      line-height: 20px;
+      font-weight: 500;
+      padding: 0;
+      margin-top: 18px;
+    }
+
+    &__triangle {
+      display: none;
+    }
+
+    &__day-names {
+      margin-top: 9px;
+      font-family: $font-caption2-regular;
+      font-size: 11px;
+      line-height: 12px;
+      font-weight: 400;
+      color: $color-black-500;
+      text-transform: uppercase;
+    }
+
+    &-popper {
+      left: 40px;
+    }
+
+    &-ignore-onclickoutside {
+      margin: 0;
+      border-radius: 4px;
+      border: 1px solid $color-black-100;
+      padding: 11px 10px 11px 43px;
+      background-image: url(/src/UI/Calendar/assets/calendarImg.svg);
+      background-repeat: no-repeat;
+      background-size: 24px 24px;
+      background-position: 11px 7px;
+      box-sizing: border-box;
+      width: auto;
+      min-width: 101px;
+    }
+
+    &__close-icon {
+      display: none;
+    }
+
+    &__navigation--previous {
+      left: 20px;
+      top: 11px;
+    }
+
+    &__navigation--next {
+      right: 20px;
+      top: 11px;
+    }
+
+    .react-datepicker__month-container {
+      background-color: $color-white;
+      padding: 0 0 30px 0;
+      width: 272px;
+      height: 284px;
+      box-shadow: 0 4px 6px 0 rgba(176, 190, 197, 0.2), 0 8px 24px 0 rgba(176, 190, 197, 0.2);
+      border-radius: 6px;
+    }
+
+    &__day--selected,
+    &__day--keyboard-selected,
+    &__day--in-range,
+    &__day--range-start,
+    &__day--range-end,
+    &__day--today {
+      border-radius: 50%;
+      background-color: $color-blue;
+      color: $color-white !important;
+    }
+
+    &__day--selected {
+      background-color: $color-blue;
+      color: $color-white;
+    }
+
+    &__day--keyboard-selected {
+      background-color: #e6e6e6;
+    }
+
+    &__day--in-range {
+      background-color: $color-black-100;
+    }
+
+    &__day--range-start,
+    &__day--range-end {
+      background-color: $color-blue;
+      color: $color-white;
+    }
+
+    &__day--today {
+      background-color: $color-black-300 !important;
+      color: $color-white !important;
+    }
+
+    &__day, 
+    &__day-name {
+      color: $color-black-900;
+    }
+
+    &__day--outside-month {
+      color: $color-black-500;
+    }
+  }
+}
+
+// input {
+//   margin: 0;
+//   border-radius: 4px;
+//   border: 1px solid $color-black-100;
+//   padding: 11px 10px 11px 43px;
+//   background-image: url(/src/UI/Calendar/assets/calendarImgInactive.svg);
+//   background-repeat: no-repeat;
+//   background-size: 24px 24px;
+//   background-position: 11px 7px;
+//   box-sizing: border-box;
+//   width: auto;
+//   max-width: 149px;
+
+//   &::placeholder {
+//     font-size: 13px;
+//     line-height: 16px;
+//     font-weight: 400;
+//     font-family: $font-caption-regular;
+//     color: $color-black-500;
+//   }
+// }
+
+// .example-custom-input:focus, input:focus {
+//   outline: none !important;
+//   border: 1px solid $color-black-100 !important;
+// }
+
+.example-custom-input {
+  background-color: $color-white; // Используйте переменную для фона
+  border: 1px solid $color-black-100; // Используйте переменную для цвета границы
+  border-radius: 4px; // Скругленные углы для современного вида
+  padding: 11px 10px 11px 43px;
+  font-size: 1rem; // Размер шрифта
+  cursor: pointer; // Курсор в виде указателя, показывает интерактивность
+  background-image: url(/src/UI/Calendar/assets/calendarImgInactive.svg);
+  background-repeat: no-repeat; // Не повторять изображение
+  background-size: contain; // Масштабировать изображение, чтобы оно поместилось полностью
+  background-repeat: no-repeat;
+  background-size: 24px 24px;
+  background-position: 11px 7px;
+  box-sizing: border-box;
+  min-width: 101px;
+  max-width: 148px;
+  height: 40px;
+
+  &.placeholder {
+    font-size: 13px;
+    line-height: 16px;
+    font-weight: 400;
+    font-family: $font-caption-regular;
+    color: $color-black-500;
+  }
+
+  // Стиль для выбранной даты
+  &.selected-date {
+    font-size: 13px;
+    line-height: 16px;
+    font-weight: 400;
+    font-family: $font-caption-regular;
+    color: $color-black-500;
+  }
+
+  &::placeholder {
+    font-size: 13px;
+    line-height: 16px;
+    font-weight: 400;
+    font-family: $font-caption-regular;
+    color: $color-black-500;
+  }
+
+  &:hover {
+    background-color: $color-white;
+  }
+
+  &:focus {
+    outline: none;
+    border: 1px solid $color-blue-main;
+  }
+
+  &:active {
+    outline: none;
+    border: 1px solid $color-blue-main;
+  }
+}

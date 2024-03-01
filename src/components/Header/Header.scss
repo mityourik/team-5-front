@@ -1,0 +1,113 @@
+$white: #fff;
+$YSTextRegular: 'YS Text Regular';
+$YSDisplayRegular: 'YS-Display-Regular';
+
+.header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 64px;
+    padding: 0 58px 0 16px;
+    background-color: #1A1B22;
+
+    &__container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        min-height: 64px;
+    }
+
+    &__logo {
+        display: flex;
+        width: 32px;
+        height: 32px;
+        padding: 0;
+        cursor: pointer;
+    }
+
+    &__logo-content {
+        display: flex;
+        align-items: center;
+        margin: 6px 0 0 0;
+    }
+
+    &__ambassadors {
+        opacity: 0;
+        transition: opacity 0.2s ease-in-out;
+        margin: 8px 0 0 15px;
+        padding: 0;
+        color: $white;
+        font-family: $YSDisplayRegular;
+        font-size: 28px;
+        line-height: 20px;
+        min-height: 28px;
+
+        &_visible {
+            opacity: 1;
+        }
+    }
+
+    &__user-content {
+        display: flex;
+        flex-direction: row;
+        min-height: min-content;
+        align-items: center;
+
+        &_bell {
+            width: 16px;
+            height: 19.5px;
+            display: flex;
+            padding: 0;
+            margin-right: 56px;
+            transition: opacity 0.3s ease;
+            opacity: 1;
+            cursor: pointer;
+
+            &:hover {
+                opacity: 0.7;
+            }
+        }
+
+        &_image {
+            display: flex;
+            width: 40px;
+            height: 40px;
+            padding: 0 12px 0 0;
+        }
+
+        &_title {
+            display: flex;
+            flex-direction: column;
+            padding: 0;
+            align-items: flex-start;
+
+            &_name {
+                color: $white;
+                font-family: $YSTextRegular;
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 20px;
+                padding: 0;
+                margin: 0;
+                transition: opacity 0.3s ease;
+                opacity: 1;
+                cursor: pointer;
+
+                &:hover {
+                    opacity: 0.7;
+                }
+            }
+
+            &_position {
+                color: #B5B5B7;
+                font-family: $YSTextRegular;
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 20px;
+                padding: 2px 0 0 0;
+                margin: 0;
+            }
+        }
+    } 
+}
