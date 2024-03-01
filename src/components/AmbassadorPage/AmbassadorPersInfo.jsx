@@ -1,5 +1,5 @@
 // import { useEffect } from 'react';
-import { Formik, Form } from 'formik';
+import { Formik, Form, Field } from 'formik';
 import { useSelector } from 'react-redux';
 import {
   getIsAmbassadorDataEditing,
@@ -23,14 +23,9 @@ import './AmbassadorPage.scss';
 
 export default function AmbassadorPersInfo() {
   // const dispatch = useDispatch();
+  const options = ['List item', 'UI/UX дизайнер', 'List item', 'List item', 'List item', 'List item', 'List item', 'List item', 'List item'];
 
   const isAmbassadorDataEditing = useSelector(getIsAmbassadorDataEditing);
-  // const isLoadingAmbassadorData = useSelector(getIsLoadingAmbassadorData);
-  // const ambassador = useSelector(getAmbassadorData);
-
-  // useEffect(() => {
-  //   dispatch(getAmbassadorInfo());
-  // }, [dispatch]);
 
   return (
     <article className={`ambassador-page__data ${isAmbassadorDataEditing && 'ambassador-page__data_editing'}`}>
@@ -39,7 +34,8 @@ export default function AmbassadorPersInfo() {
           <Formik
             initialValues={{
               name: 'Василий Васильевич Пупкин',
-              education: 'UI/UX дизайнер',
+              dropdownValue: 'UI/UX дизайнер',
+
             }}
             // onSubmit={handleSubmit}
             // validate={validate}
@@ -47,18 +43,23 @@ export default function AmbassadorPersInfo() {
             {() => (
               <Form>
                 <InputName name="name" />
-                <DropdownField
-                  inputId="education"
-                  labelText="Программа обучения"
-                  ddClassName="select-education"
-                >
-                  <option className="select-option" value="">Выберите из списка</option>
-                  <option className="select-option" value="UI/UX дизайнер">UI/UX дизайнер</option>
-                  <option className="select-option" value="Продакт-менеджер для специалистов с опытом">Продакт-менеджер для специалистов с опытом</option>
-                </DropdownField>
+                <Field
+                  name="dropdownValue"
+                  render={({ field }) => (
+                    <DropdownField
+                      // eslint-disable-next-line react/jsx-props-no-spreading
+                      {...field}
+                      // inputId="dropdownValue"
+                      labelText="Программа обучения"
+                      options={options}
+                      htmlFor="dropdownValue"
+                    />
+                  )}
+                />
               </Form>
             )}
           </Formik>
+
           <AmbassadorSectionTitle title="Контакты" />
           <Formik
             initialValues={{
