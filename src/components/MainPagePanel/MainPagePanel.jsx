@@ -21,6 +21,7 @@ const menuOptions = [
 
 function MainPagePanel() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   const handleMouseEnter = () => setIsOpen(true);
   const handleMouseLeave = () => setIsOpen(false);
@@ -29,8 +30,8 @@ function MainPagePanel() {
     console.log('Поиск:', searchTerm);
   };
 
-  const handleClick = () => {
-    setIsOpen(!isOpen);
+  const handleFilterClick = () => {
+    setIsFilterOpen(!isFilterOpen);
   };
 
   return (
@@ -49,13 +50,12 @@ function MainPagePanel() {
           />
           <FilterButton
             text="Фильтры"
-            onClick={handleClick}
+            onClick={handleFilterClick}
           />
         </div>
         <div className="main-page-panel__container main-page-panel__container__content_mailing">
           <MailingButton
             text="Написать"
-            onClick={handleClick}
           />
           <DropdownButton
             buttonLabel="Добавить Амбассадора"
@@ -63,7 +63,7 @@ function MainPagePanel() {
           />
         </div>
       </div>
-      {isOpen && (
+      {isFilterOpen && (
         <div className="filter-container">
           <Filter />
         </div>
