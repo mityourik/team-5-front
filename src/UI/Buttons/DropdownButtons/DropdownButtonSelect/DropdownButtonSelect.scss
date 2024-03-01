@@ -17,6 +17,7 @@ $caretHoverImagePath: '../assets/AmbAddDropdownCaretHover.svg';
   
 
   &__input {
+    outline: none;
     padding: 10px;
     background-color: $color-white;
     border: 1px solid $color-black-100;
@@ -37,6 +38,10 @@ $caretHoverImagePath: '../assets/AmbAddDropdownCaretHover.svg';
 
     &:active {
       border: 1px solid $color-blue-main;
+    }
+
+    &:focus {
+      outline: none;
     }
 
     &_active {
