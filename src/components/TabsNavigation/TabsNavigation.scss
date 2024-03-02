@@ -26,24 +26,24 @@
   }
 
   &__item {
-    margin: 0; // Расстояние между элементами списка
+    margin: 0;
     padding: 0 0 10px 0;
 
     &:first-child {
-      margin-left: 0; // У первого элемента списка нет левого отступа
+      margin-left: 0;
     }
   }
 
   &__link {
     margin: 0;
     padding: 0 10px 9.5px 10px;
-    text-decoration: none; // Убираем подчеркивание
+    text-decoration: none;
     font-family: $font-h3-regular;
-    font-size: 20px; // Размер шрифта
+    font-size: 20px;
     line-height: 24px;
-    color: $color-black-500; // Цвет текста
-    font-weight: 400; // Насыщенность шрифта
-    transition: color 0.3s ease; // Плавный переход цвета
+    color: $color-black-500;
+    font-weight: 400;
+    transition: color 0.3s ease;
     position: relative;
 
     .navigation-tabs__link-count {
@@ -53,15 +53,15 @@
         margin: 0 0 0 2px;
         font-family: $font-body2-medium;
         font-size: 14px;
-        line-height: 18px; // Высота строки для вертикального центрирования текста
-        display: inline-block; // Элемент рядом с названием вкладки
-        text-align: center; // Выравнивание текста по центру
+        line-height: 18px;
+        display: inline-block;
+        text-align: center;
         vertical-align: top;
     }
 
     &.active {
       font-family: $font-h3-medium;
-      color: $color-black-900; // Цвет текста для активной вкладки
+      color: $color-black-900;
       border-bottom: 3px solid $color-black-900;
       font-weight: 500;
       font-size: 20px;
@@ -69,7 +69,7 @@
     }
 
     &:hover {
-      color: $color-black-900; // Цвет текста при наведении
+      color: $color-black-900;
     }
   }
 }
