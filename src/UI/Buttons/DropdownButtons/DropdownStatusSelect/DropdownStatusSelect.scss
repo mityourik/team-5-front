@@ -1,5 +1,8 @@
+
 @import '../../../../styles/typography';
 @import '../../../../styles/variables';
+
+$caretHoverImagePath: '../assets/AmbAddDropdownCaretHover.svg';
 
 .dropdown {
   position: relative;
@@ -10,16 +13,15 @@
   color: $color-black-500;
   width: fit-content;
   border-radius: 4px;
-  background-color: $color-white;
-  margin: 5px 0 0 0;
-  
+  // background-color: $color-white;
+
   &__input {
-    outline: none;
-    padding: 10px;
-    background-color: $color-white;
+    padding: 10px 40px 10px 11px;
+    // background-color: $color-white;
     border: 1px solid $color-black-100;
     border-radius: 4px;
     text-align: left;
+    outline: none;
     cursor: pointer;
     background-image: url('../../assets/dropdownCaretGrey.svg');
     background-repeat: no-repeat;
@@ -29,17 +31,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    min-width: 197px;
-    box-sizing: border-box;
-    width: 100%;
-
-    &:active {
-      border: 1px solid $color-blue-main;
-    }
-
-    &:focus {
-      outline: none;
-    }
+    max-width: fit-content; // check
 
     &_active {
       color: $color-black-900;
@@ -86,9 +78,8 @@
     cursor: pointer;
     transition: background-color 0.3s;
 
-    &:hover,
-    &_hovered {
-      background-color: $color-grey;
+    &:hover {
+      background-color: #e9e9e9;
     }
 
     &:focus {
@@ -100,7 +91,9 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background-color: $color-blue-bg !important;
+      // background-color: $color-blue-bg;
+      // color: #000;
+
 
       &::after {
         content: url('../../assets/checkedImg.svg');
@@ -110,4 +103,17 @@
       }
     }
   }
+}
+
+.green {
+  background-color: #C2E5CE;
+}
+.peach {
+  background-color: #FFE1BD;
+}
+.blue {
+  background-color: #ACCCFF;
+}
+.gray {
+  background-color: #DDE0E4;
 }

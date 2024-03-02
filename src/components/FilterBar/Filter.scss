@@ -2,20 +2,25 @@
 @import '../../styles/variables';
 
 .filter-form {
-  display: grid;
-  grid-template-columns: repeat(6, minmax(auto, max-content));
-  grid-template-rows: repeat(2, minmax(auto, max-content));
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  align-items: center;
   gap: 8px;
-  grid-template-areas: 
-    "gender program status city date reset"
-    "apply apply apply apply apply apply";
-}
 
-.filter-form__area__gender { grid-area: gender; }
-.filter-form__area__program { grid-area: program; }
-.filter-form__area__status { grid-area: status; }
-.ilter-form__area__city { grid-area: city; }
-.ifilter-form__area__date-range { grid-area: date; }
+  &__area--gender
+  &__area--status, &__area--city,
+  &__area--date-range, &__area--reset
+  &__area--apply
+  {
+    display: flex;
+  }
+
+  &__area--program {
+    max-width: 197px;
+    width: 100%;
+  }
+}
 
 .filter-form__label {
   display: flex;
@@ -44,16 +49,6 @@
   background: url("/src/components/FilterBar/assets/arrow_down.svg") no-repeat right 11px center;
   background-size: 24px 24px;
   cursor: pointer;
-}
-
-.filter-form__area__gender .filter-form__select,
-.filter-form__area__status .filter-form__select,
-.ilter-form__area__city .filter-form__select {
-  width: 188px;
-}
-
-.filter-form__area__program .filter-form__select {
-  width: 197px;
 }
 
 .filter-form__input {
@@ -88,42 +83,33 @@
   }
 }
 
-.filter-form__area__reset {
-  grid-area: reset;
+.filter-form__area--reset {
   display: flex;
-  flex-direction: row;
-  align-items: end;
-  margin-bottom: 8px;
+  margin: 20px 0 0 8px;
+  margin-top: 13px;
 }
 
-.filter-form__button__reset {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start; 
-  background-color: transparent;
-  border: none;
-  padding: 0;
-  margin: 0;
-  min-width: 147px;
-  width: 100%;
-  cursor: pointer;
-}
-
-.filter-form__span__reset-icon {
+.filter-form__span__reset {
   background-image: url("/src/components/FilterBar/assets/delete.svg");
   background-repeat: no-repeat;
-  background-position: center;
   width: 20px;
   height: 20px;
-  margin: 0 4px 2px 7px;
-}
-
-.filter-form__area__apply {
-  grid-area: apply;
   display: flex;
+  margin-right: 5px;
 }
 
-.filter-form__button__apply {
+.filter-form__button--reset {
+  display: flex;
+  padding: 0;
+  margin: 0;
+}
+
+.filter-form__area--apply {
+  display: flex;
+  margin: 12px 0 0 0;
+}
+
+.filter-form__button--apply {
   color: $color-blue-main;
   display: flex;
   font-family: $font-body2-regular;

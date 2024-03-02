@@ -1,11 +1,14 @@
+import { useState } from 'react';
 import AmbassadorSectionTitle from './AmbassadorSectionTitle';
-import DropdownButton1 from '../../UI/Buttons/DropdownButton1/DropdownButton1';
+import DropdownStatusSelect from '../../UI/Buttons/DropdownButtons/DropdownStatusSelect/DropdownStatusSelect';
 import AmbassadorInfoTable from './AmbassadorInfoTable';
-// import {getIsAmbassadorDataEdit ing } from '../../services/selectors/ambassadorSelector';
 import './AmbassadorGeneralInfo.scss';
 
 export default function AmbassadorGeneralInfo() {
-//   const isAmbassadorDataEditing = useSelector(getIsAmbassadorDataEditing);
+  const [, setAmbassadorStatus] = useState(''); // ambassadorStatus
+  const handleStatusSelect = (status) => {
+    setAmbassadorStatus(status);
+  };
 
   const generalData = [
     { label: 'Промокод', value: 'VASYAPUPKIN' },
@@ -29,27 +32,15 @@ export default function AmbassadorGeneralInfo() {
     { label: 'Размер ноги', value: '40' },
   ];
 
-  const menuOptions = [
-    {
-      label: 'Активный',
-      action: () => console.log('Добавление вручную'),
-    },
-    {
-      label: 'Уточняется ',
-      action: () => console.log(' '),
-    },
-  ];
-
   return (
     <section className="ambassador__info-container">
       <article className="ambassador__info">
         <AmbassadorSectionTitle title="Статус" />
-        <DropdownButton1 buttonLabel="Активный" menuOptions={menuOptions} btnClassName="ambassador__status-btn" />
+        <DropdownStatusSelect onSelect={handleStatusSelect} />
       </article>
       <article className="ambassador__info">
         <AmbassadorSectionTitle title="Общие данные" />
         <AmbassadorInfoTable data={generalData} />
-        {/* {isAmbassadorDataEditing ? () : () } */}
       </article>
       <article className="ambassador__info">
         <AmbassadorSectionTitle title="Адрес" />

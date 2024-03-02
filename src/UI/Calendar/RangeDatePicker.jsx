@@ -1,16 +1,25 @@
-import DatePicker from 'react-datepicker';
+import { forwardRef, useImperativeHandle, useState } from 'react';
+import DatePicker, { registerLocale } from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import PropTypes from 'prop-types';
 import './RangeDatePicker.scss';
-import { useState } from 'react';
+import ru from 'date-fns/locale/ru';
 
-function CustomInput({ value, onClick }) {
+registerLocale('ru', ru);
+
+const CustomInput = forwardRef(({ value, onClick, placeholder }, ref) => {
+  useImperativeHandle(ref, () => ({
+    onClick,
+  }));
+
+  const buttonClass = `example-custom-input ${value ? 'selected-date' : 'placeholder'}`;
+
   return (
-    <button type="button" className="example-custom-input" onClick={onClick}>
-      {value}
+    <button type="button" className={buttonClass} onClick={onClick}>
+      {value || placeholder}
     </button>
   );
-}
+});
 
 function RangeDatePicker({
   startDate, setStartDate, endDate, setEndDate, id,
@@ -39,6 +48,7 @@ function RangeDatePicker({
         dateFormat="dd MMM yyyy"
         locale="ru"
         popperPlacement="bottom-start"
+        customInput={<CustomInput value={startDate ? startDate.toDateString() : ''} placeholder="Начало" />}
       >
         <div className="buttons-container">
           <button type="button" className="clear-button" onClick={() => { setStartDate(null); setEndDate(null); }}>
@@ -72,6 +82,7 @@ function RangeDatePicker({
         dateFormat="dd MMM yyyy"
         locale="ru"
         popperPlacement="bottom-start"
+        customInput={<CustomInput value={endDate ? endDate.toDateString() : ''} placeholder="Конец" />}
       >
         <div className="buttons-container">
           <button type="button" className="clear-button" onClick={() => { setStartDate(null); setEndDate(null); }}>
@@ -88,8 +99,15 @@ function RangeDatePicker({
 }
 
 CustomInput.propTypes = {
-  value: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
+  value: PropTypes.string,
+  onClick: PropTypes.func,
+  placeholder: PropTypes.string,
+};
+
+CustomInput.defaultProps = {
+  value: '',
+  placeholder: '',
+  onClick: () => {},
 };
 
 RangeDatePicker.propTypes = {

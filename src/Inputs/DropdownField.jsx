@@ -1,53 +1,77 @@
-import { useCallback } from 'react';
-// import { useForm } from 'react-hook-form';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Field, ErrorMessage } from 'formik';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { useFormikContext } from 'formik';
+import { setDropdownValue, setErrorDropdown } from '../services/slices/dropdownSlice';
 import './DropdownField.scss';
-// import InputContainer from './InputContainer';
 
-export default function DropdownField({
-  inputId,
-  labelText,
-  ddClassName,
-  children,
-}) {
-  const validateEducation = useCallback((value) => {
-    if (!value) {
-      return 'Список обязателен для выбора';
+function DropdownField({ options, labelText, htmlFor }) {
+  const { errors, setFieldValue, touched } = useFormikContext();
+  const [isOpen, setIsOpen] = useState(false);
+  // const [showError, setShowError] = useState(false);
+  const selectedValue = useSelector((state) => state.dropdown.dropdownValue);
+  const dropdownError = useSelector((state) => state.dropdown.errorDropdown);
+  const errorMessage = useSelector((state) => state.dropdown.errorMessageDropdown);
+  const dispatch = useDispatch();
+
+  const handleSelect = (option) => {
+    dispatch(setDropdownValue(option));
+    setIsOpen(false);
+    setFieldValue(htmlFor, option);
+  };
+
+  const handleValidate = () => {
+    if (selectedValue === 'Выберете из списка') {
+      dispatch(setErrorDropdown({ errorDropdown: true, errorMessageDropdown: 'Список обязателен для выбора' }));
+    } else {
+      dispatch(setErrorDropdown({ errorDropdown: false, errorMessageDropdown: '' }));
     }
-    return null; // Возвращаем null, если ошибок нет
-  }, []);
+  };
 
   return (
-    <div className="select__container">
-      <label htmlFor={inputId} className="select__label">
-        {labelText}
-        <Field
-          as="select"
-          id={inputId}
-          type="text"
-          name={inputId}
-          className={`my-select ${ddClassName}`}
-          validate={validateEducation}
-        >
-          {children}
-        </Field>
-      </label>
-      <div className="input__error-container">
-        <ErrorMessage
-          className="input__error"
-          component="span"
-          name={inputId}
-        />
+    <div className="select">
+      <label htmlFor={htmlFor} className="select__label">{labelText}</label>
+      <button
+        className={`select__button ${errors[htmlFor] && touched[htmlFor] && 'select__button_error'}`}
+        type="button"
+        id={htmlFor}
+        onClick={() => {
+          setIsOpen(!isOpen);
+          handleValidate(selectedValue);
+        }}
+      >
+        {selectedValue || 'Выберете из списка'}
+      </button>
+      <div className={!isOpen && 'select__error-container'}>
+        {dropdownError && (
+        <span className="select__error">
+          Ошибка:
+          {errorMessage}
+        </span>
+        )}
       </div>
+      {isOpen && (
+        <div className="select__menu">
+          {options.map((option) => (
+            <button
+              key={option}
+              className="select__option"
+              type="button"
+              onClick={() => handleSelect(option)}
+            >
+              {option}
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
 
 DropdownField.propTypes = {
-  inputId: PropTypes.string.isRequired,
+  options: PropTypes.arrayOf(PropTypes.string).isRequired,
   labelText: PropTypes.string.isRequired,
-  ddClassName: PropTypes.string.isRequired,
-  children: PropTypes.node.isRequired,
+  htmlFor: PropTypes.string.isRequired,
 };
+
+export default DropdownField;
