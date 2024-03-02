@@ -28,30 +28,30 @@ function DropdownButtonSelect({
 
   return (
     <div
-      className="dropdown"
+      className="dropdown-btn-select"
       onMouseEnter={() => setIsOpen(true)}
       onMouseLeave={() => setIsOpen(false)}
     >
       <input
         placeholder={placeholder}
         type="text"
-        className={`dropdown__input ${inputValue ? 'dropdown__input_active' : ''}`}
+        className={`dropdown-btn-select__input ${inputValue ? 'dropdown__input_active' : ''}`}
         value={inputValue || ''}
         readOnly
       />
       {isOpen && (
-        <ul className="dropdown__list">
+        <ul className="dropdown-btn-select__list">
           {options.map((option) => (
             <li
               key={option}
-              className="dropdown__item"
+              className="dropdown-btn-select__item"
             >
               <button
                 id={`${id}-${option}`}
                 type="button"
                 onClick={() => handleSelect(option)}
                 onKeyDown={(event) => handleKeyDown(event, option)}
-                className={`dropdown__button ${selectedOption === option ? 'dropdown__button_selected' : ''}`}
+                className={`dropdown-btn-select__button ${selectedOption === option ? 'dropdown-btn-select__button_selected' : ''}`}
                 tabIndex={0}
               >
                 {option}
