@@ -75,3 +75,18 @@ $text-color: #1A1B22;
 .status-tbc {
   background-color: #ACCCFF ;
 }
+
+.ambassador__info {
+  .select {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    width: 100%;
+
+    &__label {
+      min-width: 151px;
+      display: flex;
+      align-items: center;
+    }
+  }
+}

@@ -5,6 +5,8 @@ import AmbassadorSectionTitle from './AmbassadorSectionTitle';
 import DropdownStatusSelect from '../../UI/Buttons/DropdownButtons/DropdownStatusSelect/DropdownStatusSelect';
 import AmbassadorInfoTable from './AmbassadorInfoTable';
 import InputText from '../../Inputs/InputText';
+import DropdownField from '../../Inputs/DropdownField';
+import { countries } from '../../utils/countries'; // будет подгружаться из АПИ
 import './AmbassadorGeneralInfo.scss';
 
 export default function AmbassadorGeneralInfo() {
@@ -36,6 +38,32 @@ export default function AmbassadorGeneralInfo() {
     { label: 'Размер ноги', value: '40' },
   ];
 
+  const cities = [
+    'Москва',
+    'Санкт-Петербург',
+    'Новосибирск',
+    'Екатеринбург',
+    'Нижний Новгород',
+    'Казань',
+    'Челябинск',
+    'Омск',
+    'Самара',
+    'Ростов-на-Дону',
+    'Уфа',
+    'Красноярск',
+    'Пермь',
+    'Воронеж',
+    'Волгоград',
+    'Краснодар',
+    'Саратов',
+    'Тольятти',
+    'Ставрополь',
+    'Тюмень',
+    'Ярославль',
+  ];
+
+  const clothingSizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL'];
+
   return (
     <section className="ambassador__info-container">
       <article className="ambassador__info">
@@ -62,8 +90,8 @@ export default function AmbassadorGeneralInfo() {
         <AmbassadorInfoTable data={adresses}>
           {isAmbassadorDataEditing && (
             <>
-              {/* выпадалка Страна */}
-              {/* выпадалка Город */}
+              <DropdownField htmlFor="country" labelText="Страна" options={countries} selectedValue="Россия" />
+              <DropdownField htmlFor="city" labelText="Город" options={cities} selectedValue="Санкт-Петербург" />
               <InputText label="Индекс" name="index" />
               <InputText label="Адрес" name="address" />
             </>
@@ -75,8 +103,8 @@ export default function AmbassadorGeneralInfo() {
         <AmbassadorInfoTable data={merch}>
           {isAmbassadorDataEditing && (
             <>
-              {/* выпадалка Пол */}
-              {/* выпадалка Размер одежды */}
+              {/* радиокнопки Пол */}
+              <DropdownField htmlFor="clothingSize" labelText="Размер одежды" options={clothingSizes} selectedValue="M" />
               <InputText label="Размер ноги" name="shoeSize" />
             </>
           )}

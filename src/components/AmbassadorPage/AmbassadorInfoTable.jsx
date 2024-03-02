@@ -28,7 +28,7 @@ export default function AmbassadorInfoTable({ data, children }) {
           plans: 'Вести блог, Писать статьи, Снимать видео или сниматься в них, если продакшн будет на нашей стороне',
           curator: 'Анастасия Борисова',
           education: 'СПБГУПТД', // education?
-          placeOfWork: 'Безработный дизайнер ',
+          placeOfWork: 'Безработный дизайнер',
           country: 'Россия',
           city: 'Санкт-Петербург',
           index: '190000',

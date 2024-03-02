@@ -5,11 +5,13 @@ import { useFormikContext } from 'formik';
 import { setDropdownValue, setErrorDropdown } from '../services/slices/dropdownSlice';
 import './DropdownField.scss';
 
-function DropdownField({ options, labelText, htmlFor }) {
+function DropdownField({
+  options, labelText, htmlFor, selectedValue,
+}) {
   const { errors, setFieldValue, touched } = useFormikContext();
   const [isOpen, setIsOpen] = useState(false);
   // const [showError, setShowError] = useState(false);
-  const selectedValue = useSelector((state) => state.dropdown.dropdownValue);
+  // const selectedValue = useSelector((state) => state.dropdown.dropdownValue);
   const dropdownError = useSelector((state) => state.dropdown.errorDropdown);
   const errorMessage = useSelector((state) => state.dropdown.errorMessageDropdown);
   const dispatch = useDispatch();
@@ -72,6 +74,7 @@ DropdownField.propTypes = {
   options: PropTypes.arrayOf(PropTypes.string).isRequired,
   labelText: PropTypes.string.isRequired,
   htmlFor: PropTypes.string.isRequired,
+  selectedValue: PropTypes.string.isRequired,
 };
 
 export default DropdownField;
