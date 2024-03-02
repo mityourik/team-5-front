@@ -2,10 +2,12 @@
 @import '../../styles/variables';
 
 .main {
-  padding: 20px 0 0 96px;
+  padding: 41.7px 0 0 96px;
 }
 
 .navigation-tabs {
+    max-width: 1312px;
+    width: 100%;
 
   &__container {
     width: 100%;
@@ -20,12 +22,12 @@
     justify-content: flex-start;
     margin: 0;
     padding: 0;
-    border-bottom: 2px solid #E5E5E5; // Граница снизу
+    border-bottom: 1px solid $color-black-300;
   }
 
   &__item {
-    margin: 0 30px; // Расстояние между элементами списка
-    padding: 20px 0; // Отступы для элементов списка
+    margin: 0; // Расстояние между элементами списка
+    padding: 0 0 10px 0;
 
     &:first-child {
       margin-left: 0; // У первого элемента списка нет левого отступа
@@ -34,34 +36,40 @@
 
   &__link {
     margin: 0;
-    padding: 10px 20px; // Отступы вокруг текста
+    padding: 0 10px 9.5px 10px;
     text-decoration: none; // Убираем подчеркивание
-    font-size: 16px; // Размер шрифта
-    color: #1F1F1F; // Цвет текста
-    font-weight: 500; // Насыщенность шрифта
+    font-family: $font-h3-regular;
+    font-size: 20px; // Размер шрифта
+    line-height: 24px;
+    color: $color-black-500; // Цвет текста
+    font-weight: 400; // Насыщенность шрифта
     transition: color 0.3s ease; // Плавный переход цвета
     position: relative;
 
     .navigation-tabs__link-count {
-        background-color: #4D9EFF; // Фоновый цвет счетчика
-        color: white; // Цвет текста счетчика
-        border-radius: 10px; // Скругление углов счетчика
-        padding: 2px 6px; // Внутренние отступы счетчика
-        margin-left: 8px; // Отступ слева от названия вкладки
-        font-size: 12px; // Размер шрифта счетчика
-        height: 18px; // Высота счетчика
+        color: $color-blue-main;
+        border-radius: 10px;
+        padding: 0;
+        margin: 0 0 0 2px;
+        font-family: $font-body2-medium;
+        font-size: 14px;
         line-height: 18px; // Высота строки для вертикального центрирования текста
         display: inline-block; // Элемент рядом с названием вкладки
         text-align: center; // Выравнивание текста по центру
+        vertical-align: top;
     }
 
     &.active {
-      color: #4D9EFF; // Цвет текста для активной вкладки
-      border-bottom: 3px solid #4D9EFF; // Подчеркивание для активной вкладки
+      font-family: $font-h3-medium;
+      color: $color-black-900; // Цвет текста для активной вкладки
+      border-bottom: 3px solid $color-black-900;
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 24px;
     }
 
     &:hover {
-      color: #4D9EFF; // Цвет текста при наведении
+      color: $color-black-900; // Цвет текста при наведении
     }
   }
 }

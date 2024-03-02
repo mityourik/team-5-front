@@ -4,7 +4,7 @@ import './TabsNavigation.scss';
 import { useState } from 'react';
 
 function TabsNavigation() {
-  const [count] = useState('');
+  const [count] = useState('+4');
 
   return (
     <main className="main">
