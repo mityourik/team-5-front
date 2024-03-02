@@ -1,10 +1,14 @@
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { getIsAmbassadorDataEditing } from '../../services/selectors/ambassadorSelector';
 import AmbassadorSectionTitle from './AmbassadorSectionTitle';
 import DropdownStatusSelect from '../../UI/Buttons/DropdownButtons/DropdownStatusSelect/DropdownStatusSelect';
 import AmbassadorInfoTable from './AmbassadorInfoTable';
+import InputText from '../../Inputs/InputText';
 import './AmbassadorGeneralInfo.scss';
 
 export default function AmbassadorGeneralInfo() {
+  const isAmbassadorDataEditing = useSelector(getIsAmbassadorDataEditing);
   const [, setAmbassadorStatus] = useState(''); // ambassadorStatus
   const handleStatusSelect = (status) => {
     setAmbassadorStatus(status);
@@ -40,19 +44,53 @@ export default function AmbassadorGeneralInfo() {
       </article>
       <article className="ambassador__info">
         <AmbassadorSectionTitle title="Общие данные" />
-        <AmbassadorInfoTable data={generalData} />
+        <AmbassadorInfoTable data={generalData}>
+          {isAmbassadorDataEditing && (
+            <>
+              <InputText label="Промокод" name="promocode" />
+              {/* выпадалка Цель обучения */}
+              <InputText label="Куратор" name="curator" />
+              {/* выпадалка Что хочет делать */}
+              <InputText label="Образование" name="education" />
+              <InputText label="Место работы" name="placeOfWork" />
+            </>
+          )}
+        </AmbassadorInfoTable>
       </article>
       <article className="ambassador__info">
         <AmbassadorSectionTitle title="Адрес" />
-        <AmbassadorInfoTable data={adresses} />
+        <AmbassadorInfoTable data={adresses}>
+          {isAmbassadorDataEditing && (
+            <>
+              {/* выпадалка Страна */}
+              {/* выпадалка Город */}
+              <InputText label="Индекс" name="index" />
+              <InputText label="Адрес" name="address" />
+            </>
+          )}
+        </AmbassadorInfoTable>
       </article>
       <article className="ambassador__info">
         <AmbassadorSectionTitle title="Мерч" />
-        <AmbassadorInfoTable data={merch} />
+        <AmbassadorInfoTable data={merch}>
+          {isAmbassadorDataEditing && (
+            <>
+              {/* выпадалка Пол */}
+              {/* выпадалка Размер одежды */}
+              <InputText label="Размер ноги" name="shoeSize" />
+            </>
+          )}
+        </AmbassadorInfoTable>
       </article>
       <article className="ambassador__info">
         <AmbassadorSectionTitle title="Комментарий" />
-        <p className="ambassador__comment">Я готов на все ради мерча </p>
+        {isAmbassadorDataEditing ? (
+          <AmbassadorInfoTable data={null}>
+            <InputText label="" name="comment" />
+          </AmbassadorInfoTable>
+        ) : (
+          <p className="ambassador__comment">Я готов на все ради мерча </p>
+        )}
       </article>
     </section>
   );

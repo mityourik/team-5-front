@@ -16,8 +16,6 @@ import AmbassadorGeneralInfo from './AmbassadorGeneralInfo';
 import './AmbassadorPage.scss';
 
 export default function AmbassadorPage() {
-  // const isAmbassadorDataEditing = useSelector(getIsAmbassadorDataEditing);
-  // const isLoadingAmbassadorData = useSelector(getIsLoadingAmbassadorData);
   const isAmbassadorDataEditing = useSelector(getIsAmbassadorDataEditing);
 
   const [isOpen, setIsOpen] = useState(false);
