@@ -1,0 +1,67 @@
+@import '../../styles/typography';
+@import '../../styles/variables';
+
+.main {
+  padding: 20px 0 0 96px;
+}
+
+.navigation-tabs {
+
+  &__container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: $color-white;
+  }
+
+  &__list {
+    list-style: none;
+    display: flex;
+    justify-content: flex-start;
+    margin: 0;
+    padding: 0;
+    border-bottom: 2px solid #E5E5E5; // Граница снизу
+  }
+
+  &__item {
+    margin: 0 30px; // Расстояние между элементами списка
+    padding: 20px 0; // Отступы для элементов списка
+
+    &:first-child {
+      margin-left: 0; // У первого элемента списка нет левого отступа
+    }
+  }
+
+  &__link {
+    margin: 0;
+    padding: 10px 20px; // Отступы вокруг текста
+    text-decoration: none; // Убираем подчеркивание
+    font-size: 16px; // Размер шрифта
+    color: #1F1F1F; // Цвет текста
+    font-weight: 500; // Насыщенность шрифта
+    transition: color 0.3s ease; // Плавный переход цвета
+    position: relative;
+
+    .navigation-tabs__link-count {
+        background-color: #4D9EFF; // Фоновый цвет счетчика
+        color: white; // Цвет текста счетчика
+        border-radius: 10px; // Скругление углов счетчика
+        padding: 2px 6px; // Внутренние отступы счетчика
+        margin-left: 8px; // Отступ слева от названия вкладки
+        font-size: 12px; // Размер шрифта счетчика
+        height: 18px; // Высота счетчика
+        line-height: 18px; // Высота строки для вертикального центрирования текста
+        display: inline-block; // Элемент рядом с названием вкладки
+        text-align: center; // Выравнивание текста по центру
+    }
+
+    &.active {
+      color: #4D9EFF; // Цвет текста для активной вкладки
+      border-bottom: 3px solid #4D9EFF; // Подчеркивание для активной вкладки
+    }
+
+    &:hover {
+      color: #4D9EFF; // Цвет текста при наведении
+    }
+  }
+}
