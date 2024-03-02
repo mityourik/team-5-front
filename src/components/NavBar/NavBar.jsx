@@ -21,7 +21,6 @@ function NavBar({ isOpen, onMouseEnter, onMouseLeave }) {
       window.removeEventListener('keydown', handleKeyDown);
     }
 
-    // Функция очистки
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
@@ -32,9 +31,9 @@ function NavBar({ isOpen, onMouseEnter, onMouseLeave }) {
       <div
         className={`overlay ${isOpen ? 'overlay--visible' : ''}`}
         onClick={onMouseLeave}
-        onKeyDown={handleKeyDown} // Добавьте это
-        tabIndex="0" // Важно для доступности, делает элемент фокусируемым
-        role="button" // Указывает на интерактивную роль элемента
+        onKeyDown={handleKeyDown}
+        tabIndex="0"
+        role="button"
         aria-label="Закрыть меню"
       />
       <div className="nav-bar" onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
@@ -48,15 +47,15 @@ function NavBar({ isOpen, onMouseEnter, onMouseLeave }) {
                 </a>
               </li>
               <li className="nav-bar__item">
-                <a href="#analitics" className="nav-bar__link">
-                  <img className="nav-bar__icon" alt="Иконка Аналитика" src={sidebarStIconAnalitics} />
-                  Аналитика
-                </a>
-              </li>
-              <li className="nav-bar__item">
                 <a href="#mailing" className="nav-bar__link">
                   <img className="nav-bar__icon" alt="Иконка Рассылка" src={sidebarStIconMailing} />
                   Рассылка
+                </a>
+              </li>
+              <li className="nav-bar__item">
+                <a href="#analitics" className="nav-bar__link">
+                  <img className="nav-bar__icon" alt="Иконка Аналитика" src={sidebarStIconAnalitics} />
+                  Аналитика
                 </a>
               </li>
             </ul>
