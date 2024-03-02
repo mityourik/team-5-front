@@ -21,7 +21,6 @@ function NavBar({ isOpen, onMouseEnter, onMouseLeave }) {
       window.removeEventListener('keydown', handleKeyDown);
     }
 
-    // Функция очистки
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
@@ -32,9 +31,9 @@ function NavBar({ isOpen, onMouseEnter, onMouseLeave }) {
       <div
         className={`overlay ${isOpen ? 'overlay--visible' : ''}`}
         onClick={onMouseLeave}
-        onKeyDown={handleKeyDown} // Добавьте это
-        tabIndex="0" // Важно для доступности, делает элемент фокусируемым
-        role="button" // Указывает на интерактивную роль элемента
+        onKeyDown={handleKeyDown}
+        tabIndex="0"
+        role="button"
         aria-label="Закрыть меню"
       />
       <div className="nav-bar" onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
@@ -86,7 +85,6 @@ function NavBar({ isOpen, onMouseEnter, onMouseLeave }) {
           </ul>
         </nav>
         )}
-        {/* <div className={isOpen ? 'nav-bar__separator' : 'nav-bar__separator_closed'} /> */}
         {isOpen && (
           <nav className="nav-bar__container">
             <ul className="nav-bar__list">
