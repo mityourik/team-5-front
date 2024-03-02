@@ -16,7 +16,7 @@
     width: 123px;
     height: 40px;
     
-    &:hover, &:active, &:focus {
+    &:hover, &:focus {
       background-color: $color-blue-main;
       background-image: url('./assets/AmbFilterBtnHover.svg');
       border-color: $color-blue-main;
@@ -25,8 +25,13 @@
        }
     }
 
-    &:active {
+    &--active {
         background-color: $color-blue;
+        background-image: url('./assets/AmbFilterBtnHover.svg');
+        border-color: $color-blue;
+        .filter-button__span {
+            color: $color-white;
+        }
     }
 }
 

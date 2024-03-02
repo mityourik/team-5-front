@@ -36,8 +36,29 @@ $caretImgWhite: '../../assets/arrow_down_white.svg';
       transition: background-image 0.3s;
     }
 
-    &:hover, &:focus, &.active {
+    &:hover, &:focus {
       background-color: $color-blue-main;
+      color: $color-white;
+      border: 1px solid $color-blue;
+
+      .dropdown-btn__caret {
+        background-image: url($caretImgWhite);
+      }
+    }
+
+    &:not(.active):hover, &:not(.active):focus {
+      // Стили для состояния hover и focus, применяемые только когда кнопка не активна (выпадающий список закрыт)
+      background-color: $color-blue-main;
+      color: $color-white;
+      border: 1px solid $color-blue;
+
+      .dropdown-btn__caret {
+        background-image: url($caretImgWhite);
+      }
+    }
+
+    &.active {
+      background-color: $color-blue;
       color: $color-white;
       border: 1px solid $color-blue;
 

@@ -5,10 +5,13 @@ function FilterButton({
   onClick,
   text,
   children,
+  isFilterOpen,
 }) {
+  const buttonClasses = `filter-button ${isFilterOpen ? 'filter-button--active' : ''}`;
+
   return (
     <button
-      className="filter-button"
+      className={buttonClasses}
       onClick={onClick}
       type="button"
     >
@@ -24,11 +27,13 @@ FilterButton.propTypes = {
   onClick: PropTypes.func.isRequired,
   text: PropTypes.string,
   children: PropTypes.node,
+  isFilterOpen: PropTypes.bool,
 };
 
 FilterButton.defaultProps = {
   text: 'Фильтры',
   children: null,
+  isFilterOpen: false,
 };
 
 export default FilterButton;

@@ -51,11 +51,13 @@ function MainPagePanel() {
           <FilterButton
             text="Фильтры"
             onClick={handleFilterClick}
+            isFilterOpen={isFilterOpen}
           />
         </div>
         <div className="main-page-panel__container main-page-panel__container__content_mailing">
           <MailingButton
             text="Написать"
+            onClick={() => console.log('откройся рассылка')}
           />
           <DropdownButton
             buttonLabel="Добавить Амбассадора"

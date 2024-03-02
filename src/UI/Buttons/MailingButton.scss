@@ -16,17 +16,21 @@
     width: 123px;
     height: 40px;
     
-    &:hover, &:active, &:focus {
+    &:hover, &:focus {
       background-color: $color-blue-main;
       background-image: url('./assets/envelopeWhite.svg');
       border-color: $color-blue-main;
       .mailing-button__span {
         color: $color-white;
-       }
+      }
     }
 
     &:active {
         background-color: $color-blue;
+
+        .mailing-button__span {
+            color: $color-white;
+        }
     }
 }
 
