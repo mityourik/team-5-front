@@ -1,0 +1,43 @@
+.table {
+    box-sizing: border-box;
+    margin-left: 32px;
+    margin-right: 32px;
+    margin-top: 24px;
+    background-color: white;
+    flex-wrap: wrap;
+    position: relative;
+
+    &__body {
+        width: 100%;
+        border-bottom: 1px solid #1A1B22;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        height: 100vh;
+    }
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #1A1B22;
+    }
+
+    &__checkbox {
+        position: sticky;
+        left: 0;
+        background-color: white;
+    }
+
+    &__settings-container {
+        position: sticky;
+        right: 0;
+        background-color: white;
+    }
+
+    &__settings-icon {
+        width: 14px;
+        height: 16px;
+    }
+}

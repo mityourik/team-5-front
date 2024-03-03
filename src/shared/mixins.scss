@@ -1,0 +1,11 @@
+@mixin subtitle-style($subtitle) {
+    @each $property, $value in $subtitle {
+        #{$property}: $value;
+    }
+}
+
+@mixin text-style($text) {
+    @each $property, $value in $text {
+        #{$property}: $value;
+    }
+}
