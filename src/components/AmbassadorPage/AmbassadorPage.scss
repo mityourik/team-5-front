@@ -17,7 +17,7 @@ $btn-bg-color: #5A9BFF;
     flex-direction: column;
     align-items: center;
     width: 100%;
-    height: 100vh;
+    height: 100%;
     background-color: $bg-color;
     color: $text-color;
 }
@@ -72,7 +72,7 @@ $btn-bg-color: #5A9BFF;
     width: 1376px;
     justify-content: center;
     gap: 20px;
-    margin-top: 40px;
+    margin: 40px 0;
 }
 
 .ambassador-page__data {

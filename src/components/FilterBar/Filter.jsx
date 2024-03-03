@@ -1,87 +1,221 @@
 import { useState } from 'react';
 import RangeDatePicker from '../../UI/Calendar/RangeDatePicker';
+import DropdownButtonSelect from '../../UI/Buttons/DropdownButtons/DropdownButtonSelect/DropdownButtonSelect';
 import './Filter.scss';
 
 function Filter() {
+  const [gender, setGender] = useState('');
+  const [program, setProgram] = useState('');
+  const [status, setStatus] = useState('');
+  const [city, setCity] = useState('');
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
 
+  const optionsProgram = [
+    'IT-рекрутер',
+    'Аналитик данных',
+    'Python-разработчик',
+    'Веб-разработчик',
+    'C++',
+    'Специалист по Data Science',
+    'SQL для работы с данными и аналитиками',
+    'Инженер по тестированию (QA)',
+    'Продакт менеджер для специалистов с опытом',
+    'DevOps для эксплуатации и разработки',
+  ];
+
+  const optionsGender = [
+    'Женский',
+    'Мужской',
+  ];
+
+  const optionsStatus = [
+    'Активный',
+    'На паузе',
+    'Не амбассадор',
+    'Уточняется',
+  ];
+
+  const optionsCity = [
+    'Москва',
+    'Санкт-Петербург',
+    'Новосибирск',
+    'Екатеринбург',
+    'Нижний Новгород',
+    'Казань',
+    'Челябинск',
+    'Омск',
+    'Самара',
+    'Ростов-на-Дону',
+    'Уфа',
+    'Красноярск',
+    'Воронеж',
+    'Пермь',
+    'Волгоград',
+    'Краснодар',
+    'Саратов',
+    'Тюмень',
+    'Тольятти',
+    'Ижевск',
+    'Барнаул',
+    'Ульяновск',
+    'Иркутск',
+    'Хабаровск',
+    'Ярославль',
+    'Владивосток',
+    'Махачкала',
+    'Томск',
+    'Оренбург',
+    'Кемерово',
+    'Новокузнецк',
+    'Рязань',
+    'Астрахань',
+    'Набережные Челны',
+    'Пенза',
+    'Липецк',
+    'Тула',
+    'Киров',
+    'Чебоксары',
+    'Калининград',
+    'Брянск',
+    'Иваново',
+    'Магнитогорск',
+    'Ханты-Мансийск',
+    'Тверь',
+    'Ставрополь',
+    'Белгород',
+    'Сочи',
+  ];
+
   const resetFilters = () => {
+    setGender('');
+    setProgram('');
+    setStatus('');
+    setCity('');
     setStartDate(null);
     setEndDate(null);
   };
 
+  const handleSelection = (selectedOption, field) => {
+    console.log('Выбранная опция:', selectedOption);
+    switch (field) {
+      case 'gender':
+        setGender(selectedOption);
+        break;
+      case 'program':
+        setProgram(selectedOption);
+        break;
+      case 'status':
+        setStatus(selectedOption);
+        break;
+      case 'city':
+        setCity(selectedOption);
+        break;
+      default:
+        break;
+    }
+  };
+
+  const areAllFieldsEmpty = () => !gender && !program && !status && !city && !startDate && !endDate;
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (areAllFieldsEmpty()) {
+      console.log('Все поля пусты!');
+      return;
+    }
+
+    const filterData = {
+      gender,
+      program,
+      status,
+      city,
+      startDate,
+      endDate,
+    };
+    console.log('handlSub', filterData);
+    // отправить тут
+  };
+
   return (
-    <form className="filter-form">
-      <div className="filter-form__area filter-form__area--gender">
-        <label className="filter-form__label">
-          Пол
-          <select name="gender" className="filter-form__select">
-            <option value="">Выберите пол</option>
-            <option value="male">Мужской</option>
-            <option value="female">Женский</option>
-            <option value="female">Небинарная личность</option>
-          </select>
-        </label>
-      </div>
+    <>
+      <form className="filter-form" onSubmit={handleSubmit}>
 
-      <div className="filter-form__area filter-form__area--program">
-        <label className="filter-form__label">
-          Программа обучения
-          <select name="program" className="filter-form__select">
-            <option value="">Выберите программу</option>
-            <option value="it-recruiter">IT-рекрутер</option>
-            <option value="data-analyst">Аналитик данных</option>
-            {/* остальные программы */}
-          </select>
-        </label>
-      </div>
+        <div className="filter-form__area filter-form__area--gender">
+          <label htmlFor="genderSelect" className="filter-form__label">
+            Пол
+            <DropdownButtonSelect
+              options={optionsGender}
+              onSelect={(option) => handleSelection(option, 'gender')}
+              selectedValue={gender}
+              id="genderSelect"
+              placeholder="Выберите пол"
+            />
+          </label>
+        </div>
 
-      <div className="filter-form__area filter-form__area--status">
-        <label className="filter-form__label">
-          Статус
-          <select name="status" className="filter-form__select">
-            <option value="">Выберите статус</option>
-            <option value="active">Активный</option>
-            <option value="on_hold">На паузе</option>
-            {/* остальные статусы */}
-          </select>
-        </label>
-      </div>
+        <div className="filter-form__area filter-form__area--program">
+          <label htmlFor="programSelect" className="filter-form__label">
+            Программа обучения
+            <DropdownButtonSelect
+              options={optionsProgram}
+              onSelect={(option) => handleSelection(option, 'program')}
+              selectedValue={program}
+              id="programSelect"
+              placeholder="Выберите программу"
+            />
+          </label>
+        </div>
 
-      <div className="filter-form__area filter-form__area--city">
-        <label className="filter-form__label">
-          Город
-          <select name="city" className="filter-form__select">
-            <option value="">Выберите город</option>
-            <option value="moscow">Москва</option>
-            <option value="saint_petersburg">Санкт-Петербург</option>
-            {/* остальные города */}
-          </select>
-        </label>
-      </div>
+        <div className="filter-form__area filter-form__area--status">
+          <label htmlFor="statusSelect" className="filter-form__label">
+            Статус
+            <DropdownButtonSelect
+              options={optionsStatus}
+              onSelect={(option) => handleSelection(option, 'status')}
+              selectedValue={status}
+              id="statusSelect"
+              placeholder="Выберите статус"
+            />
+          </label>
+        </div>
 
-      <div className="filter-form__area filter-form__area--date-range">
-        <label className="filter-form__label">
-          Дата регистрации
-          {/* без этого коммента ошибка управления */}
-          <RangeDatePicker
-            startDate={startDate}
-            setStartDate={setStartDate}
-            endDate={endDate}
-            setEndDate={setEndDate}
-          />
-        </label>
-      </div>
+        <div className="filter-form__area filter-form__area--city">
+          <label htmlFor="citySelect" className="filter-form__label">
+            Город
+            <DropdownButtonSelect
+              options={optionsCity}
+              onSelect={(option) => handleSelection(option, 'city')}
+              selectedValue={city}
+              id="citySelect"
+              placeholder="Выберите город"
+            />
+          </label>
+        </div>
 
-      <div className="filter-form__area filter-form__area--reset">
-        <span className="filter-form__span filter-form__span__reset" />
-        <button type="button" className="filter-form__button filter-form__button--reset" onClick={resetFilters}>Очистить фильтры</button>
-      </div>
+        <div className="filter-form__area filter-form__area--date-range">
+          <label htmlFor="dateSelect" className="filter-form__label">
+            Дата регистрации
+            <RangeDatePicker
+              id="dateSelect"
+              startDate={startDate}
+              setStartDate={setStartDate}
+              endDate={endDate}
+              setEndDate={setEndDate}
+            />
+          </label>
+        </div>
+
+        <div className="filter-form__area filter-form__area--reset">
+          <span className="filter-form__span filter-form__span__reset" />
+          <button type="button" className="filter-form__button filter-form__button--reset" onClick={resetFilters}>Очистить фильтры</button>
+        </div>
+      </form>
       <div className="filter-form__area filter-form__area--apply">
         <button type="submit" className="filter-form__button filter-form__button--apply">Применить</button>
       </div>
-    </form>
+    </>
   );
 }
 

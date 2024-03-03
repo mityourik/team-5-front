@@ -37,14 +37,28 @@
     src: url('./fonts/Inter-Medium.woff2') format('woff2'),
          url('./fonts/Inter-Medium.woff') format('woff');
     font-weight: 500;
+@font-face {
+    font-family: 'YS-Display-Regular';
+    src: url('./fonts/YSDisplay-Regular.woff2') format('woff2'),
+         url('./fonts/YSDisplay-Regular.woff') format('woff'),
+         url('./fonts/YSDisplay-Regular.ttf') format('truetype');
+    font-weight: 400;
     font-style: normal;
 }
 
-/* @font-face {
+@font-face {
+    font-family: 'YS-Display-Regular-Medium';
+    src: url('./fonts/YSDisplay-Medium-Regular.woff2') format('woff2'),
+         url('./fonts/YSDisplay-Medium-Regular.woff') format('woff'),
+        url('./fonts/YSDisplay-Medium-Regular.ttf') format('truetype');
+    font-weight: 500;
+}
+
+ @font-face {
     font-family: 'YS Text';
     src: url('./fonts/YandexSansText-Medium.woff2') format('woff2'),
          url('./fonts/YandexSansText-Medium.woff') format('woff'),
          url('./fonts/YandexSansText-Medium.ttf') format('truetype');
-    font-weight: 400;
+    font-weight: 500;
     font-style: normal;
-} */
+}

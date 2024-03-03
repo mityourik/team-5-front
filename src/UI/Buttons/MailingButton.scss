@@ -1,41 +1,40 @@
 @import '../../styles/variables';
 @import '../../styles/typography';
 
-.filter-button {
+.mailing-button {
+    margin-right: 14px;
+    margin-top: 5px;
     padding: 9px 15px 9px 33px;
     border: 1px solid $color-blue-main;
     background-color: $color-white;
+    background-image: url('./assets/envelopeBlue.svg');
     background-repeat: no-repeat;
     background-position: 15px 9px;
     border-radius: 6px;
     cursor: pointer;
     transition: background-color 0.1s ease, border-color 0.1s ease, color 0.1s ease;
-  
-    &:hover {
+    width: 123px;
+    height: 40px;
+    
+    &:hover, &:focus {
       background-color: $color-blue-main;
-      .filter-button__span {
-        color: #fff;
+      background-image: url('./assets/envelopeWhite.svg');
+      border-color: $color-blue-main;
+      .mailing-button__span {
+        color: $color-white;
       }
     }
-  
+
     &:active {
-      background-color: $color-blue;
-      border-color: transparent;
-      .filter-button__span {
-        color: $color-white;
-      }
-    }
-  
-    &:focus {
-      border-color: $color-blue;
-      background-color: $color-blue;
-      .filter-button__span {
-        color: $color-white;
-      }
+        background-color: $color-blue;
+
+        .mailing-button__span {
+            color: $color-white;
+        }
     }
 }
 
-.filter-button__span {
+.mailing-button__span {
     color: $color-blue-main;
     font-family: $font-body2-medium;
     font-size: 14px;

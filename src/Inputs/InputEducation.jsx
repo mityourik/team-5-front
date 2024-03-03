@@ -5,7 +5,6 @@ import InputContainer from './InputContainer';
 
 export default function InputEducation() {
   const { values, setFieldValue } = useFormikContext();
-  // const { values, setFieldValue, errors } = useFormikContext();
 
   // не даём пользователю нажать пробел в начале и конце строки
   useEffect(() => {

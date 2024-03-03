@@ -1,4 +1,4 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   getIsAmbassadorDataEditing,
@@ -7,8 +7,8 @@ import {
   setIsAmbassadorDataEditingTrue,
   setIsAmbassadorDataEditingFalse,
 } from '../../services/slices/ambassadorSlice';
-import Header from '../Header/Header';
-import NavBar from '../NavBar/NavBar';
+// import Header from '../Header/Header';
+// import NavBar from '../NavBar/NavBar';
 import goBackIcon from '../../assets/AmbassadorsPage/go-back-button-icon.svg';
 import editIcon from '../../assets/AmbassadorsPage/edit-button-icon.svg';
 import AmbassadorPersInfo from './AmbassadorPersInfo';
@@ -16,24 +16,22 @@ import AmbassadorGeneralInfo from './AmbassadorGeneralInfo';
 import './AmbassadorPage.scss';
 
 export default function AmbassadorPage() {
-  // const isAmbassadorDataEditing = useSelector(getIsAmbassadorDataEditing);
-  // const isLoadingAmbassadorData = useSelector(getIsLoadingAmbassadorData);
   const isAmbassadorDataEditing = useSelector(getIsAmbassadorDataEditing);
 
-  const [isOpen, setIsOpen] = useState(false);
+  // const [isOpen, setIsOpen] = useState(false);
 
-  const handleMouseEnter = () => setIsOpen(true);
-  const handleMouseLeave = () => setIsOpen(false);
+  // const handleMouseEnter = () => setIsOpen(true);
+  // const handleMouseLeave = () => setIsOpen(false);
 
   const dispatch = useDispatch();
   return (
     <>
-      <Header isOpen={isOpen} />
+      {/* <Header isOpen={isOpen} />
       <NavBar
         isOpen={isOpen}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
-      />
+      /> */}
       <main className="ambassador-page">
         <nav className="ambassador-page__nav">
           {!isAmbassadorDataEditing ? (
