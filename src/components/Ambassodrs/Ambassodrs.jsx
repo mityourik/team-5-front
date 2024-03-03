@@ -5,8 +5,8 @@ import './Ambassodrs.scss';
 export default function Ambassodrs() {
   return (
     <AmbassodrsContext>
-      <section className='section'>
-        <Table useCheckbox={true} />
+      <section className="section">
+        <Table useCheckbox />
       </section>
     </AmbassodrsContext>
   );

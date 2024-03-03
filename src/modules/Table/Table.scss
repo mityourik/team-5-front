@@ -1,9 +1,9 @@
+@import '../../styles/typography';
+@import '../../styles/variables';
+
 .table {
     box-sizing: border-box;
-    margin-left: 32px;
-    margin-right: 32px;
-    margin-top: 24px;
-    background-color: white;
+    background-color: $color-white;
     flex-wrap: wrap;
     position: relative;
 

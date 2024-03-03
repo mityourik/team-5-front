@@ -1,15 +1,7 @@
 {
   "semi": true,
+  "singleQuote": false,
   "jsxSingleQuote": true,
-  "singleQuote": true,
-  "overrides": [
-    {
-      "files": "*.js",
-      "options": {
-        "singleQuote": false
-      }
-    }
-  ],
   "bracketSpacing": true,
   "trailingComma": "all",
   "printWidth": 80,

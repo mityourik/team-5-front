@@ -1,9 +1,9 @@
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import './TabsNavigation.scss';
 import { useState } from 'react';
 
-function TabsNavigation() {
+function TabsNavigation({ children }) {
   const [count] = useState('+4');
 
   return (
@@ -37,13 +37,14 @@ function TabsNavigation() {
             </li>
           </ul>
         </nav>
+        { children }
       </section>
     </main>
   );
 }
 
-// TabsNavigation.propTypes = {
-//   children: PropTypes.node.isRequired,
-// };
+TabsNavigation.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 
 export default TabsNavigation;
