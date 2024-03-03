@@ -2,6 +2,7 @@
 @import '../shared/mixins.scss';
 @import '../shared/normalize.css';
 @import '../vendor/fonts.css';
+@import '../App.scss';
 @import '../modules/Table/Table.scss';
 @import '../modules/TableHeaders/TableHeaders.scss';
 @import '../modules/TableRow/TableRow.scss';
@@ -15,14 +16,23 @@
 
 
 body {
-  background-color: white;
+  background-color: #fff;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
 }
 
-#root {
-  max-width: 1920px;
+.page {
   margin: 0 auto;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  // font-family: 'YS-Text-Regular', 'Arial', sans-serif;
+  // font-family: 'YS Text', 'Arial', sans-serif;
+  min-width: 320px;
+  max-width: 1920px;
+}
+
+#root {
   padding: 0;
 }

@@ -7,9 +7,6 @@ export const headerListAmbs = [
   { value: "Промокод", id: nanoid() },
   { value: "Телеграмм", id: nanoid() },
   { value: "Дата добавления", id: nanoid() },
-  { value: "Дата добавления", id: nanoid() },
-  { value: "Дата добавления", id: nanoid() },
-  { value: "Дата добавления", id: nanoid() },
 ];
 
 export const settings = [

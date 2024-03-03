@@ -1,0 +1,128 @@
+@import '../../styles/typography';
+@import '../../styles/variables';
+
+.filter-form {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(auto, max-content));
+  grid-template-rows: repeat(2, minmax(auto, max-content));
+  gap: 8px;
+  grid-template-areas: 
+    "gender program status city date reset"
+    "apply apply apply apply apply apply";
+}
+
+.filter-form__area--gender { grid-area: gender; }
+.filter-form__area--program { grid-area: program; }
+.filter-form__area--status { grid-area: status; }
+.filter-form__area--city { grid-area: city; }
+.filter-form__area--date-range { grid-area: date; }
+
+.filter-form__label {
+  display: flex;
+  flex-direction: column;
+  font-family: $font-caption-medium;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
+  color: $color-black-900;
+  box-sizing: border-box;
+}
+
+.filter-form__select {
+  font-family: $font-body2-regular;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  color: $color-black-500;
+  box-sizing: border-box;
+  height: 40px;
+  padding: 0 11px;
+  margin-top: 5px;
+  border: 1px solid $color-black-100;
+  border-radius: 6px;
+  appearance: none;
+  background: url("/src/components/FilterBar/assets/arrow_down.svg") no-repeat right 11px center;
+  background-size: 24px 24px;
+  cursor: pointer;
+}
+
+.filter-form__area--gender .filter-form__select,
+.filter-form__area--status .filter-form__select,
+.filter-form__area--city .filter-form__select {
+  width: 188px;
+}
+
+.filter-form__area--program .filter-form__select {
+  width: 197px;
+}
+
+.filter-form__input {
+  padding: 0 11px;
+  font-size: 16px;
+  margin-top: 5px;
+  border: 1px solid $color-black-100;
+  border-radius: 6px;
+}
+
+.filter-form__date-container {
+  display: flex;
+  justify-content: start;
+  gap: 25px;
+}
+
+.filter-form__input--date {
+  flex: 1;
+}
+
+.filter-form__button {
+  font-family: $font-body2-regular;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+
+  &:hover {
+    opacity: 0.8; 
+  }
+}
+
+.filter-form__area--reset {
+  grid-area: reset;
+  display: flex;
+  flex-direction: row;
+  align-items: end;
+  margin-bottom: 8px;
+}
+
+.filter-form__span__reset {
+  background-image: url("/src/components/FilterBar/assets/delete.svg");
+  background-repeat: no-repeat;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  margin-right: 5px;
+}
+
+.filter-form__button--reset {
+  display: flex;
+  padding: 0;
+  margin: 0;
+}
+
+.filter-form__area--apply {
+  grid-area: apply;
+  display: flex;
+}
+
+.filter-form__button--apply {
+  color: $color-blue-main;
+  display: flex;
+  font-family: $font-body2-regular;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  border: none;
+  cursor: pointer;
+}

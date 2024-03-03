@@ -1,4 +1,21 @@
-.section{
-    max-width: 100%;
+.section {
+    display: flex;
+    flex-direction: column;
+    max-width: 1792px;
+    margin-left: 64px;
+    padding-right: 32px;
+    padding-left: 32px;
     width: 100%;
+
+    &__option-container {
+        display: flex;
+        margin-top: 40px;
+        margin-bottom: 32px;
+        justify-content: space-between;
+    }
+
+    &__search-container {
+        display: flex;
+        gap: 12px;
+    }
 }

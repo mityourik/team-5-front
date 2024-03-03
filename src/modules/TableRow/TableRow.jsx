@@ -13,28 +13,21 @@ export default function TableRow({ useCheckbox }) {
           <p className='row__name-text'>Константин</p>
         </div>
         <div className='row__name'>
-          <p className='row__name-text'>Константин</p>
+          <p className='row__name-text'>
+            Продакт-менеджер для специалистов с опытом работы
+          </p>
         </div>
         <div className='row__name'>
           <p className='row__name-text'>Константин</p>
         </div>
         <div className='row__name'>
-          <p className='row__name-text'>Константин</p>
+          <p className='row__name-text'>PROMOCODE</p>
         </div>
         <div className='row__name'>
           <TelegramCell />
         </div>
         <div className='row__name'>
-          <TelegramCell />
-        </div>
-        <div className='row__name'>
-          <TelegramCell />
-        </div>
-        <div className='row__name'>
-          <TelegramCell />
-        </div>
-        <div className='row__name'>
-          <p className='row__name-text'>Константин</p>
+          <p className='row__name-text'>28.12.2022</p>
         </div>
         <div className='row__option-container'>
           <img
