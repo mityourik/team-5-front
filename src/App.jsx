@@ -11,7 +11,7 @@ function App() {
   return (
     <Routes>
       <Route
-        path="/team-5-front"
+        path="/"
         element={(
           <HeaderSidebarLayout>
             <TabsNavigation>
@@ -21,7 +21,7 @@ function App() {
           </HeaderSidebarLayout>
       )}
       />
-      <Route path="/team-5-front/ambassador-page" element={<AmbassadorPage />} />
+      <Route path="/ambassador-page" element={<AmbassadorPage />} />
     </Routes>
   );
 }

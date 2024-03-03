@@ -10,6 +10,9 @@ $YSDisplayRegular: 'YS-Display-Regular';
     min-height: 64px;
     padding: 0 58px 0 16px;
     background-color: #1A1B22;
+    position: sticky;
+    top: 0;
+    z-index: 100;
 
     &__container {
         display: flex;
