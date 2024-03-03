@@ -1,8 +1,18 @@
-@import '../vendor/normalize.css';
+@import '../shared/variables.scss';
+@import '../styles/variables';
+@import '../shared/mixins.scss';
+@import '../shared/normalize.css';
 @import '../vendor/fonts.css';
+@import '../modules/Table/Table.scss';
+@import '../modules/TableHeaders/TableHeaders.scss';
+@import '../modules/TableRow/TableRow.scss';
+@import '../modules/TableCheckbox/TableCheckbox.scss';
+@import '../modules/TableSettings/TableSettings.scss';
+@import '../modules/TelegramCell/TelegramCell.scss';
+@import '../UI/Checkbox/Checkbox.scss';
 
 body {
-  background-color: #fff;
+  background-color: $color-white;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;

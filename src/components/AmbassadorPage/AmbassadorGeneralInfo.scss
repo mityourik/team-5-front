@@ -67,3 +67,26 @@ $text-color: #1A1B22;
   margin: 0;
   padding: 0;
 }
+
+.status-active {
+  background-color: #C2E5CE;
+}
+
+.status-tbc {
+  background-color: #ACCCFF ;
+}
+
+.ambassador__info {
+  .select {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    width: 100%;
+
+    &__label {
+      min-width: 151px;
+      display: flex;
+      align-items: center;
+    }
+  }
+}

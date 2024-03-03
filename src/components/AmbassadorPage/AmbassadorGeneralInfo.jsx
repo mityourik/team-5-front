@@ -1,11 +1,20 @@
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { getIsAmbassadorDataEditing } from '../../services/selectors/ambassadorSelector';
 import AmbassadorSectionTitle from './AmbassadorSectionTitle';
-import DropdownButton1 from '../../UI/Buttons/DropdownButton1/DropdownButton1';
+import DropdownStatusSelect from '../../UI/Buttons/DropdownButtons/DropdownStatusSelect/DropdownStatusSelect';
 import AmbassadorInfoTable from './AmbassadorInfoTable';
-// import {getIsAmbassadorDataEdit ing } from '../../services/selectors/ambassadorSelector';
+import InputText from '../../Inputs/InputText';
+import DropdownField from '../../Inputs/DropdownField';
+import { countries } from '../../utils/countries'; // будет подгружаться из АПИ
 import './AmbassadorGeneralInfo.scss';
 
 export default function AmbassadorGeneralInfo() {
-//   const isAmbassadorDataEditing = useSelector(getIsAmbassadorDataEditing);
+  const isAmbassadorDataEditing = useSelector(getIsAmbassadorDataEditing);
+  const [, setAmbassadorStatus] = useState(''); // ambassadorStatus
+  const handleStatusSelect = (status) => {
+    setAmbassadorStatus(status);
+  };
 
   const generalData = [
     { label: 'Промокод', value: 'VASYAPUPKIN' },
@@ -29,39 +38,87 @@ export default function AmbassadorGeneralInfo() {
     { label: 'Размер ноги', value: '40' },
   ];
 
-  const menuOptions = [
-    {
-      label: 'Активный',
-      action: () => console.log('Добавление вручную'),
-    },
-    {
-      label: 'Уточняется ',
-      action: () => console.log(' '),
-    },
+  const cities = [
+    'Москва',
+    'Санкт-Петербург',
+    'Новосибирск',
+    'Екатеринбург',
+    'Нижний Новгород',
+    'Казань',
+    'Челябинск',
+    'Омск',
+    'Самара',
+    'Ростов-на-Дону',
+    'Уфа',
+    'Красноярск',
+    'Пермь',
+    'Воронеж',
+    'Волгоград',
+    'Краснодар',
+    'Саратов',
+    'Тольятти',
+    'Ставрополь',
+    'Тюмень',
+    'Ярославль',
   ];
+
+  const clothingSizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL'];
 
   return (
     <section className="ambassador__info-container">
       <article className="ambassador__info">
         <AmbassadorSectionTitle title="Статус" />
-        <DropdownButton1 buttonLabel="Активный" menuOptions={menuOptions} btnClassName="ambassador__status-btn" />
+        <DropdownStatusSelect onSelect={handleStatusSelect} />
       </article>
       <article className="ambassador__info">
         <AmbassadorSectionTitle title="Общие данные" />
-        <AmbassadorInfoTable data={generalData} />
-        {/* {isAmbassadorDataEditing ? () : () } */}
+        <AmbassadorInfoTable data={generalData}>
+          {isAmbassadorDataEditing && (
+            <>
+              <InputText label="Промокод" name="promocode" />
+              {/* выпадалка Цель обучения */}
+              <InputText label="Куратор" name="curator" />
+              {/* выпадалка Что хочет делать */}
+              <InputText label="Образование" name="education" />
+              <InputText label="Место работы" name="placeOfWork" />
+            </>
+          )}
+        </AmbassadorInfoTable>
       </article>
       <article className="ambassador__info">
         <AmbassadorSectionTitle title="Адрес" />
-        <AmbassadorInfoTable data={adresses} />
+        <AmbassadorInfoTable data={adresses}>
+          {isAmbassadorDataEditing && (
+            <>
+              <DropdownField htmlFor="country" labelText="Страна" options={countries} selectedValue="Россия" />
+              <DropdownField htmlFor="city" labelText="Город" options={cities} selectedValue="Санкт-Петербург" />
+              <InputText label="Индекс" name="index" />
+              <InputText label="Адрес" name="address" />
+            </>
+          )}
+        </AmbassadorInfoTable>
       </article>
       <article className="ambassador__info">
         <AmbassadorSectionTitle title="Мерч" />
-        <AmbassadorInfoTable data={merch} />
+        <AmbassadorInfoTable data={merch}>
+          {isAmbassadorDataEditing && (
+            <>
+              {/* радиокнопки Пол */}
+              <DropdownField htmlFor="clothingSize" labelText="Размер одежды" options={clothingSizes} selectedValue="M" />
+              <InputText label="Размер ноги" name="shoeSize" />
+            </>
+          )}
+        </AmbassadorInfoTable>
       </article>
       <article className="ambassador__info">
         <AmbassadorSectionTitle title="Комментарий" />
-        <p className="ambassador__comment">Я готов на все ради мерча </p>
+        {isAmbassadorDataEditing ? (
+          <AmbassadorInfoTable data={null}>
+            <InputText label="" name="comment" />
+          </AmbassadorInfoTable>
+        ) : (
+          <p className="ambassador__comment">Я готов на все ради мерча </p>
+        )}
       </article>
     </section>
   );

@@ -11,7 +11,7 @@
   flex-direction: row;
   align-items: center;
   font-family: 'Arial', sans-serif;
-  margin-top: 5px;
+  margin: 5px 0 0 0;
 
   .buttons-container {
     display: flex;
@@ -42,19 +42,6 @@
       color: $color-blue-main;
     }
   }
-
-  // .example-custom-input {
-  //   background-color: $color-white;
-  //   border: 1px solid #ccc;
-  //   border-radius: 6px;
-  //   padding: 0.5rem 1rem;
-  //   margin-right: 0.5rem;
-  //   font-size: 1rem;
-    
-  //   &:hover {
-  //     background-color: #f2f2f2;
-  //   }
-  // }
 
   .react-datepicker {
     border: none;
@@ -177,18 +164,43 @@
   }
 }
 
-input {
-  margin: 0;
-  border-radius: 4px;
+.example-custom-input {
+  background-color: $color-white;
   border: 1px solid $color-black-100;
-  padding: 12px 10px 11px 43px;
+  border-radius: 4px;
+  padding: 11px 10px 11px 43px;
+  font-size: 1rem;
+  cursor: pointer; 
   background-image: url(/src/UI/Calendar/assets/calendarImgInactive.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
   background-repeat: no-repeat;
   background-size: 24px 24px;
   background-position: 11px 7px;
   box-sizing: border-box;
-  width: auto;
-  max-width: 149px;
+  min-width: 101px;
+  max-width: 148px;
+  height: 40px;
+
+  &.placeholder {
+    font-size: 13px;
+    line-height: 16px;
+    font-weight: 400;
+    font-family: $font-caption-regular;
+    color: #afafb8;
+  }
+
+  &.selected-date {
+    font-size: 13px;
+    line-height: 16px;
+    font-weight: 400;
+    font-family: $font-caption-regular;
+    color: $color-black-900;
+    background-image: url('./assets/calendarImg.svg');
+    background-repeat: no-repeat;
+    background-size: 24px 24px;
+    background-position: 11px 7px;
+  }
 
   &::placeholder {
     font-size: 13px;
@@ -197,9 +209,18 @@ input {
     font-family: $font-caption-regular;
     color: $color-black-500;
   }
-}
 
-.example-custom-input:focus, input:focus {
-  outline: none !important;
-  border: 1px solid $color-black-100 !important;
+  &:hover {
+    background-color: $color-white;
+  }
+
+  &:focus {
+    outline: none;
+    border: 1px solid $color-blue-main;
+  }
+
+  &:active {
+    outline: none;
+    border: 1px solid $color-blue-main;
+  }
 }

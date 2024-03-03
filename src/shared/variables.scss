@@ -1,0 +1,27 @@
+$font-family: (
+    'YS Text',
+    Helvetica,
+    Arial,
+    sans-serif
+);
+
+
+$subtitle: (
+    margin: 0,
+    padding: 0,
+    font-family: $font-family,
+    font-weight: 500,
+    font-size: 14px,
+    line-height: 143%,
+    color:#1A1B22,
+);
+
+$text: (
+    margin: 0,
+    padding: 0,
+    font-family: $font-family,
+    font-weight: 400,
+    font-size: 14px,
+    line-height: 143%,
+    color:#1A1B22,
+)
