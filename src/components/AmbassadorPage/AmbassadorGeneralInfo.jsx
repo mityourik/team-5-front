@@ -3,10 +3,12 @@ import { useSelector } from 'react-redux';
 import { getIsAmbassadorDataEditing } from '../../services/selectors/ambassadorSelector';
 import AmbassadorSectionTitle from './AmbassadorSectionTitle';
 import DropdownStatusSelect from '../../UI/Buttons/DropdownButtons/DropdownStatusSelect/DropdownStatusSelect';
+import DropdownMultiselect from '../../UI/Buttons/DropdownButtons/DropdownMultiselect/DropdownMultiselect';
 import AmbassadorInfoTable from './AmbassadorInfoTable';
 import InputText from '../../Inputs/InputText';
 import DropdownField from '../../Inputs/DropdownField';
 import { countries } from '../../utils/countries'; // будет подгружаться из АПИ
+import RadioButton from '../../UI/Buttons/RadioButton/RadioButton';
 import './AmbassadorGeneralInfo.scss';
 
 export default function AmbassadorGeneralInfo() {
@@ -41,25 +43,25 @@ export default function AmbassadorGeneralInfo() {
   const cities = [
     'Москва',
     'Санкт-Петербург',
-    'Новосибирск',
     'Екатеринбург',
     'Нижний Новгород',
     'Казань',
-    'Челябинск',
     'Омск',
     'Самара',
     'Ростов-на-Дону',
     'Уфа',
-    'Красноярск',
-    'Пермь',
-    'Воронеж',
-    'Волгоград',
-    'Краснодар',
     'Саратов',
     'Тольятти',
     'Ставрополь',
     'Тюмень',
-    'Ярославль',
+  ];
+
+  const goals = [
+    { goal: 'Смена профессии' },
+    { goal: 'Вести блог' },
+    { goal: 'Писать статьи' },
+    { goal: 'Снимать видео или сниматься в них' },
+    { goal: 'Сниматься в них' },
   ];
 
   const clothingSizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL'];
@@ -79,6 +81,7 @@ export default function AmbassadorGeneralInfo() {
               {/* выпадалка Цель обучения */}
               <InputText label="Куратор" name="curator" />
               {/* выпадалка Что хочет делать */}
+              <DropdownMultiselect labelText="Что хочет делать" goals={goals} />
               <InputText label="Образование" name="education" />
               <InputText label="Место работы" name="placeOfWork" />
             </>
@@ -103,7 +106,7 @@ export default function AmbassadorGeneralInfo() {
         <AmbassadorInfoTable data={merch}>
           {isAmbassadorDataEditing && (
             <>
-              {/* радиокнопки Пол */}
+              <RadioButton labelText="Пол" inputId="gender" values={['Мужской', 'Женский']} initialValues="Мужской" />
               <DropdownField htmlFor="clothingSize" labelText="Размер одежды" options={clothingSizes} selectedValue="M" />
               <InputText label="Размер ноги" name="shoeSize" />
             </>
@@ -113,7 +116,7 @@ export default function AmbassadorGeneralInfo() {
       <article className="ambassador__info">
         <AmbassadorSectionTitle title="Комментарий" />
         {isAmbassadorDataEditing ? (
-          <AmbassadorInfoTable data={null}>
+          <AmbassadorInfoTable>
             <InputText label="" name="comment" />
           </AmbassadorInfoTable>
         ) : (

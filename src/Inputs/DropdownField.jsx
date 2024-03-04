@@ -10,8 +10,6 @@ function DropdownField({
 }) {
   const { errors, setFieldValue, touched } = useFormikContext();
   const [isOpen, setIsOpen] = useState(false);
-  // const [showError, setShowError] = useState(false);
-  // const selectedValue = useSelector((state) => state.dropdown.dropdownValue);
   const dropdownError = useSelector((state) => state.dropdown.errorDropdown);
   const errorMessage = useSelector((state) => state.dropdown.errorMessageDropdown);
   const dispatch = useDispatch();
@@ -20,6 +18,7 @@ function DropdownField({
     dispatch(setDropdownValue(option));
     setIsOpen(false);
     setFieldValue(htmlFor, option);
+    console.log('handleSelect', option);
   };
 
   const handleValidate = () => {
@@ -33,24 +32,26 @@ function DropdownField({
   return (
     <div className="select">
       <label htmlFor={htmlFor} className="select__label">{labelText}</label>
-      <button
-        className={`select__button ${errors[htmlFor] && touched[htmlFor] && 'select__button_error'}`}
-        type="button"
-        id={htmlFor}
-        onClick={() => {
-          setIsOpen(!isOpen);
-          handleValidate(selectedValue);
-        }}
-      >
-        {selectedValue || 'Выберете из списка'}
-      </button>
-      <div className={!isOpen && 'select__error-container'}>
-        {dropdownError && (
-        <span className="select__error">
-          Ошибка:
-          {errorMessage}
-        </span>
-        )}
+      <div className="select__wrapper">
+        <button
+          className={`select__button ${errors[htmlFor] && touched[htmlFor] && 'select__button_error'}`}
+          type="button"
+          id={htmlFor}
+          onClick={() => {
+            setIsOpen(!isOpen);
+            handleValidate(selectedValue);
+          }}
+        >
+          {selectedValue || 'Выберете из списка'}
+        </button>
+        <div className="select__error-container">
+          {/* <div className={!isOpen && 'select__error-container'}> */}
+          {dropdownError && (
+          <span className="select__error">
+            {errorMessage}
+          </span>
+          )}
+        </div>
       </div>
       {isOpen && (
         <div className="select__menu">
@@ -70,11 +71,15 @@ function DropdownField({
   );
 }
 
+DropdownField.defaultProps = {
+  selectedValue: '',
+};
+
 DropdownField.propTypes = {
   options: PropTypes.arrayOf(PropTypes.string).isRequired,
   labelText: PropTypes.string.isRequired,
   htmlFor: PropTypes.string.isRequired,
-  selectedValue: PropTypes.string.isRequired,
+  selectedValue: PropTypes.string,
 };
 
 export default DropdownField;

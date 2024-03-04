@@ -1,46 +1,40 @@
-// Variables
-$block-bg-color: #FFFFFF;
-$status-active: #C2E5CE;
-$text-color: #1A1B22;
-
+@import '../../shared/variables.scss';
+@import '../../styles/variables.scss';
+@import '../../styles/typography.scss';
+@import '../../shared/mixins.scss';
 
 .ambassador__info-container {
     width: calc(868px - (24px*2));
     display: flex;
     flex-direction: column;
     gap: 20px;
-   
 }
 
 .ambassador__info {
     display: flex;
     align-items: center;
     gap: 20px;
-    background-color: $block-bg-color;
+    background-color: $color-white;
     padding: 24px;
-    border: 1px solid #F9FAFB;
-    border-radius: 12px;
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 12px;
-    -ms-border-radius: 12px;
-    -o-border-radius: 12px;
+    border: 1px solid $color-grey;
+    @include border-radius(12px);
     box-shadow: 0px 4px 16.1px 0px rgba(176, 190, 197, 0.3019607843);
 }
 
 .ambassador__status-btn.ambassador__status-btn {
-    background-color: $status-active;
+    background-color: $color-green-light;
     width: 202px;
     border: none;
-    color: $text-color;
+    color: $color-black-900;
     background-image: url('../../assets/AmbassadorsPage/Vector.svg');
     background-repeat: no-repeat;
     background-position: 87% center;
     transition: background-color 0.3s;
   
     &:hover {
-      background-color: darken($status-active, 10%);
+      background-color: darken($color-green-light, 10%);
       border: none;
-      color: $text-color;
+      color: $color-black-900;
     }
   
     &:focus {
@@ -48,15 +42,15 @@ $text-color: #1A1B22;
     }
 
     &:active {
-        background-color: $status-active;
-        color: $text-color;
+        background-color: $color-green-light;
+        color: $color-black-900;
         border: none;
         .dropdown-item{
-            background-color: $status-active;
+            background-color: $color-green-light;
             border: none;
-            color: $text-color;
+            color: $color-black-900;
         }
-  }
+    }
 }
 
 .dropdown.dropdown-btn.caret{
@@ -69,11 +63,11 @@ $text-color: #1A1B22;
 }
 
 .status-active {
-  background-color: #C2E5CE;
+  background-color: $color-green-light;
 }
 
 .status-tbc {
-  background-color: #ACCCFF ;
+  background-color: $color-blue-light;
 }
 
 .ambassador__info {
@@ -87,6 +81,15 @@ $text-color: #1A1B22;
       min-width: 151px;
       display: flex;
       align-items: center;
+    }
+
+    &__button {
+      margin: 0;
+    }
+
+    &__menu {
+      left: 30%;
+      top: 75%;
     }
   }
 }

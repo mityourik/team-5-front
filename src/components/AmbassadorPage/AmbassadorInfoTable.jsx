@@ -10,7 +10,7 @@ export default function AmbassadorInfoTable({ data, children }) {
   return (
     !isAmbassadorDataEditing ? (
       <table className="ambassador__info-table">
-        <tbody className="ambassador__table-container">
+        <tbody className="ambassador__table-container has-gap">
           {data.map((item, index) => (
             // eslint-disable-next-line react/no-array-index-key
             <tr className="ambassador__table-row" key={index}>
@@ -27,7 +27,7 @@ export default function AmbassadorInfoTable({ data, children }) {
           goal: 'Смена профессии',
           plans: 'Вести блог, Писать статьи, Снимать видео или сниматься в них, если продакшн будет на нашей стороне',
           curator: 'Анастасия Борисова',
-          education: 'СПБГУПТД', // education?
+          education: 'СПБГУПТД',
           placeOfWork: 'Безработный дизайнер',
           country: 'Россия',
           city: 'Санкт-Петербург',
@@ -54,13 +54,14 @@ export default function AmbassadorInfoTable({ data, children }) {
 
 AmbassadorInfoTable.defaultProps = {
   children: null,
+  data: [],
 };
 
 AmbassadorInfoTable.propTypes = {
   data: PropTypes.arrayOf(PropTypes.shape({
-    label: PropTypes.string.isRequired,
-    value: PropTypes.string.isRequired,
-  })).isRequired,
+    label: PropTypes.string,
+    value: PropTypes.string,
+  })),
   children: PropTypes.node,
 };
 

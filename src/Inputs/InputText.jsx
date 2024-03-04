@@ -21,14 +21,16 @@ function InputText({ label, validationSchema, ...props }) {
           {...props}
         />
       ) : (
-        <input
-          className="text-input"
+        <div className="text-input__wrapper">
+          <input
+            className="text-input"
         //   className={`text-input ${props.name === 'comment' && 'text-input_comment'}`}
-          {...field}
-          {...props}
-        />
+            {...field}
+            {...props}
+          />
+          <span className={`input-container__error ${meta.touched && meta.error ? 'input-container__error_active' : ''}`}>{meta.error}</span>
+        </div>
       )}
-      <span className={`input-container__error ${meta.touched && meta.error ? 'input-container__error_active' : ''}`}>{meta.error}</span>
     </div>
   );
 }
