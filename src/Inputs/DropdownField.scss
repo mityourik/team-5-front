@@ -4,7 +4,6 @@
 	padding: 0;
 	text-transform: none;
 	width: calc(424px - (24px*2));
-
   position: relative;
   display: inline-block;
 }
@@ -16,9 +15,12 @@
 	font-weight: 400;
 	line-height: 20px;
 	text-transform: none;
+}
 
-  // display: flex;
-  // flex-direction: column;
+.select__wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 .select__button {
@@ -26,6 +28,7 @@
   padding: 10px 12px;
   display: flex;
   outline: none;
+  position: relative;
   width: 100%;
   appearance: none; // hide default arrow
   -webkit-appearance: none;
@@ -34,7 +37,10 @@
   background-position: 98% center;
   background-size: 24px;
   background-repeat: no-repeat;
-  padding-right: 30px;
+  font-family: "YS-Text-Regular", "Arial", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
   border: 1px solid #c9d1e5;
   background-color: transparent;
   align-items: flex-start;
@@ -58,11 +64,17 @@
   position: absolute;
   display: flex;
   flex-direction: column;
-  top: 100%;
+  top: 83%;
   left: 0;
-  width: 100%;
+  width: fill-available;
+  width: -webkit-fill-available;
+  width: -moz-fill-available;
+  width: -ms-fill-available;
+  width: -o-fill-available;
+  // width: 376px;
   height: 216px;
   overflow-y: scroll;
+  scrollbar-width: thin;
   border: 1px #B5B5B7 solid;
   outline: none;
   z-index: 1400;
@@ -80,52 +92,26 @@
   cursor: pointer;
   text-align: left;
   background-color: #fff;
-
+  font-family: 'YS-Text-Regular', 'Arial', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
 }
 
 .select__error-container {
   margin-top: 2px;
-  // min-height: 13px;
-  // max-height: 20px;
-  height: 18px;
+  height: 12px;
   display: block;
+  position: relative;
 }
 
 .select__error {
   color: #FF0200;
   font-family: "YS-Text-Regular", "Arial", sans-serif;
-  font-size: 14px;
+  font-size: 11px;
   font-weight: 400;
-  line-height: 20px;
+  line-height: 12px;
   min-height: 30px;
   display: block;
   text-transform: none;
-}
-
-.my-select:focus {
-	border-color: #5A9BFF;
-}
-
-// .select-option {
-//   // width: 90%;
-//   position: absolute;
-//   // top: 150px;
-//   // background-color: #fff;
-// }
-
-// hiding original SELECT element
-.my-select select {
-	-webkit-appearance: none;
-	-moz-appearance: none;
-	appearance: none;
-}
-
-
-.my-select::before,
-.my-select::after {
-  --size: 0.3rem;
-  position: absolute;
-  content: "";
-  right: 1rem;
-  pointer-events: none;
 }
