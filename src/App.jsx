@@ -12,10 +12,7 @@ function App() {
         <Paginator />
       </HeaderSidebarLayout>
       <Routes>
-        <Route
-          path="/team-5-front/ambassador-page"
-          element={<AmbassadorPage />}
-        />
+        <Route path="/team-5-front/ambassador-page" element={<AmbassadorPage />} />
       </Routes>
     </>
   );
