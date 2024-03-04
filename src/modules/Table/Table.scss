@@ -40,4 +40,10 @@
         width: 14px;
         height: 16px;
     }
+
+    &__row-container {
+        width: 100%;
+        height: 400px;
+        overflow: auto
+    }
 }

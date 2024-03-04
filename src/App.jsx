@@ -1,11 +1,11 @@
-import './App.scss';
 // import { AmbassodrsContext } from './Contexts/AmbassodrsContext';
 import { Routes, Route } from 'react-router-dom';
-import Ambassodrs from './components/Ambassodrs/Ambassodrs';
+// import Ambassodrs from './components/Ambassodrs/Ambassodrs';
 import AmbassadorPage from './components/AmbassadorPage/AmbassadorPage';
 import HeaderSidebarLayout from './components/LayoutHeaderSidebar/HeaderSidebarLayout';
-import TabsNavigation from './components/TabsNavigation/TabsNavigation';
-import MainPagePanel from './components/MainPagePanel/MainPagePanel';
+import AmbassadorsPage from './components/AmbassadorsPage/AmbassadorsPage';
+// import TabsNavigation from './components/TabsNavigation/TabsNavigation';
+// import MainPagePanel from './components/MainPagePanel/MainPagePanel';
 
 function App() {
   return (
@@ -14,10 +14,7 @@ function App() {
         path="/"
         element={(
           <HeaderSidebarLayout>
-            <TabsNavigation>
-              <MainPagePanel />
-              <Ambassodrs />
-            </TabsNavigation>
+            <AmbassadorsPage />
           </HeaderSidebarLayout>
       )}
       />
