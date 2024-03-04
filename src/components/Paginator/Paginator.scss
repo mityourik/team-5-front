@@ -1,0 +1,15 @@
+@import '../../styles/variables';
+
+.footer {
+    background-color: $color-white;
+    margin-left: 64px;
+    padding: 20px 32px;
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid $color-black-100;
+}
+
+.page-buttons-wrap {
+    display: flex;
+    align-items: center;
+}
