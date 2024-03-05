@@ -2,7 +2,10 @@ import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Checkbox from '../../UI/Checkbox/Checkbox';
 import { ambassadorData, headerListAmbs } from '../../utils/constants';
+import DropdownStatusSelect from '../../UI/Buttons/DropdownButtons/DropdownStatusSelect/DropdownStatusSelect';
 import './Example.scss';
+import TelegramCell from '../../modules/TelegramCell/TelegramCell';
+import ContactCell from '../../UI/ContactCell/ContactCell';
 
 function AmbassadorRow({
   id,
@@ -11,7 +14,7 @@ function AmbassadorRow({
   onToggle,
   fullName,
   trainingProgram,
-  status,
+  onStatusChange,
   promoCode,
   telegram,
   dateAdded,
@@ -40,12 +43,36 @@ function AmbassadorRow({
       </td>
       <td className="ambassador-table__cell">{fullName}</td>
       <td className="ambassador-table__cell">{trainingProgram}</td>
-      <td className="ambassador-table__cell">{status}</td>
+      <td className="ambassador-table__cell">
+        {' '}
+        <DropdownStatusSelect
+          onSelect={(newValue) => onStatusChange(id, newValue)}
+        />
+      </td>
       <td className="ambassador-table__cell">{promoCode}</td>
-      <td className="ambassador-table__cell">{telegram}</td>
+      <td
+        className="ambassador-table__cell"
+      >
+        {' '}
+        <TelegramCell nickname={telegram} />
+      </td>
       <td className="ambassador-table__cell">{dateAdded}</td>
-      <td className="ambassador-table__cell">{email}</td>
-      <td className="ambassador-table__cell">{phoneNumber}</td>
+      <td className="ambassador-table__cell">
+        {' '}
+        <ContactCell
+          contact={email}
+          isHidden
+          type="email"
+        />
+      </td>
+      <td className="ambassador-table__cell">
+        {' '}
+        <ContactCell
+          contact={phoneNumber}
+          isHidden
+          type="phone"
+        />
+      </td>
       <td className="ambassador-table__cell">{contactMethod}</td>
       <td className="ambassador-table__cell">{country}</td>
       <td className="ambassador-table__cell">{city}</td>
@@ -53,7 +80,7 @@ function AmbassadorRow({
       <td className="ambassador-table__cell">{workplaceAndPosition}</td>
       <td className="ambassador-table__cell">{learningGoal}</td>
       <td className="ambassador-table__cell">{plans}</td>
-      <td className="ambassador-table__cell"><a href={blogLink} target="_blank" rel="noopener noreferrer">Блог</a></td>
+      <td className="ambassador-table__cell"><a className="ambassador-table__cell-link" href={blogLink} target="_blank" rel="noopener noreferrer">Ссылка на блог</a></td>
       <td className="ambassador-table__cell">{clothingSize}</td>
       <td className="ambassador-table__cell">{shoeSize}</td>
     </tr>
@@ -154,7 +181,7 @@ AmbassadorRow.propTypes = {
   onToggle: PropTypes.func.isRequired,
   fullName: PropTypes.string.isRequired,
   trainingProgram: PropTypes.string.isRequired,
-  status: PropTypes.string.isRequired,
+  //   status: PropTypes.string.isRequired,
   promoCode: PropTypes.string.isRequired,
   telegram: PropTypes.string.isRequired,
   dateAdded: PropTypes.string.isRequired,
@@ -173,6 +200,7 @@ AmbassadorRow.propTypes = {
     PropTypes.string,
     PropTypes.number,
   ]).isRequired,
+  onStatusChange: PropTypes.func.isRequired,
 };
 
 export default AmbassadorTable;

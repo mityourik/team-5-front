@@ -7,19 +7,18 @@ export default function Checkbox({ isChecked, onChange, label }) {
   const [checkedState, setCheckedState] = useState(isChecked);
 
   useEffect(() => {
-    // Синхронизируем внутреннее состояние с пропсом isChecked, если они не совпадают.
     if (isChecked !== checkedState) {
       setCheckedState(isChecked);
     }
   }, [isChecked, checkedState]);
 
   const toggleCheckbox = () => {
-    onChange(!checkedState); // Используем checkedState здесь
+    onChange(!checkedState);
   };
 
   const onKeyPressed = (event) => {
     if (event.key === 'Enter' || event.key === ' ') {
-      event.preventDefault(); // Добавил preventDefault, чтобы избежать действий по умолчанию
+      event.preventDefault();
       toggleCheckbox();
     }
   };
@@ -31,7 +30,7 @@ export default function Checkbox({ isChecked, onChange, label }) {
       onKeyDown={onKeyPressed}
       role="checkbox"
       tabIndex="0"
-      aria-checked={checkedState} // Используем checkedState для отображения текущего состояния
+      aria-checked={checkedState}
       aria-label={label || 'Чекбокс'}
     >
       <img

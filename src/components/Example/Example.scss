@@ -72,6 +72,20 @@
   border-bottom: 1px solid $color-black-100;
 }
 
+.ambassador-table__cell-link {
+    text-decoration: none;
+    font-family: $font-caption2-regular;
+    font-size: 13px;
+    line-height: 16px;
+    color: $color-purple;
+    opacity: 1;
+    transition: opacity 1ms ease;
+
+    &:hover {
+        opacity: 0.8;
+    }
+}
+
 .ambassador-table__cell:nth-child(1),
 .ambassador-table__cell:nth-child(2) {
   padding: 0 0 0 8px;
