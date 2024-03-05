@@ -1,35 +1,38 @@
-// import React from 'react';
-// import PropTypes from 'prop-types';
+import React from 'react';
+import ReactPaginate from 'react-paginate';
 
-import './Paginator.scss';
-import DropdownButtonSelect from '../../UI/Buttons/DropdownButtons/DropdownButtonSelect/DropdownButtonSelect';
-import PageButton from '../../UI/Buttons/PageButton/PageButton';
+function PaginatedItems({ itemsPerPage }) {
+  // Элементы для пагинации
+  const [items, setItems] = React.useState([]);
 
-function Paginator() {
-  const myOptions = ['Показывать по 25', 'Показывать по 50', 'Показывать по 100', 'Все'];
-  const myOnSelect = () => { console.log('myOnSelect'); };
-  const myPageNumber = 1;
+  // Получаем количество страниц
+  const pageCount = Math.ceil(items.length / itemsPerPage);
+
+  // Обработчик изменения текущей страницы
+  const handlePageClick = (event) => {
+    const newOffset = (event.selected * itemsPerPage) % items.length;
+    // Здесь ваш код для обновления представления с новым смещением
+  };
 
   return (
-    <footer className="footer">
-      <DropdownButtonSelect
-        options={myOptions}
-        onSelect={myOnSelect}
-        id="mySelectorId"
-        selectedValue={myOptions.option1}
-        placeholder={myOptions[0]}
+    <>
+      {/* Ваш компонент списка с элементами */}
+      {/* ... */}
+
+      <ReactPaginate
+        previousLabel="<"
+        nextLabel=">"
+        pageCount={pageCount}
+        onPageChange={handlePageClick}
+        containerClassName="pagination"
+        previousLinkClassName="pagination__link"
+        nextLinkClassName="pagination__link"
+        disabledClassName="pagination__link--disabled"
+        activeClassName="pagination__link--active"
+        // Добавьте дополнительные классы и пропсы по необходимости
       />
-      <div className="page-buttons-wrap">
-        <PageButton isArrowLeft label="" />
-        <PageButton label={String(myPageNumber)} isActive />
-        <PageButton label="2" />
-        <PageButton label="3" />
-        <PageButton label="&hellip;" />
-        <PageButton label="15" />
-        <PageButton isArrowRight label="" />
-      </div>
-    </footer>
+    </>
   );
 }
 
-export default Paginator;
+export default PaginatedItems;

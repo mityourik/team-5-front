@@ -5,6 +5,7 @@ import TableHeaders from '../TableHeaders/TableHeaders';
 import TableRow from '../TableRow/TableRow';
 import settingsIcon from '../../assets/settings.svg';
 import CheckedStudentsCounter from '../../UI/CheckedStudentsCounter/CheckedStudentsCounter';
+import { ambassadorData } from '../../utils/constants';
 
 export default function Table({ useCheckbox, count = 0, allStudents = 150 }) {
   const location = useLocation();
@@ -13,7 +14,6 @@ export default function Table({ useCheckbox, count = 0, allStudents = 150 }) {
     <section className="table">
       <div className="table__body">
         {location.pathname === '/' && <CheckedStudentsCounter count={count} allStudents={allStudents} />}
-        {' '}
         <div className="table__header">
           <div className="table__checkbox">
             {useCheckbox ? <TableCheckbox count="#" /> : ''}
@@ -28,8 +28,13 @@ export default function Table({ useCheckbox, count = 0, allStudents = 150 }) {
           </div>
         </div>
         <div className="table__row-container">
-          <TableRow useCheckbox />
-          <TableRow useCheckbox />
+          {ambassadorData.map((data) => (
+            <TableRow
+              key={data.id} // Используем уникальный id как ключ
+              useCheckbox={useCheckbox}
+              ambassadorData={data}
+            />
+          ))}
         </div>
       </div>
     </section>
@@ -45,5 +50,5 @@ Table.propTypes = {
 Table.defaultProps = {
   useCheckbox: false,
   count: 0,
-  allStudents: 0,
+  allStudents: 150,
 };

@@ -63,6 +63,7 @@ $caretHoverImagePath: '../assets/AmbAddDropdownCaretHover.svg';
     color: $color-black-900;
     max-height: 216px;
     overflow-y: auto;
+    z-index: 1;
   }
 
   &__item {

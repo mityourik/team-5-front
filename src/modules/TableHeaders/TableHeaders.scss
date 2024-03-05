@@ -2,19 +2,22 @@
     margin: 0;
     height: auto;
     display: flex;
-    justify-content: space-between;
+    flex-direction: row;
     align-items: center;
     padding: 12px 8px 16px 8px;
     padding-right: 0;
     text-align: left;
-    flex: 1;
+    gap: 70px;
 
     &__header {
-        width: 280.66px;
+        min-width: 150px;
+        width: 100%;
+        white-space: nowrap;
     }
 
     &__text {
         @include subtitle-style($subtitle);
+        white-space: nowrap;
     }
 
 }
