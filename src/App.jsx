@@ -1,25 +1,20 @@
-// import { AmbassodrsContext } from './Contexts/AmbassodrsContext';
 import { Routes, Route } from 'react-router-dom';
-// import Ambassodrs from './components/Ambassodrs/Ambassodrs';
 import AmbassadorPage from './components/AmbassadorPage/AmbassadorPage';
 import HeaderSidebarLayout from './components/LayoutHeaderSidebar/HeaderSidebarLayout';
-import AmbassadorsPage from './components/AmbassadorsPage/AmbassadorsPage';
-// import TabsNavigation from './components/TabsNavigation/TabsNavigation';
-// import MainPagePanel from './components/MainPagePanel/MainPagePanel';
+import TabsNavigation from './components/TabsNavigation/TabsNavigation';
+import Paginator from './components/Paginator/Paginator';
 
 function App() {
   return (
-    <Routes>
-      <Route
-        path="/"
-        element={(
-          <HeaderSidebarLayout>
-            <AmbassadorsPage />
-          </HeaderSidebarLayout>
-      )}
-      />
-      <Route path="/ambassador-page" element={<AmbassadorPage />} />
-    </Routes>
+    <>
+      <HeaderSidebarLayout>
+        <TabsNavigation />
+        <Paginator />
+      </HeaderSidebarLayout>
+      <Routes>
+        <Route path="/team-5-front/ambassador-page" element={<AmbassadorPage />} />
+      </Routes>
+    </>
   );
 }
 

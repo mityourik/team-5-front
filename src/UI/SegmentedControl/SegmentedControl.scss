@@ -1,0 +1,47 @@
+@import '../../styles/variables';
+@import '../../styles/typography';
+
+// todo - check scss rules. 
+
+// width: Fixed (284px)
+// height: Hug (39px)
+// top: 20px
+// left: 20px
+// border-radius: 6px
+// border: 1px
+
+//styleName: Subtitle Regular;
+// font-family: YS Text;
+// font-size: 18px;
+// font-weight: 400;
+// line-height: 24px;
+// letter-spacing: 0em;
+// text-align: center;
+
+.segmented-control {
+    width: 284px;
+    height: 39px;
+
+    border: 1px solid $color-blue-main;
+    border-radius: 6px;
+
+    // $font-subtitle-regular
+    font-family: YS Text;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: center;
+    color: $color-blue-main;
+}
+
+.segmented-control__item {
+    width: 140px;
+    height: 35px;
+    border-radius: 4px;
+}
+
+.segmented-control__item_active {
+    color: white;
+    background-color: $color-blue-main;
+}
