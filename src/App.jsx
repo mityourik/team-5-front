@@ -3,12 +3,15 @@ import AmbassadorPage from './components/AmbassadorPage/AmbassadorPage';
 import HeaderSidebarLayout from './components/LayoutHeaderSidebar/HeaderSidebarLayout';
 import TabsNavigation from './components/TabsNavigation/TabsNavigation';
 import Paginator from './components/Paginator/Paginator';
+import SegmentedControl from './UI/SegmentedControl/SegmentedControl';
 
 function App() {
   return (
     <>
       <HeaderSidebarLayout>
         <TabsNavigation />
+        {/* просто для теста размещаю тут */}
+        <SegmentedControl />
         <Paginator />
       </HeaderSidebarLayout>
       <Routes>
