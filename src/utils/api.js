@@ -1,4 +1,4 @@
-export const baseURL = '89.111.174.233/';
+export const baseURL = 'http://89.111.174.233';
 
 function checkResponse(res) {
   if (res.status === 204 || res.status === 200) {

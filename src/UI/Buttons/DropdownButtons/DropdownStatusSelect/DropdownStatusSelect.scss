@@ -91,9 +91,6 @@ $caretHoverImagePath: '../assets/AmbAddDropdownCaretHover.svg';
       display: flex;
       align-items: center;
       justify-content: space-between;
-      // background-color: $color-blue-bg;
-      // color: #000;
-
 
       &::after {
         content: url('../../assets/checkedImg.svg');
@@ -103,17 +100,4 @@ $caretHoverImagePath: '../assets/AmbAddDropdownCaretHover.svg';
       }
     }
   }
-}
-
-.green {
-  background-color: #C2E5CE;
-}
-.peach {
-  background-color: #FFE1BD;
-}
-.blue {
-  background-color: #ACCCFF;
-}
-.gray {
-  background-color: #DDE0E4;
 }

@@ -5,8 +5,8 @@ import './DropdownStatusSelect.scss';
 function DropdownStatusSelect({ onSelect }) {
   const options = [
     { label: 'Активный', value: 'Активный', backgroundColor: '#C2E5CE' },
-    { label: 'Уточняется', value: 'Уточняется', backgroundColor: '#FFE1BD' },
-    { label: 'На паузе', value: 'На паузе', backgroundColor: '#ACCCFF' },
+    { label: 'Уточняется', value: 'Уточняется', backgroundColor: '#ACCCFF' },
+    { label: 'На паузе', value: 'На паузе', backgroundColor: '#FFE1BD' },
     { label: 'Не амбассадор', value: 'Не амбассадор', backgroundColor: '#DDE0E4' },
   ];
   const [selectedOption, setSelectedOption] = useState(options[0]);

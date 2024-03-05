@@ -1,0 +1,71 @@
+@import '../../../../shared/variables.scss';
+@import '../../../../styles/variables.scss';
+@import '../../../../styles/typography.scss';
+@import '../../../../shared/mixins.scss';
+
+.dropdown-multiselect__label {
+    color: $color-black-500;
+    font-family: $font-body2-regular;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    text-transform: none;
+    min-width: 151px;
+}
+
+.dropdown-multiselect-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.dropdown-multiselect__error-container {
+    display: flex;
+    margin-top: 2px;
+    min-height: 12px;
+}
+
+.dropdown-multiselect__error {
+    // margin-top: 2px;
+    height: 12px;
+    display: block;
+    color: $color-red;
+    font-family: $font-body2-regular;
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 12px;
+    // min-height: 12px;
+    display: block;
+    text-transform: none;
+}
+
+// переделываю кастомные стили
+.dropdown-multiselect-container {
+    .searchWrapper {
+        display: flex;
+        flex-wrap: wrap;
+        column-gap: 5px;
+        padding: 10px 12px;
+        width: 376px;
+        min-height: fit-content;
+        background: url('../../../../assets/AmbassadorsPage/arrow_down.svg') no-repeat right;
+        background-position: 98% center;
+        .selected-list-item {
+            background-color: pink;
+        }
+
+        .chip {
+            background-color: transparent;
+            color: $color-black-900;
+            font-family: $font-body2-regular;
+            font-size: 14px;
+            line-height: 20px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .input {
+            margin-top: 0;
+        }
+    }
+}

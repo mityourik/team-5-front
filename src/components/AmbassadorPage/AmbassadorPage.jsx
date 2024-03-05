@@ -7,8 +7,7 @@ import {
   setIsAmbassadorDataEditingTrue,
   setIsAmbassadorDataEditingFalse,
 } from '../../services/slices/ambassadorSlice';
-// import Header from '../Header/Header';
-// import NavBar from '../NavBar/NavBar';
+import HeaderSidebarLayout from '../LayoutHeaderSidebar/HeaderSidebarLayout';
 import goBackIcon from '../../assets/AmbassadorsPage/go-back-button-icon.svg';
 import editIcon from '../../assets/AmbassadorsPage/edit-button-icon.svg';
 import AmbassadorPersInfo from './AmbassadorPersInfo';
@@ -25,17 +24,10 @@ export default function AmbassadorPage() {
 
   const dispatch = useDispatch();
   return (
-    <>
-      {/* <Header isOpen={isOpen} />
-      <NavBar
-        isOpen={isOpen}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-      /> */}
+    <HeaderSidebarLayout>
       <main className="ambassador-page">
         <nav className="ambassador-page__nav">
           {!isAmbassadorDataEditing ? (
-          // <nav className="ambassador-page__nav">
             <>
               <button
                 className="go-back-button"
@@ -83,6 +75,6 @@ export default function AmbassadorPage() {
           <AmbassadorGeneralInfo />
         </section>
       </main>
-    </>
+    </HeaderSidebarLayout>
   );
 }

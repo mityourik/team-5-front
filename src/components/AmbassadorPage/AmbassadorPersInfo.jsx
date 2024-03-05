@@ -6,6 +6,7 @@ import {
   // getIsLoadingAmbassadorData,
   // getAmbassadorData,
 } from '../../services/selectors/ambassadorSelector';
+// import { fetchGetStudyProgramms } from '../../services/thunks/dropdownThunk';
 // import { getAmbassadorInfo } from '../../services/thunks/ambassadorThunk';
 import AmbassadorSectionTitle from './AmbassadorSectionTitle';
 import InputName from '../../Inputs/InputName';
@@ -23,19 +24,20 @@ import './AmbassadorPage.scss';
 
 export default function AmbassadorPersInfo() {
   // const dispatch = useDispatch();
-  const options = ['List item', 'UI/UX дизайнер', 'List item', 'List item', 'List item', 'List item', 'List item', 'List item', 'List item'];
-
+  const options = ['List item', 'UI/UX дизайнер', 'List item1', 'List item2', 'List item3', 'List item4', 'List item5', 'List item6', 'List item7'];
+  // useEffect(() => {
+  //   dispatch(fetchGetStudyProgramms());
+  // }, [dispatch]);
+  // const options = useSelector((state) => state.dropdown.studyProgramms);
   const isAmbassadorDataEditing = useSelector(getIsAmbassadorDataEditing);
 
   return (
-    <article className={`ambassador-page__data ${isAmbassadorDataEditing && 'ambassador-page__data_editing'}`}>
+    <article className="ambassador-page__data">
       {isAmbassadorDataEditing ? (
         <>
           <Formik
             initialValues={{
               name: 'Василий Васильевич Пупкин',
-              dropdownValue: 'UI/UX дизайнер',
-
             }}
             // onSubmit={handleSubmit}
             // validate={validate}
@@ -45,7 +47,8 @@ export default function AmbassadorPersInfo() {
                 <InputName name="name" />
                 <Field
                   name="dropdownValue"
-                  render={({ field }) => (
+                >
+                  {({ field }) => (
                     <DropdownField
                       // eslint-disable-next-line react/jsx-props-no-spreading
                       {...field}
@@ -53,13 +56,13 @@ export default function AmbassadorPersInfo() {
                       labelText="Программа обучения"
                       options={options}
                       htmlFor="dropdownValue"
+                      selectedValue="UI/UX дизайнер"
                     />
                   )}
-                />
+                </Field>
               </Form>
             )}
           </Formik>
-
           <AmbassadorSectionTitle title="Контакты" />
           <Formik
             initialValues={{
@@ -68,7 +71,6 @@ export default function AmbassadorPersInfo() {
               telegram_handle: '@telega',
               blog_url: 'pupkinmadeontilda.com',
             }}
-            // className="ambassador-page__info"
             // onSubmit={handleSubmit}
             // validate={validate}
           >
