@@ -239,7 +239,7 @@ export const ambassadorData = [
     shoeSize: 38,
   },
   // Добавление дополнительных амбассадоров
-].concat(Array.from({ length: 26 }, (_, index) => ({
+].concat(Array.from({ length: 150 }, (_, index) => ({
   id: nanoid(),
   fullName: `Фамилиядлинная Имя Отество ${index + 3}`,
   trainingProgram: ['Frontend-разработка', 'UI/UX дизайн', 'Data Science'][index % 3],

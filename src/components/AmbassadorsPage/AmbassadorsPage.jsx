@@ -1,14 +1,14 @@
 import './AmbassadorsPage.scss';
 import TabsNavigation from '../TabsNavigation/TabsNavigation';
 import MainPagePanel from '../MainPagePanel/MainPagePanel';
-import Example from '../Example/Example';
+import TableAmbassadors from '../TableAmbassadors/TableAmbassadors';
 
 function AmbassadorsPage() {
   return (
     <main className="ambassadors-page">
       <TabsNavigation>
         <MainPagePanel />
-        <Example />
+        <TableAmbassadors />
       </TabsNavigation>
     </main>
   );

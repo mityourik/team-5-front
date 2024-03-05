@@ -4,6 +4,7 @@
 .ambassador-table__container {
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .ambassador-table__selection-count {
@@ -17,7 +18,8 @@
 .ambassador-table__scroll-container {
   overflow-x: auto;
   overflow-y: auto;
-  max-height: 675px;
+  max-height: 643px;
+  min-height: 643px;
 }
 
 .ambassador-table {
@@ -100,4 +102,51 @@
 .ambassador-table__cell:not(:nth-child(1)):not(:nth-child(2)) {
   min-width: 200px;
   width: auto;
+}
+
+.ambassador-table__cell__edit {
+  background: white;
+  position: sticky;
+  right: 0;
+  z-index: 10;
+  cursor: pointer;
+}
+
+// Пагинатор стили  ываы
+.paginator {
+  display: flex;
+  list-style-type: none;
+  align-items: center;
+}
+
+/* Стили для каждой кнопки (предыдущая, номера страниц, следующая) */
+.paginator__item {
+  margin: 0 4px;
+  display: flex;
+}
+
+/* Стили для ссылок внутри кнопок */
+.paginator__link {
+  padding: 8px 12px;
+  border: 1px solid #000; /* измените на нужный цвет рамки */
+  text-decoration: none;
+  color: #000; /* измените на нужный цвет текста */
+  background-color: #fff; /* измените на нужный фоновый цвет */
+  border-radius: 4px; /* скругление углов */
+}
+
+/* Стили для активной страницы */
+.paginator__link--active {
+  background-color: #000; /* измените на нужный фоновый цвет активной страницы */
+  color: #fff; /* измените на нужный цвет текста активной страницы */
+}
+
+/* Стили для элемента "..." */
+.paginator__item--break {
+  cursor: default;
+}
+
+/* Дополнительные стили для наведения на ссылки, если нужно */
+.paginator__link:hover {
+  background-color: #eee; /* измените на нужный фоновый цвет при наведении */
 }
