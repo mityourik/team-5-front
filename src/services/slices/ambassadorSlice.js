@@ -5,7 +5,7 @@ import { createSlice } from '@reduxjs/toolkit';
 export const initialState = {
   // User
   ambassadorData: null,
-  // загрузка данных юзера
+  // Ambassador's data loading
   isLoadingAmbassador: false,
   errorAmbassador: false,
   errorMessageAmbassador: '',
@@ -14,6 +14,8 @@ export const initialState = {
   isLoadingAmbassadorData: false, // загрузка/обновление данных
   errorEdit: false,
   errorMessageEdit: '',
+  // adding new ambassador
+  isNewAmbassadorAdding: false,
 };
 
 const ambassadorSlice = createSlice({
@@ -23,8 +25,14 @@ const ambassadorSlice = createSlice({
   reducers: {
     setIsAmbassadorDataEditingTrue: (state) => {
       state.isAmbassadorDataEditing = true;
+      state.isNewAmbassadorAdding = false;
     },
     setIsAmbassadorDataEditingFalse: (state) => {
+      state.isAmbassadorDataEditing = false;
+      state.isNewAmbassadorAdding = false;
+    },
+    setIsNewAmbassadorAddingTrue: (state) => {
+      state.isNewAmbassadorAdding = true;
       state.isAmbassadorDataEditing = false;
     },
   },
@@ -33,6 +41,7 @@ const ambassadorSlice = createSlice({
 export const {
   setIsAmbassadorDataEditingTrue,
   setIsAmbassadorDataEditingFalse,
+  setIsNewAmbassadorAddingTrue,
 } = ambassadorSlice.actions;
 
 export default ambassadorSlice.reducer;

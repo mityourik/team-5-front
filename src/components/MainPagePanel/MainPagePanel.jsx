@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import DropdownButton from '../../UI/Buttons/DropdownButtons/DropdownButton/DropdownButton';
 import SearchBar from '../../UI/SearchBar/SearchBar';
 import './MainPagePanel.scss';
@@ -6,18 +7,9 @@ import Filter from '../FilterBar/Filter';
 import FilterButton from '../../UI/Buttons/FilterButton';
 import MailingButton from '../../UI/Buttons/MailingButton';
 
-const menuOptions = [
-  {
-    label: 'Добавить вручную',
-    action: () => console.log('Добавление вручную'),
-  },
-  {
-    label: 'Импортировать',
-    action: () => console.log('Импорт'),
-  },
-];
-
 function MainPagePanel() {
+  const navigate = useNavigate();
+
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   const handleSearch = (searchTerm) => {
@@ -27,6 +19,20 @@ function MainPagePanel() {
   const handleFilterClick = () => {
     setIsFilterOpen(!isFilterOpen);
   };
+
+  const menuOptions = [
+    {
+      label: 'Добавить вручную',
+      // action: () => console.log('Добавление вручную'),
+      action: () => {
+        navigate('/new-ambassador');
+      },
+    },
+    {
+      label: 'Импортировать',
+      action: () => console.log('Импорт'),
+    },
+  ];
 
   return (
     <section className="main-page">

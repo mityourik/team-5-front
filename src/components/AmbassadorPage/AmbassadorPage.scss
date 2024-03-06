@@ -13,6 +13,14 @@
     color: $color-black-900;
 }
 
+.ambassador-page__title {
+font-family: 'YS-Display-Medium', 'Helvetica', sans-serif,;
+font-size: 24px;
+// font-weight: 500;
+line-height: 32px;
+margin: 0;
+}
+
 .ambassador-page__nav {
     margin-top: 31px;
     width: calc(1312px - (20px*2));

@@ -3,6 +3,7 @@ import { Formik, Form, Field } from 'formik';
 import { useSelector } from 'react-redux';
 import {
   getIsAmbassadorDataEditing,
+  getIsNewAmbassadorAdding,
   // getIsLoadingAmbassadorData,
   // getAmbassadorData,
 } from '../../services/selectors/ambassadorSelector';
@@ -30,14 +31,19 @@ export default function AmbassadorPersInfo() {
   // }, [dispatch]);
   // const options = useSelector((state) => state.dropdown.studyProgramms);
   const isAmbassadorDataEditing = useSelector(getIsAmbassadorDataEditing);
+  const isNewAmbassadorAdding = useSelector(getIsNewAmbassadorAdding);
 
   return (
     <article className="ambassador-page__data">
-      {isAmbassadorDataEditing ? (
+      {isAmbassadorDataEditing || isNewAmbassadorAdding ? (
         <>
           <Formik
-            initialValues={{
+            initialValues={!isNewAmbassadorAdding ? {
               name: 'Василий Васильевич Пупкин',
+              // dropdownValue: 'UI/UX дизайнер',
+            } : {
+              name: '',
+              // dropdownValue: '',
             }}
             // onSubmit={handleSubmit}
             // validate={validate}
@@ -45,18 +51,14 @@ export default function AmbassadorPersInfo() {
             {() => (
               <Form>
                 <InputName name="name" />
-                <Field
-                  name="dropdownValue"
-                >
+                <Field>
                   {({ field }) => (
                     <DropdownField
                       // eslint-disable-next-line react/jsx-props-no-spreading
                       {...field}
-                      // inputId="dropdownValue"
                       labelText="Программа обучения"
                       options={options}
-                      htmlFor="dropdownValue"
-                      selectedValue="UI/UX дизайнер"
+                      htmlFor="studyProgramm"
                     />
                   )}
                 </Field>

@@ -1,28 +1,36 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFormikContext } from 'formik';
-import { setDropdownValue, setErrorDropdown } from '../services/slices/dropdownSlice';
+import { getIsNewAmbassadorAdding } from '../services/selectors/ambassadorSelector';
+import { setStudyProgramm, setErrorDropdown } from '../services/slices/dropdownSlice';
 import './DropdownField.scss';
 
 function DropdownField({
-  options, labelText, htmlFor, selectedValue,
+  options, labelText, htmlFor,
 }) {
-  const { errors, setFieldValue, touched } = useFormikContext();
+  const { errors, touched } = useFormikContext();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownError = useSelector((state) => state.dropdown.errorDropdown);
   const errorMessage = useSelector((state) => state.dropdown.errorMessageDropdown);
+  const studyProgramm = useSelector((state) => state.dropdown.studyProgramm);
+  const isNewAmbassadorAdding = useSelector(getIsNewAmbassadorAdding);
   const dispatch = useDispatch();
 
-  const handleSelect = (option) => {
-    dispatch(setDropdownValue(option));
+  useEffect(() => {
+    if (!isNewAmbassadorAdding) {
+      dispatch(setStudyProgramm('UI/UX дизайнер'));
+    }
+  }, [dispatch, isNewAmbassadorAdding]);
+
+  const handleSelect = (studyProgramm) => {
+    dispatch(setStudyProgramm(studyProgramm));
     setIsOpen(false);
-    setFieldValue(htmlFor, option);
-    console.log('handleSelect', option);
+    console.log('handleSelect', studyProgramm);
   };
 
   const handleValidate = () => {
-    if (selectedValue === 'Выберете из списка') {
+    if (studyProgramm === 'Выберете из списка') {
       dispatch(setErrorDropdown({ errorDropdown: true, errorMessageDropdown: 'Список обязателен для выбора' }));
     } else {
       dispatch(setErrorDropdown({ errorDropdown: false, errorMessageDropdown: '' }));
@@ -34,15 +42,15 @@ function DropdownField({
       <label htmlFor={htmlFor} className="select__label">{labelText}</label>
       <div className="select__wrapper">
         <button
-          className={`select__button ${errors[htmlFor] && touched[htmlFor] && 'select__button_error'}`}
+          className={`select__button ${errors[htmlFor] && touched[htmlFor] && 'select__button_error'} ${!studyProgramm && 'select__button_empty'}`}
           type="button"
           id={htmlFor}
           onClick={() => {
             setIsOpen(!isOpen);
-            handleValidate(selectedValue);
+            handleValidate();
           }}
         >
-          {selectedValue || 'Выберете из списка'}
+          {studyProgramm || 'Выберете из списка'}
         </button>
         <div className="select__error-container">
           {/* <div className={!isOpen && 'select__error-container'}> */}
@@ -71,15 +79,10 @@ function DropdownField({
   );
 }
 
-DropdownField.defaultProps = {
-  selectedValue: '',
-};
-
 DropdownField.propTypes = {
   options: PropTypes.arrayOf(PropTypes.string).isRequired,
   labelText: PropTypes.string.isRequired,
   htmlFor: PropTypes.string.isRequired,
-  selectedValue: PropTypes.string,
 };
 
 export default DropdownField;

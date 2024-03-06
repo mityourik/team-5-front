@@ -1,14 +1,15 @@
 import PropTypes from 'prop-types';
 import { Formik, Form } from 'formik';
 import { useSelector } from 'react-redux';
-import { getIsAmbassadorDataEditing } from '../../services/selectors/ambassadorSelector';
+import { getIsAmbassadorDataEditing, getIsNewAmbassadorAdding } from '../../services/selectors/ambassadorSelector';
 import './AmbassadorInfoTable.scss';
 
 export default function AmbassadorInfoTable({ data, children }) {
   const isAmbassadorDataEditing = useSelector(getIsAmbassadorDataEditing);
+  const isIsNewAmbassadorAdding = useSelector(getIsNewAmbassadorAdding);
 
   return (
-    !isAmbassadorDataEditing ? (
+    !isAmbassadorDataEditing && !isIsNewAmbassadorAdding ? (
       <table className="ambassador__info-table">
         <tbody className="ambassador__table-container has-gap">
           {data.map((item, index) => (
@@ -22,7 +23,7 @@ export default function AmbassadorInfoTable({ data, children }) {
       </table>
     ) : (
       <Formik
-        initialValues={{
+        initialValues={!isIsNewAmbassadorAdding ? {
           promocode: 'VASYAPUPKIN',
           goal: 'Смена профессии',
           plans: 'Вести блог, Писать статьи, Снимать видео или сниматься в них, если продакшн будет на нашей стороне',
@@ -37,6 +38,21 @@ export default function AmbassadorInfoTable({ data, children }) {
           clothingSize: 'M',
           shoeSize: '40',
           comment: 'Я готов на все ради мерча',
+        } : {
+          promocode: '',
+          goal: '',
+          plans: '',
+          curator: '',
+          education: '',
+          placeOfWork: '',
+          country: '',
+          city: '',
+          index: '',
+          address: '',
+          gender: '',
+          clothingSize: '',
+          shoeSize: '',
+          comment: '',
         }}
         onSubmit={() => console.log('submit')}
       >

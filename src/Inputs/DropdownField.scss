@@ -52,8 +52,10 @@
 	-o-border-radius: var(--xs, 4px);
 }
 
-.select__button::placeholder {
+.select__button_empty {
   color: #797981;
+  padding: 10px 12px;
+  height: 40px;
 }
 
 .select__button_error {

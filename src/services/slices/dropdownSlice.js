@@ -3,12 +3,13 @@ import { createSlice } from '@reduxjs/toolkit';
 import { fetchGetStudyProgramms } from '../thunks/dropdownThunk';
 
 export const initialState = {
-  dropdownValue: '',
+  country: '',
   selectedValue: '',
   errorDropdown: false,
   errorMessageDropdown: '',
-  // StudyProgramms
-  studyProgramms: [],
+  // StudyProgramm
+  studyProgramm: '',
+  // studyProgramms: [],
   // Purpose of study
   studyPurposes: [],
   // Goals
@@ -22,19 +23,23 @@ const dropdownSlice = createSlice({
     setDropdownValue: (state, action) => {
       state.dropdownValue = action.payload;
     },
-    setErrorDropdown: (state, action) => {
+    setErrorDropdown: (state) => {
       state.errorDropdown = true;
-      state.errorMessageDropdown = action.error.errorMessageDropdown || 'Список обязателен для выбора';
-      // state.errorMessageDropdown = 'Список обязателен для выбора';
+      // state.errorMessageDropdown = action.error.errorMessageDropdown
+      // || 'Список обязателен для выбора';
+      state.errorMessageDropdown = 'Список обязателен для выбора';
     },
     setStudyPurposes: (state, action) => {
       state.studyPurposes = action.payload;
     },
-    setStudyProgramms: (state, action) => {
-      state.studyProgramms = action.payload;
+    setStudyProgramm: (state, action) => {
+      state.studyProgramm = action.payload;
     },
     setGoals: (state, action) => {
       state.goals = action.payload;
+    },
+    setCountry: (state, action) => {
+      state.country = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -57,6 +62,6 @@ const dropdownSlice = createSlice({
 });
 
 export const {
-  setDropdownValue, setErrorDropdown, setStudyPurposes, setStudyProgramms, setGoals,
+  setDropdownValue, setErrorDropdown, setStudyPurposes, setStudyProgramm, setGoals, setCountry,
 } = dropdownSlice.actions;
 export default dropdownSlice.reducer;

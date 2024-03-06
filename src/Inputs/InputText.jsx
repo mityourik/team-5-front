@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import { useField } from 'formik';
 import './InputText.scss';
 
-function InputText({ label, validationSchema, ...props }) {
+function InputText({
+  label, validationSchema, placeholder, ...props
+}) {
   const [field, meta] = useField(props);
 
   return (
@@ -19,6 +21,7 @@ function InputText({ label, validationSchema, ...props }) {
           className="text-input text-input_comment"
           {...field}
           {...props}
+          placeholder={placeholder}
         />
       ) : (
         <div className="text-input__wrapper">
@@ -27,6 +30,7 @@ function InputText({ label, validationSchema, ...props }) {
         //   className={`text-input ${props.name === 'comment' && 'text-input_comment'}`}
             {...field}
             {...props}
+            placeholder={placeholder}
           />
           <span className={`input-container__error ${meta.touched && meta.error ? 'input-container__error_active' : ''}`}>{meta.error}</span>
         </div>
@@ -39,6 +43,7 @@ InputText.defaultProps = {
   name: '',
   id: '',
   validationSchema: null,
+  // placeholder: '',
 };
 
 InputText.propTypes = {
@@ -46,6 +51,7 @@ InputText.propTypes = {
   id: PropTypes.string,
   label: PropTypes.string.isRequired,
   validationSchema: PropTypes.func,
+  placeholder: PropTypes.string.isRequired,
 };
 
 export default InputText;

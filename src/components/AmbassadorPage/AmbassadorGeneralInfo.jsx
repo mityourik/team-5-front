@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { getIsAmbassadorDataEditing } from '../../services/selectors/ambassadorSelector';
+import { getIsAmbassadorDataEditing, getIsNewAmbassadorAdding } from '../../services/selectors/ambassadorSelector';
 import AmbassadorSectionTitle from './AmbassadorSectionTitle';
 import DropdownStatusSelect from '../../UI/Buttons/DropdownButtons/DropdownStatusSelect/DropdownStatusSelect';
 import DropdownCombobox from '../../UI/Buttons/DropdownButtons/DropdownCombobox/DropdownCombobox';
@@ -14,6 +14,8 @@ import './AmbassadorGeneralInfo.scss';
 
 export default function AmbassadorGeneralInfo() {
   const isAmbassadorDataEditing = useSelector(getIsAmbassadorDataEditing);
+  const isNewAmbassadorAdding = useSelector(getIsNewAmbassadorAdding);
+
   const [, setAmbassadorStatus] = useState(''); // ambassadorStatus
   const handleStatusSelect = (status) => {
     setAmbassadorStatus(status);
@@ -85,48 +87,48 @@ export default function AmbassadorGeneralInfo() {
       <article className="ambassador__info">
         <AmbassadorSectionTitle title="Общие данные" />
         <AmbassadorInfoTable data={generalData}>
-          {isAmbassadorDataEditing && (
+          {isAmbassadorDataEditing || isNewAmbassadorAdding ? (
             <>
-              <InputText label="Промокод" name="promocode" />
+              <InputText label="Промокод" name="promocode" placeholder="Введите промокод" />
               <DropdownCombobox labelText="Цель обучения" purposes={purposes} />
-              <InputText label="Куратор" name="curator" />
+              <InputText label="Куратор" name="curator" placeholder="Введите имя и фамилию куратора" />
               <DropdownMultiselect labelText="Что хочет делать" goals={goals} />
-              <InputText label="Образование" name="education" />
-              <InputText label="Место работы" name="placeOfWork" />
+              <InputText label="Образование" name="education" placeholder="Введите образование" />
+              <InputText label="Место работы" name="placeOfWork" placeholder="Введите место работы, должность" />
             </>
-          )}
+          ) : null}
         </AmbassadorInfoTable>
       </article>
       <article className="ambassador__info">
         <AmbassadorSectionTitle title="Адрес" />
         <AmbassadorInfoTable data={adresses}>
-          {isAmbassadorDataEditing && (
+          {isAmbassadorDataEditing || isNewAmbassadorAdding ? (
             <>
-              <DropdownField htmlFor="country" labelText="Страна" options={countries} selectedValue="Россия" />
+              <DropdownField htmlFor="country" labelText="Страна" options={countries} />
               <DropdownField htmlFor="city" labelText="Город" options={cities} selectedValue="Санкт-Петербург" />
-              <InputText label="Индекс" name="index" />
-              <InputText label="Адрес" name="address" />
+              <InputText label="Индекс" name="index" placeholder="Введите индекс" />
+              <InputText label="Адрес" name="address" placeholder="Введите  адрес проживания" />
             </>
-          )}
+          ) : null}
         </AmbassadorInfoTable>
       </article>
       <article className="ambassador__info">
         <AmbassadorSectionTitle title="Мерч" />
         <AmbassadorInfoTable data={merch}>
-          {isAmbassadorDataEditing && (
+          {isAmbassadorDataEditing || isNewAmbassadorAdding ? (
             <>
               <RadioButton labelText="Пол" inputId="gender" values={['Мужской', 'Женский']} initialValues="Мужской" />
               <DropdownField htmlFor="clothingSize" labelText="Размер одежды" options={clothingSizes} selectedValue="M" />
-              <InputText label="Размер ноги" name="shoeSize" />
+              <InputText label="Размер ноги" name="shoeSize" placeholder="Введите размер ноги" />
             </>
-          )}
+          ) : null}
         </AmbassadorInfoTable>
       </article>
       <article className="ambassador__info">
         <AmbassadorSectionTitle title="Комментарий" />
-        {isAmbassadorDataEditing ? (
+        {isAmbassadorDataEditing || isNewAmbassadorAdding ? (
           <AmbassadorInfoTable>
-            <InputText label="" name="comment" />
+            <InputText label="" name="comment" placeholder="Введите комментарий" />
           </AmbassadorInfoTable>
         ) : (
           <p className="ambassador__comment">Я готов на все ради мерча </p>
