@@ -1,21 +1,26 @@
-import Miltiselect from 'multiselect-react-dropdown';
-// import { useEffect } from 'react';
-import { Formik, Form } from 'formik';
-// import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { MultiSelect } from 'primereact/multiselect';
 import PropTypes from 'prop-types';
+import { setGoals } from '../../../../services/slices/dropdownSlice';
 import './DropdownMultiselect.scss';
 
-function DropdownMultiselect({
-  goals, labelText,
-}) {
-  const handleValidate = (values) => {
-    const errors = {};
-    if (values.selectedOptions.length === 0) {
-      errors.selectedOptions = 'Обязательно для выбора';
-    }
-    console.log(`${JSON.stringify(values.selectedOptions)}`);
-    console.log(values.selectedOptions);
-    return errors;
+function DropdownMultiselect({ goals, labelText }) {
+  const studyGoals = useSelector((state) => state.dropdown.goals);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(setGoals([{ goal: 'Вести блог' }, { goal: 'Писать статьи' }]));
+  }, [dispatch]);
+
+  const handleChange = (selectedOptions) => {
+    // получаем доступ к свойствам объекта selectedOptions
+    // или просто к пустому массиву по дефолту, если что-то пойдёт не так
+    const selectedValues = selectedOptions.value || [];
+    // проходимся по всем объектам массива и их свойствам goal
+    const options = selectedValues.map((option) => ({ goal: option.goal }));
+    // изменяем стейт studyProgramms
+    dispatch(setGoals(options));
   };
 
   return (
@@ -24,43 +29,19 @@ function DropdownMultiselect({
         {labelText}
       </label>
       <div className="dropdown-multiselect-pack">
-        <Formik
-          initialValues={{ selectedOptions: [{ goal: 'Смена профессии' }] }}
-          validate={handleValidate}
-        >
-          {({ values, setFieldValue }) => (
-            <Form className="dropdown-multiselect-pack">
-              <Miltiselect
-                options={goals}
-                selectedValues={values.selectedOptions}
-                onSelect={(selectedList) => setFieldValue('selectedOptions', selectedList)}
-                onRemove={(removeItem, index) => {
-                  const updatedSelection = values.selectedOptions.filter(
-                    (option) => option.goal !== removeItem[index],
-                    console.log(`removeItem ${JSON.stringify(removeItem)}`),
-                  );
-                  console.log(`updatedSelection ${updatedSelection}`);
-                  if (values.selectedOptions.length > 1) {
-                    setFieldValue('selectedOptions', updatedSelection);
-                  }
-                  if (values.selectedOptions.length <= 1) {
-                    setFieldValue('selectedOptions', []);
-                  }
-                }}
-            //   onRemove={handleRemove}
-                displayValue="goal"
-                hidePlaceholder
-                placeholder="Выберите из списка"
-                hideSelectedList={false}
-                keepSearchTerm
-              />
-              <div className="dropdown-multiselect__error-container">
-                {values.selectedOptions.length < 1 && <span className="dropdown-multiselect__error">Обязательно для выбора</span>}
-              </div>
-            </Form>
-          )}
-
-        </Formik>
+        <div className="dropdown-multiselect-form">
+          <MultiSelect
+            options={goals}
+            value={studyGoals}
+            onChange={handleChange}
+            optionLabel="goal"
+            placeholder="Выберите из списка"
+            className="dropdown-multiselect"
+          />
+          <div className="dropdown-multiselect__error-container">
+            {studyGoals.length === 0 && <span className="dropdown-multiselect__error">Обязательно для выбора</span>}
+          </div>
+        </div>
       </div>
     </div>
   );
