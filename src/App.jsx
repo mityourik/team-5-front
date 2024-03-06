@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
-import AmbassadorPage from './components/AmbassadorsPage/AmbassadorsPage';
+import AmbassadorsPage from './components/AmbassadorsPage/AmbassadorsPage';
+import AmbassadorPage from './components/AmbassadorPage/AmbassadorPage';
 import HeaderSidebarLayout from './components/LayoutHeaderSidebar/HeaderSidebarLayout';
 // import SegmentedControl from './UI/SegmentedControl/SegmentedControl';
 
@@ -10,7 +11,7 @@ function App() {
         path="/"
         element={(
           <HeaderSidebarLayout>
-            <AmbassadorPage />
+            <AmbassadorsPage />
           </HeaderSidebarLayout>
       )}
       />
