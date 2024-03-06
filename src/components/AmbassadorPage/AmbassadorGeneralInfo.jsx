@@ -3,11 +3,12 @@ import { useSelector } from 'react-redux';
 import { getIsAmbassadorDataEditing } from '../../services/selectors/ambassadorSelector';
 import AmbassadorSectionTitle from './AmbassadorSectionTitle';
 import DropdownStatusSelect from '../../UI/Buttons/DropdownButtons/DropdownStatusSelect/DropdownStatusSelect';
+import DropdownCombobox from '../../UI/Buttons/DropdownButtons/DropdownCombobox/DropdownCombobox';
 import DropdownMultiselect from '../../UI/Buttons/DropdownButtons/DropdownMultiselect/DropdownMultiselect';
 import AmbassadorInfoTable from './AmbassadorInfoTable';
 import InputText from '../../Inputs/InputText';
 import DropdownField from '../../Inputs/DropdownField';
-import { countries } from '../../utils/countries'; // будет подгружаться из АПИ
+import { countries } from '../../utils/countries'; // будет подгружаться из АПИ?
 import RadioButton from '../../UI/Buttons/RadioButton/RadioButton';
 import './AmbassadorGeneralInfo.scss';
 
@@ -57,11 +58,20 @@ export default function AmbassadorGeneralInfo() {
   ];
 
   const goals = [
-    { goal: 'Смена профессии' },
+    { goal: 'Развивать локальное  провессиональное сообщество в своем городе' },
     { goal: 'Вести блог' },
     { goal: 'Писать статьи' },
-    { goal: 'Снимать видео или сниматься в них' },
-    { goal: 'Сниматься в них' },
+    { goal: 'Снимать видео или сниматься в них, если продакшн будет на нашей стороне' },
+    { goal: 'Знакомить коллег на работе с продуктом Практикума через различные форматы' },
+    { goal: 'Вести книгу' },
+    { goal: 'Писать статьи' },
+    { goal: 'Снимать видео или сниматься в них, если продакшн будет на нашей стороне' },
+  ];
+
+  const purposes = [
+    { label: 'Смена профессии', value: 'Смена профессии' },
+    { label: 'Углубление имеющихся знаний', value: 'Углубление имеющихся знаний' },
+    { label: 'Смена профессии', value: 'Смена профессии' },
   ];
 
   const clothingSizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL'];
@@ -78,9 +88,8 @@ export default function AmbassadorGeneralInfo() {
           {isAmbassadorDataEditing && (
             <>
               <InputText label="Промокод" name="promocode" />
-              {/* выпадалка Цель обучения */}
+              <DropdownCombobox labelText="Цель обучения" purposes={purposes} />
               <InputText label="Куратор" name="curator" />
-              {/* выпадалка Что хочет делать */}
               <DropdownMultiselect labelText="Что хочет делать" goals={goals} />
               <InputText label="Образование" name="education" />
               <InputText label="Место работы" name="placeOfWork" />

@@ -7,10 +7,12 @@ export const initialState = {
   selectedValue: '',
   errorDropdown: false,
   errorMessageDropdown: '',
-  // Multiselect
-  multiselectOptions: [],
   // StudyProgramms
   studyProgramms: [],
+  // Purpose of study
+  studyPurposes: [],
+  // Goals
+  goals: [],
 };
 
 const dropdownSlice = createSlice({
@@ -25,8 +27,14 @@ const dropdownSlice = createSlice({
       state.errorMessageDropdown = action.error.errorMessageDropdown || 'Список обязателен для выбора';
       // state.errorMessageDropdown = 'Список обязателен для выбора';
     },
-    setMultiselectOptions: (state, action) => {
-      state.multiselectOptions = action.payload;
+    setStudyPurposes: (state, action) => {
+      state.studyPurposes = action.payload;
+    },
+    setStudyProgramms: (state, action) => {
+      state.studyProgramms = action.payload;
+    },
+    setGoals: (state, action) => {
+      state.goals = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -48,5 +56,7 @@ const dropdownSlice = createSlice({
   },
 });
 
-export const { setDropdownValue, setErrorDropdown, setMultiselectOptions } = dropdownSlice.actions;
+export const {
+  setDropdownValue, setErrorDropdown, setStudyPurposes, setStudyProgramms, setGoals,
+} = dropdownSlice.actions;
 export default dropdownSlice.reducer;
