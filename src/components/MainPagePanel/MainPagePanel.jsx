@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setIsNewAmbassadorAddingTrue } from '../../services/slices/ambassadorSlice';
 import DropdownButton from '../../UI/Buttons/DropdownButtons/DropdownButton/DropdownButton';
 import SearchBar from '../../UI/SearchBar/SearchBar';
 import './MainPagePanel.scss';
@@ -9,6 +11,7 @@ import MailingButton from '../../UI/Buttons/MailingButton';
 
 function MainPagePanel() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
@@ -26,6 +29,7 @@ function MainPagePanel() {
       // action: () => console.log('Добавление вручную'),
       action: () => {
         navigate('/new-ambassador');
+        dispatch(setIsNewAmbassadorAddingTrue());
       },
     },
     {

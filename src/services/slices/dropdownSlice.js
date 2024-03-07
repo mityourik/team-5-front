@@ -3,13 +3,9 @@ import { createSlice } from '@reduxjs/toolkit';
 import { fetchGetStudyProgramms } from '../thunks/dropdownThunk';
 
 export const initialState = {
-  country: '',
   selectedValue: '',
   errorDropdown: false,
   errorMessageDropdown: '',
-  // StudyProgramm
-  studyProgramm: '',
-  // studyProgramms: [],
   // Purpose of study
   studyPurposes: [],
   // Goals
@@ -38,9 +34,6 @@ const dropdownSlice = createSlice({
     setGoals: (state, action) => {
       state.goals = action.payload;
     },
-    setCountry: (state, action) => {
-      state.country = action.payload;
-    },
   },
   extraReducers: (builder) => {
     builder
@@ -62,6 +55,6 @@ const dropdownSlice = createSlice({
 });
 
 export const {
-  setDropdownValue, setErrorDropdown, setStudyPurposes, setStudyProgramm, setGoals, setCountry,
+  setDropdownValue, setErrorDropdown, setStudyPurposes, setGoals,
 } = dropdownSlice.actions;
 export default dropdownSlice.reducer;

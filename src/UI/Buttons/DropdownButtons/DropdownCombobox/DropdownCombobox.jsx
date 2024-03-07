@@ -1,21 +1,39 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Select from 'react-select';
 import PropTypes from 'prop-types';
 import { setStudyPurposes } from '../../../../services/slices/dropdownSlice';
+import { getIsNewAmbassadorAdding } from '../../../../services/selectors/ambassadorSelector';
 import './DropdownCombobox.scss';
 import '../DropdownMultiselect/DropdownMultiselect.scss';
 
 function DropdownCombobox({ purposes, labelText }) {
   const studyPurposes = useSelector((state) => state.dropdown.studyPurposes);
+  const isNewAmbassadorAdding = useSelector(getIsNewAmbassadorAdding);
   const dispatch = useDispatch();
+  const [interacted, setInteracted] = useState(false);
 
   useEffect(() => {
-    dispatch(setStudyPurposes([{ value: 'Смена профессии', label: 'Смена профессии' }]));
-  }, [dispatch]);
+    if (isNewAmbassadorAdding) {
+      dispatch(setStudyPurposes([]));
+    } else {
+      dispatch(setStudyPurposes([{ label: 'Смена профессии', value: 'Смена профессии' }]));
+    }
+  }, [dispatch, isNewAmbassadorAdding]);
 
   const handleChange = (selectedOptions) => {
     dispatch(setStudyPurposes(selectedOptions));
+    setInteracted(true);
+  };
+
+  const handleFocus = () => {
+    setInteracted(true);
+  };
+
+  const handleBlur = () => {
+    if (studyPurposes.length === 0) {
+      setInteracted(false);
+    }
   };
 
   return (
@@ -29,13 +47,15 @@ function DropdownCombobox({ purposes, labelText }) {
             options={purposes}
             value={studyPurposes}
             onChange={handleChange}
+            onBlur={handleBlur}
+            onFocus={handleFocus}
             isMulti
             isSearchable
             creatable
             placeholder="Введите или выберите из списка"
           />
           <div className="dropdown-multiselect__error-container">
-            {studyPurposes.length === 0 && <span className="dropdown-multiselect__error">Обязательно для выбора</span>}
+            {(interacted && studyPurposes.length === 0) && <span className="dropdown-multiselect__error">Обязательно для выбора</span>}
           </div>
         </div>
       </div>

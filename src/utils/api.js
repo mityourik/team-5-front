@@ -1,4 +1,8 @@
-export const baseURL = 'http://89.111.174.233';
+export const baseURL = 'http://89.111.174.233/';
+
+export const token = 'Token 9eb4012798c9638ff7c1c75de773ac02e7233734';
+export const email = 'backend@crm.ru';
+export const password = '364809rdUY';
 
 function checkResponse(res) {
   if (res.status === 204 || res.status === 200) {
@@ -9,6 +13,7 @@ function checkResponse(res) {
   if (contentType && contentType.includes('application/json')) {
     return res.json().then((data) => {
       if (res.ok) {
+        console.log('data', data);
         return data;
       }
       return Promise.reject(

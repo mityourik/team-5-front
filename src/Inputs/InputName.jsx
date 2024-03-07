@@ -27,7 +27,7 @@ export default function InputName({ name }) {
         className="input"
         validate={validateName}
         maxLength={250}
-        placeholder="Введите фамилию, имя и отчество"
+        placeholder={name === 'name' ? 'Введите фамилию, имя и отчество' : 'Ник в Телеграм'}
       />
     </InputContainer>
   );

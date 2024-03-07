@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFormikContext } from 'formik';
 import { getIsNewAmbassadorAdding } from '../services/selectors/ambassadorSelector';
-import { setStudyProgramm, setErrorDropdown } from '../services/slices/dropdownSlice';
 import './DropdownField.scss';
 
 function DropdownField({
@@ -11,30 +10,54 @@ function DropdownField({
 }) {
   const { errors, touched } = useFormikContext();
   const [isOpen, setIsOpen] = useState(false);
+  const [selectedOption, setSelectedOption] = useState(''); // Track selected option
   const dropdownError = useSelector((state) => state.dropdown.errorDropdown);
   const errorMessage = useSelector((state) => state.dropdown.errorMessageDropdown);
-  const studyProgramm = useSelector((state) => state.dropdown.studyProgramm);
+  // const isAmbassadorDataEditing = useSelector(getIsAmbassadorDataEditing);
   const isNewAmbassadorAdding = useSelector(getIsNewAmbassadorAdding);
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (!isNewAmbassadorAdding) {
-      dispatch(setStudyProgramm('UI/UX дизайнер'));
+      switch (htmlFor) {
+        case 'studyProgramm':
+          setSelectedOption('UI/UX дизайнер');
+          break;
+        case 'country':
+          setSelectedOption('Россия');
+          break;
+        case 'city':
+          setSelectedOption('Санкт-Петербург');
+          break;
+        case 'clothingSize':
+          setSelectedOption('M');
+          break;
+        default:
+          break;
+      }
     }
-  }, [dispatch, isNewAmbassadorAdding]);
+  }, [dispatch, htmlFor, isNewAmbassadorAdding]);
 
-  const handleSelect = (studyProgramm) => {
-    dispatch(setStudyProgramm(studyProgramm));
+  const handleSelect = (htmlFor, option) => {
+    switch (htmlFor) {
+      case 'studyProgramm':
+        setSelectedOption(option);
+        break;
+      case 'country':
+        setSelectedOption(option);
+        break;
+      case 'city':
+        setSelectedOption(option);
+        break;
+      case 'clothingSize':
+        setSelectedOption(option);
+        break;
+      default:
+        break;
+    }
     setIsOpen(false);
-    console.log('handleSelect', studyProgramm);
-  };
-
-  const handleValidate = () => {
-    if (studyProgramm === 'Выберете из списка') {
-      dispatch(setErrorDropdown({ errorDropdown: true, errorMessageDropdown: 'Список обязателен для выбора' }));
-    } else {
-      dispatch(setErrorDropdown({ errorDropdown: false, errorMessageDropdown: '' }));
-    }
+    setSelectedOption(option);
+    console.log('handleSelect', htmlFor, option);
   };
 
   return (
@@ -42,22 +65,20 @@ function DropdownField({
       <label htmlFor={htmlFor} className="select__label">{labelText}</label>
       <div className="select__wrapper">
         <button
-          className={`select__button ${errors[htmlFor] && touched[htmlFor] && 'select__button_error'} ${!studyProgramm && 'select__button_empty'}`}
+          className={`select__button ${errors[htmlFor] && touched[htmlFor] && 'select__button_error'} ${!selectedOption ? 'select__button_empty' : ''}`}
           type="button"
           id={htmlFor}
           onClick={() => {
             setIsOpen(!isOpen);
-            handleValidate();
           }}
         >
-          {studyProgramm || 'Выберете из списка'}
+          {selectedOption || 'Выберете из списка'}
         </button>
         <div className="select__error-container">
-          {/* <div className={!isOpen && 'select__error-container'}> */}
           {dropdownError && (
-          <span className="select__error">
-            {errorMessage}
-          </span>
+            <span className="select__error">
+              {errorMessage}
+            </span>
           )}
         </div>
       </div>
@@ -68,7 +89,7 @@ function DropdownField({
               key={option}
               className="select__option"
               type="button"
-              onClick={() => handleSelect(option)}
+              onClick={() => handleSelect(htmlFor, option)}
             >
               {option}
             </button>

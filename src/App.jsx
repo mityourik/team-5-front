@@ -1,4 +1,7 @@
+// import { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
+// import { useDispatch } from 'react-redux';
+// import { fetchContent } from './services/thunks/ambassadorThunk';
 import AmbassadorsPage from './components/AmbassadorsPage/AmbassadorsPage';
 import AmbassadorPage from './components/AmbassadorPage/AmbassadorPage';
 import NewAmbassadorPage from './components/NewAmbassadorPage/NewAmbassadorPage';
@@ -16,7 +19,7 @@ function App() {
           </HeaderSidebarLayout>
       )}
       />
-      <Route path="/ambassador-page" element={<AmbassadorPage />} />
+      <Route path="/ambassador-page/:ambassadorId" element={<AmbassadorPage />} />
       <Route path="/new-ambassador" element={<NewAmbassadorPage />} />
     </Routes>
   );

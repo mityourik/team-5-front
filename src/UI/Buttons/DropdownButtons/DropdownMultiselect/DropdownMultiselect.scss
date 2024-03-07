@@ -83,6 +83,10 @@
     text-wrap: wrap;
 }
 
+.p-placeholder{
+    color: $color-black-500;
+}
+
 .p-multiselect-items-wrapper .p-multiselect-item.p-highlight {
     background: url(../../assets/checkedImg.svg) no-repeat right $color-blue-bg;
     background-position: 97%;

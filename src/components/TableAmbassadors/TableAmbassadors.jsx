@@ -1,8 +1,11 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import ReactPaginate from 'react-paginate';
 import Checkbox from '../../UI/Checkbox/Checkbox';
 import { ambassadorData, headerListAmbs } from '../../utils/constants';
+import { fetchAmbassadorInfo } from '../../services/thunks/ambassadorThunk';
 import DropdownStatusSelect from '../../UI/Buttons/DropdownButtons/DropdownStatusSelect/DropdownStatusSelect';
 import './TableAmbassadors.scss';
 import TelegramCell from '../../modules/TelegramCell/TelegramCell';
@@ -32,7 +35,11 @@ function AmbassadorRow({
   clothingSize,
   shoeSize,
 }) {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   function onEditAmbClick(ambassadorId) {
+    dispatch(fetchAmbassadorInfo(ambassadorId));
+    navigate(`ambassador-page/${ambassadorId}`);
     console.log('Действие для амбассадора с ID:', ambassadorId);
     // тут открытие окна редактирования
   }

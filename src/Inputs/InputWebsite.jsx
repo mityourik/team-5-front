@@ -19,9 +19,9 @@ export default function InputWebsite() {
     if (value.length < 1 || value.length > 200) {
       return 'Должно быть не менее 1 и не более 200 символов';
     }
-    // if (!/^[a-zA-Z0-9_]{2,20}$/.test(value)) {
-    //   return 'Никнейм может содержать латинские буквы, цифры и символ подчеркивания';
-    // }
+    if (!/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)/.test(value)) {
+      return 'Ссылка должна быть в формате https://example.com';
+    }
     return null; // Возвращаем null, если ошибок нет
   }, []);
 
@@ -34,6 +34,7 @@ export default function InputWebsite() {
         className="input"
         validate={validatePosition}
         maxLength={200}
+        placeholder="Введите ссылку на блог или соцсеть"
       />
     </InputContainer>
   );

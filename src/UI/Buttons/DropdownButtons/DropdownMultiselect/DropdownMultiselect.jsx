@@ -1,17 +1,25 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { MultiSelect } from 'primereact/multiselect';
 import PropTypes from 'prop-types';
 import { setGoals } from '../../../../services/slices/dropdownSlice';
+import { getIsNewAmbassadorAdding } from '../../../../services/selectors/ambassadorSelector';
 import './DropdownMultiselect.scss';
 
 function DropdownMultiselect({ goals, labelText }) {
   const studyGoals = useSelector((state) => state.dropdown.goals);
   const dispatch = useDispatch();
+  const isNewAmbassadorAdding = useSelector(getIsNewAmbassadorAdding);
+
+  const [interacted, setInteracted] = useState(false);
 
   useEffect(() => {
-    dispatch(setGoals([{ goal: 'Вести блог' }, { goal: 'Писать статьи' }]));
-  }, [dispatch]);
+    if (isNewAmbassadorAdding) {
+      dispatch(setGoals([]));
+    } else {
+      dispatch(setGoals([{ goal: 'Вести блог' }, { goal: 'Писать статьи' }]));
+    }
+  }, [dispatch, isNewAmbassadorAdding]);
 
   const handleChange = (selectedOptions) => {
     // получаем доступ к свойствам объекта selectedOptions
@@ -21,6 +29,16 @@ function DropdownMultiselect({ goals, labelText }) {
     const options = selectedValues.map((option) => ({ goal: option.goal }));
     // изменяем стейт studyProgramms
     dispatch(setGoals(options));
+  };
+
+  const handleFocus = () => {
+    setInteracted(true);
+  };
+
+  const handleBlur = () => {
+    if (studyGoals.length === 0) {
+      setInteracted(false);
+    }
   };
 
   return (
@@ -34,12 +52,14 @@ function DropdownMultiselect({ goals, labelText }) {
             options={goals}
             value={studyGoals}
             onChange={handleChange}
+            onBlur={handleBlur}
+            onFocus={handleFocus}
             optionLabel="goal"
             placeholder="Выберите из списка"
             className="dropdown-multiselect"
           />
           <div className="dropdown-multiselect__error-container">
-            {studyGoals.length === 0 && <span className="dropdown-multiselect__error">Обязательно для выбора</span>}
+            {studyGoals.length === 0 && interacted && <span className="dropdown-multiselect__error">Обязательно для выбора</span>}
           </div>
         </div>
       </div>
