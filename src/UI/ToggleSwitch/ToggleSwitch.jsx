@@ -1,56 +1,55 @@
-// import { useState } from 'react';
-// import './ToggleSwitch.css';
-
-// function ToggleSwitch() {
-//   const [isToggled, setIsToggled] = useState(false);
-
-//   const onToggle = () => setIsToggled(!isToggled);
-
-//   return (
-//     <div className="toggle-container">
-//       <span className="toggle-label">Город</span>
-//       <div className="toggle-switch">
-//         <input
-//           className="toggle-checkbox"
-//           type="checkbox"
-//           id="toggle"
-//           checked={isToggled}
-//           onChange={onToggle}
-//           aria-label="Переключить между городом и деревней"
-//         />
-//         <label className="toggle-slider" htmlFor="toggle" />
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default ToggleSwitch;
-import { useState } from 'react';
 import './ToggleSwitch.css';
+import PropTypes from 'prop-types';
 
-function ToggleSwitch() {
-  const [isToggled, setIsToggled] = useState(false);
+function ToggleSwitch(props) {
+  const {
+    label, id, isToggled, setIsToggled,
+  } = props;
 
-  const onToggle = () => setIsToggled(!isToggled);
+  const handleToggle = () => setIsToggled(!isToggled);
+
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      handleToggle();
+    }
+  };
 
   return (
     <div className="toggle-container">
-      <span className="toggle-label">Город</span>
-      <div className="toggle-switch">
+      <label htmlFor={id} className="toggle-label">{label}</label>
+      <div
+        className="toggle-switch"
+        onClick={handleToggle}
+        onKeyDown={handleKeyDown}
+        role="button"
+        tabIndex="0"
+        aria-pressed={isToggled}
+        aria-labelledby={label} // Указываем, что label служит описанием для этого "кнопочного" div
+      >
         <input
           className="toggle-checkbox"
           type="checkbox"
-          id="toggle-checkbox"
+          id={id}
           checked={isToggled}
-          onChange={onToggle}
-          aria-label="Переключить между городом и деревней"
+          onChange={() => {}}
+          readOnly
+          aria-hidden="true" // Скрываем от читалок, т.к. состояние управляется div с role="button"
         />
-        <label className="toggle-slider" htmlFor="toggle-checkbox" />
-
-        {/* <label className="toggle-slider" htmlFor="toggle-checkbox" /> */}
+        <span className="toggle-slider" />
       </div>
     </div>
   );
 }
+
+ToggleSwitch.propTypes = {
+  label: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  isToggled: PropTypes.bool,
+  setIsToggled: PropTypes.func.isRequired,
+};
+
+ToggleSwitch.defaultProps = {
+  isToggled: true,
+};
 
 export default ToggleSwitch;
