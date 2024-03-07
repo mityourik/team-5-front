@@ -42,6 +42,10 @@ const ambassadorSlice = createSlice({
       state.isNewAmbassadorAdding = true;
       state.isAmbassadorDataEditing = false;
     },
+    setIsNewAmbassadorAddingFalse: (state) => {
+      state.isNewAmbassadorAdding = false;
+      state.isAmbassadorDataEditing = false;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -108,6 +112,7 @@ export const {
   setIsAmbassadorDataEditingTrue,
   setIsAmbassadorDataEditingFalse,
   setIsNewAmbassadorAddingTrue,
+  setIsNewAmbassadorAddingFalse,
 } = ambassadorSlice.actions;
 
 export default ambassadorSlice.reducer;

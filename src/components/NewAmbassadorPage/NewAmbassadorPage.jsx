@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import {
   setIsNewAmbassadorAddingTrue,
+  setIsNewAmbassadorAddingFalse,
 } from '../../services/slices/ambassadorSlice';
 // import { getIsNewAmbassadorAdding } from '../../services/selectors/ambassadorSelector';
 import HeaderSidebarLayout from '../LayoutHeaderSidebar/HeaderSidebarLayout';
@@ -20,7 +21,7 @@ export default function NewAmbassadorPage() {
 
   const handleCancelEditing = () => {
     // добавить модальное окно с уточнением выйти без сохранения изменений
-    dispatch(!setIsNewAmbassadorAddingTrue());
+    dispatch(setIsNewAmbassadorAddingFalse());
     navigate('/');
   };
 
