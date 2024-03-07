@@ -1,16 +1,25 @@
 import { Routes, Route } from 'react-router-dom';
-import AmbassadorPage from './components/AmbassadorsPage/AmbassadorsPage';
 import HeaderSidebarLayout from './components/LayoutHeaderSidebar/HeaderSidebarLayout';
-// import SegmentedControl from './UI/SegmentedControl/SegmentedControl';
+import AmbassadorsPage from './components/AmbassadorsPage/AmbassadorsPage';
+import ContentPage from './components/ContentPage/ContentPage';
+import AmbassadorPage from './components/AmbassadorPage/AmbassadorPage';
 
 function App() {
   return (
     <Routes>
       <Route
-        path="/"
+        path="/home"
         element={(
           <HeaderSidebarLayout>
-            <AmbassadorPage />
+            <AmbassadorsPage />
+          </HeaderSidebarLayout>
+      )}
+      />
+      <Route
+        path="/content"
+        element={(
+          <HeaderSidebarLayout>
+            <ContentPage />
           </HeaderSidebarLayout>
       )}
       />

@@ -1,0 +1,65 @@
+@import '../../styles/typography';
+@import '../../styles/variables';
+
+.content-table__scroll-container {
+  overflow-x: auto;
+  margin: 16px;
+}
+
+.content-table {
+  width: 100%;
+  border-collapse: collapse;
+
+  // Заголовок таблицы
+  &__head {
+    background-color: #f3f3f3;
+    th {
+      padding: 10px;
+      text-align: left;
+      font-weight: bold;
+      border-bottom: 1px solid #e1e1e1;
+    }
+  }
+
+  // Строки таблицы
+  &__row {
+    &:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+  }
+
+  // Ячейки таблицы
+  &__cell {
+    padding: 10px;
+    border-bottom: 1px solid #e1e1e1;
+    position: relative; // для позиционирования кнопки
+
+    // Ссылки внутри ячеек
+    &-link {
+      margin-right: 10px; // Добавляем отступ между ссылками
+      color: #007bff;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    // Контейнер для ссылок и кнопки изменения статуса
+    &-content {
+      display: flex;  // Располагаем элементы в ряд
+      align-items: center; // Выравниваем элементы по центру по вертикали
+
+      // Кнопка изменения статуса
+      &-status-btn {
+        padding: 5px 10px;
+        font-size: 0.8em;
+        cursor: pointer;
+        background-color: #effff4;
+        border: none;
+        border-radius: 4px;
+        margin-left: auto; // Выравниваем кнопку к правому краю
+      }
+    }
+  }
+}
+
