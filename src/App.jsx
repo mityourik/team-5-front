@@ -6,16 +6,25 @@ import AmbassadorsPage from './components/AmbassadorsPage/AmbassadorsPage';
 import AmbassadorPage from './components/AmbassadorPage/AmbassadorPage';
 import NewAmbassadorPage from './components/NewAmbassadorPage/NewAmbassadorPage';
 import HeaderSidebarLayout from './components/LayoutHeaderSidebar/HeaderSidebarLayout';
-// import SegmentedControl from './UI/SegmentedControl/SegmentedControl';
+import ContentPage from './components/ContentPage/ContentPage';
+// import ContentPage from './components/ContentPage/ContentPage';
 
 function App() {
   return (
     <Routes>
       <Route
-        path="/"
+        path="/ambassadors"
         element={(
           <HeaderSidebarLayout>
             <AmbassadorsPage />
+          </HeaderSidebarLayout>
+      )}
+      />
+      <Route
+        path="/content"
+        element={(
+          <HeaderSidebarLayout>
+            <ContentPage />
           </HeaderSidebarLayout>
       )}
       />
