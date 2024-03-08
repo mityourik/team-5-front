@@ -1,7 +1,7 @@
-@import '../../../../styles/typography';
-@import '../../../../styles/variables';
+@import '../../../styles/typography';
+@import '../../../styles/variables';
 
-.dropdown-btn-select {
+.dropdown-btn-status {
   position: relative;
   font-family: $font-body2-regular;
   font-size: 14px;
@@ -11,27 +11,47 @@
   width: fit-content;
   border-radius: 4px;
   background-color: $color-white;
-  margin: 5px 0 0 0;
+  margin: 0;
+
+  &.status-completed {
+    .dropdown-btn-status__input {
+      border-color: $color-green-light;
+      background-color: $color-green-light;
+    }
+    .dropdown-btn-status__button {
+      &:not(.dropdown-btn-status__button_selected) {
+        background-color: $color-white;
+        border-color: $color-black-100;
+      }
+      &.dropdown-btn-status__button_selected {
+        background-color: $color-green-light;
+      }
+    }
+  }
   
   &__input {
     outline: none;
-    padding: 10px;
+    padding: 7px;
     background-color: $color-white;
     border: 1px solid $color-black-100;
     border-radius: 4px;
     text-align: left;
     cursor: pointer;
-    background-image: url('../../assets/dropdownCaretGrey.svg');
+    background-image: url('../assets/dropdownCaretBlack.svg');
     background-repeat: no-repeat;
     background-position: right 11px center;
     background-size: 24px 24px;
-    color: $color-black-500;
+    color: $color-black-900;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    min-width: 197px;
+    min-width: 164px;
     box-sizing: border-box;
     width: 100%;
+    font-family: $font-body2-regular;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
 
     &:active {
       border: 1px solid $color-blue-main;
@@ -43,7 +63,7 @@
 
     &_active {
       color: $color-black-900;
-      background-image: url('../../assets/dropdownCaretBlack.svg');
+      background-image: url('../assets/dropdownCaretBlack.svg');
     }
 
     &::placeholder {
@@ -56,7 +76,8 @@
 
   &__list {
     position: absolute;
-    // bottom: 38px;
+    // // bottom: 38px;
+    // top: 0;
     min-width: 99%;
     list-style: none;
     padding: 0;
@@ -82,7 +103,7 @@
     text-align: left;
     width: 100%;
     padding: 8px 12px;
-    background-color: #fff;
+    background-color: $color-white;
     border: none;
     cursor: pointer;
     transition: background-color 0.3s;
@@ -104,7 +125,7 @@
       background-color: $color-blue-bg !important;
 
       &::after {
-        content: url('../../assets/checkedImg.svg');
+        content: url('../assets/checkedImg.svg');
         width: 16.59px;
         height: 11.54px;
         margin-left: 10px;

@@ -1,15 +1,14 @@
 import MainPagePanel from '../MainPagePanel/MainPagePanel';
-// import TableContent from '../TableContent/TableContent';
 import TabsNavigation from '../TabsNavigation/TabsNavigation';
 import './ContentPage.scss';
-import Cont from '../TableContent/Cont';
+import TableContent from '../TableContent/TableContent';
 
 function ContentPage() {
   return (
     <main className="ambassadors-page">
       <TabsNavigation>
         <MainPagePanel />
-        <Cont />
+        <TableContent />
       </TabsNavigation>
     </main>
   );

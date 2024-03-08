@@ -3,63 +3,130 @@
 
 .content-table__scroll-container {
   overflow-x: auto;
-  margin: 16px;
+  overflow-y: auto;
+  max-height: 643px;
+  min-height: 643px;
+  margin: 30px 0 0 0;
 }
 
 .content-table {
+  min-width: 1312px;
   width: 100%;
   border-collapse: collapse;
 
-  // Заголовок таблицы
+  &__links-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+  }
+
   &__head {
-    background-color: #f3f3f3;
-    th {
-      padding: 10px;
-      text-align: left;
-      font-weight: bold;
-      border-bottom: 1px solid #e1e1e1;
+    border-bottom: 1px solid $color-black-300;
+    font-family: $font-body2-medium;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 500;
+    text-align: left;
+  }
+
+  &__header {
+    border-bottom: 1px solid $color-black-300;
+    font-family: $font-body2-medium;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 500;
+    text-align: left;
+    white-space: nowrap;
+    padding: 0 0 0 10px;
+    min-height: 48px;
+    height: 100%;
+
+    &:nth-child(1) {
+      background-color: $color-white;
+    }
+
+    &:nth-child(3) {
+      border-right: 1px solid $color-black-100;
+    }
+
+    &:nth-child(5) {
+      border-right: 1px solid $color-black-100;
+    }
+
+    &--sticky {
+      position: sticky;
+      left: 0;
+      z-index: 9;
+      background-color: $color-white;
     }
   }
 
-  // Строки таблицы
   &__row {
-    &:nth-child(even) {
-      background-color: #f9f9f9;
-    }
+    background-color: $color-white;
+    height: 48px;
+    box-sizing: border-box;
+    padding: 0;
   }
 
-  // Ячейки таблицы
   &__cell {
-    padding: 10px;
-    border-bottom: 1px solid #e1e1e1;
-    position: relative; // для позиционирования кнопки
+    padding: 0 0 0 10px;
+    height: 64px;
+    box-sizing: border-box;
+    border-bottom: 1px solid $color-black-100;
+    font-family: $font-body2-regular;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+    text-align: left;
 
-    // Ссылки внутри ячеек
+    &:nth-child(3) {
+      border-right: 1px solid $color-black-100;
+    }
+
+    &:nth-child(5) {
+      border-right: 1px solid $color-black-100;
+    }
+
+    &--sticky {
+      position: sticky;
+      left: 0;
+      z-index: 10;
+      background-color: $color-white      
+    }
+
     &-link {
-      margin-right: 10px; // Добавляем отступ между ссылками
-      color: #007bff;
+      margin-right: 10px;
+      padding: 0;
+      color: $color-blue;
       text-decoration: none;
+      display: flex;
+      align-items: center;
+      
       &:hover {
         text-decoration: underline;
       }
-    }
-
-    // Контейнер для ссылок и кнопки изменения статуса
-    &-content {
-      display: flex;  // Располагаем элементы в ряд
-      align-items: center; // Выравниваем элементы по центру по вертикали
-
-      // Кнопка изменения статуса
-      &-status-btn {
-        padding: 5px 10px;
-        font-size: 0.8em;
-        cursor: pointer;
-        background-color: #effff4;
-        border: none;
-        border-radius: 4px;
-        margin-left: auto; // Выравниваем кнопку к правому краю
+      &:visited {
+        color: $color-purple;
       }
     }
+
+    &-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+
+  &__link-span {
+    width: 16px;
+    height: 16px;
+    background-image: url('../../assets/linksIcon.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    display: flex;
+    margin-right: 8px;
   }
 }
+
 

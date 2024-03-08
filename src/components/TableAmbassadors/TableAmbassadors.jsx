@@ -100,15 +100,12 @@ function AmbassadorTable() {
   const [selectedAmbassadors, setSelectedAmbassadors] = useState({});
   const [count, setCount] = useState(0);
   const [page, setPage] = useState(0);
-  const itemsPerPage = 25; // Количество элементов на странице
+  const itemsPerPage = 25;
 
-  // Считаем количество страниц
   const pageCount = Math.ceil(ambassadorData.length / itemsPerPage);
 
-  // Получаем элементы для текущей страницы
   const currentItems = ambassadorData.slice(page * itemsPerPage, (page + 1) * itemsPerPage);
 
-  // Обработчик смены страницы
   const handlePageClick = (selectedItem) => {
     setPage(selectedItem.selected);
   };
@@ -225,7 +222,6 @@ AmbassadorRow.propTypes = {
   onToggle: PropTypes.func.isRequired,
   fullName: PropTypes.string.isRequired,
   trainingProgram: PropTypes.string.isRequired,
-  //   status: PropTypes.string.isRequired,
   promoCode: PropTypes.string.isRequired,
   telegram: PropTypes.string.isRequired,
   dateAdded: PropTypes.string.isRequired,
