@@ -132,7 +132,7 @@ function AmbassadorTable() {
       });
       setSelectedAmbassadors(newSelectedAmbassadors);
     }
-  }, [ambassadorList]); // Уберите selectedAmbassadors из массива зависимостей
+  }, [ambassadorList]);
 
   const toggleAmbassadorSelection = (id) => {
     setSelectedAmbassadors((prev) => ({
@@ -143,7 +143,6 @@ function AmbassadorTable() {
 
   const toggleSelectAll = (newChecked) => {
     const newSelectedAmbassadors = {};
-    // Исправление: Используйте ambassadorList вместо ambassadorData
     ambassadorList.results.forEach((ambassador) => {
       newSelectedAmbassadors[ambassador.id] = newChecked;
     });
@@ -246,7 +245,6 @@ AmbassadorRow.propTypes = {
     blog_url: PropTypes.string,
     shirt_size: PropTypes.string,
     shoes_size: PropTypes.number,
-    // Добавьте остальные поля, если они используются в вашем компоненте
   }).isRequired,
 };
 
