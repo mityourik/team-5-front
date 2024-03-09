@@ -1,5 +1,6 @@
 // import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import {
   getIsAmbassadorDataEditing,
   getIsNewAmbassadorAdding,
@@ -18,13 +19,14 @@ import './AmbassadorPage.scss';
 export default function AmbassadorPage() {
   const isAmbassadorDataEditing = useSelector(getIsAmbassadorDataEditing);
   const isNewAmbassadorAdding = useSelector(getIsNewAmbassadorAdding);
-
-  // const [isOpen, setIsOpen] = useState(false);
-
-  // const handleMouseEnter = () => setIsOpen(true);
-  // const handleMouseLeave = () => setIsOpen(false);
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
+
+  const handleEditSubmit = () => {
+    console.log('OK');
+  };
+
   return (
     <HeaderSidebarLayout>
       <main className="ambassador-page">
@@ -34,6 +36,7 @@ export default function AmbassadorPage() {
               <button
                 className="go-back-button"
                 type="button"
+                onClick={() => navigate('/ambassadors')}
               >
                 <img className="ambassador-page__icon" alt="Иконка со стрелкой влево - переход назад" src={goBackIcon} />
                 Назад
@@ -64,7 +67,8 @@ export default function AmbassadorPage() {
                 </button>
                 <button
                   className="ambassador-page__save-button"
-                  type="button"
+                  type="submit"
+                  onClick={handleEditSubmit}
                 >
                   Сохранить
                 </button>
@@ -73,8 +77,8 @@ export default function AmbassadorPage() {
           )}
         </nav>
         <section className="ambassador-page__content">
-          <AmbassadorPersInfo />
-          <AmbassadorGeneralInfo />
+          <AmbassadorPersInfo handleSubmit={handleEditSubmit} />
+          <AmbassadorGeneralInfo handleSubmit={handleEditSubmit} />
         </section>
       </main>
     </HeaderSidebarLayout>

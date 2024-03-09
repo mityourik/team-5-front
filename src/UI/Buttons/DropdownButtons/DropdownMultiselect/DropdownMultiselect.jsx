@@ -3,13 +3,14 @@ import { useSelector, useDispatch } from 'react-redux';
 import { MultiSelect } from 'primereact/multiselect';
 import PropTypes from 'prop-types';
 import { setGoals } from '../../../../services/slices/dropdownSlice';
-import { getIsNewAmbassadorAdding } from '../../../../services/selectors/ambassadorSelector';
+import { getAmbassadorData, getIsNewAmbassadorAdding } from '../../../../services/selectors/ambassadorSelector';
 import './DropdownMultiselect.scss';
 
 function DropdownMultiselect({ goals, labelText }) {
   const studyGoals = useSelector((state) => state.dropdown.goals);
   const dispatch = useDispatch();
   const isNewAmbassadorAdding = useSelector(getIsNewAmbassadorAdding);
+  const ambassadorData = useSelector(getAmbassadorData);
 
   const [interacted, setInteracted] = useState(false);
 
@@ -17,7 +18,8 @@ function DropdownMultiselect({ goals, labelText }) {
     if (isNewAmbassadorAdding) {
       dispatch(setGoals([]));
     } else {
-      dispatch(setGoals([{ goal: 'Вести блог' }, { goal: 'Писать статьи' }]));
+      dispatch(setGoals([{ goal: ambassadorData.want_to_do || 'Вести блог' }]));
+      // dispatch(setGoals([{ goal: 'Вести блог' }, { goal: 'Писать статьи' }]));
     }
   }, [dispatch, isNewAmbassadorAdding]);
 

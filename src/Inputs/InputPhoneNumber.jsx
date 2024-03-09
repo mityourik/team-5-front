@@ -16,10 +16,11 @@ export default function InputPhoneNumber() {
     if (!value) {
       return 'Поле не может быть пустым';
     }
-    if (value.length < 1 || value.length > 11) {
+    if (value.length < 1 || value.length > 16) {
       return 'Должно быть не менее 1 и не более 11 символов';
     }
-    if (!/^[0-9]{11}$/.test(value)) {
+    if (!/^(?:\+?7\s?)?(\d{3})\s?(\d{3})\s?(\d{2})\s?(\d{2})$/.test(value)) {
+      // +79999999999' или '89999999999'
       return 'Номер телефона должен содержать только цифры';
     }
     // сделать регулярку для номера телефона
@@ -34,7 +35,7 @@ export default function InputPhoneNumber() {
         name="phone"
         className="input"
         validate={validatePosition}
-        maxLength={11}
+        maxLength={16}
         placeholder="+7"
       />
     </InputContainer>

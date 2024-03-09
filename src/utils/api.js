@@ -5,23 +5,10 @@ export const email = 'backend@crm.ru';
 export const password = '364809rdUY';
 
 function checkResponse(res) {
-  if (res.status === 204 || res.status === 200) {
-    return Promise.resolve({});
+  if (res.ok) {
+    return res.json();
   }
-
-  const contentType = res.headers.get('content-type');
-  if (contentType && contentType.includes('application/json')) {
-    return res.json().then((data) => {
-      if (res.ok) {
-        console.log('data', data);
-        return data;
-      }
-      return Promise.reject(
-        new Error(Object.values(data) || `Ошибка: ${res.status}`),
-      );
-    });
-  }
-  return Promise.reject(new Error(`Ошибка: ${res.status}`));
+  return Promise.reject(new Error(`Ошибка получения ответа от сервера: ${res.status}`));
 }
 
 export function request(url, options) {
