@@ -4,11 +4,12 @@
 $caretImg: '../../assets/arrow_down.svg';
 $caretImgWhite: '../../assets/arrow_down_white.svg';
 
-.dropdown {
+.dropdown-btn {
   position: relative;
   display: inline-block;
+  margin-top: 5px;
 
-  .dropdown-btn {
+  .dropdown-btn__button {
     padding: 9px 15px;
     font-family: $font-body2-medium;
     font-size: 14px;
@@ -25,7 +26,7 @@ $caretImgWhite: '../../assets/arrow_down_white.svg';
     width: 100%;
     transition: background-color 0.3s, color 0.3s, border 0.3s;
 
-    .caret {
+    .dropdown-btn__caret {
       background-image: url($caretImg);
       background-repeat: no-repeat;
       width: 20px;
@@ -35,18 +36,39 @@ $caretImgWhite: '../../assets/arrow_down_white.svg';
       transition: background-image 0.3s;
     }
 
-    &:hover, &:focus, &.active {
+    &:hover, &:focus {
       background-color: $color-blue-main;
       color: $color-white;
       border: 1px solid $color-blue;
 
-      .caret {
+      .dropdown-btn__caret {
+        background-image: url($caretImgWhite);
+      }
+    }
+
+    &:not(.active):hover, &:not(.active):focus {
+      // Стили для состояния hover и focus, применяемые только когда кнопка не активна (выпадающий список закрыт)
+      background-color: $color-blue-main;
+      color: $color-white;
+      border: 1px solid $color-blue;
+
+      .dropdown-btn__caret {
+        background-image: url($caretImgWhite);
+      }
+    }
+
+    &.active {
+      background-color: $color-blue;
+      color: $color-white;
+      border: 1px solid $color-blue;
+
+      .dropdown-btn__caret {
         background-image: url($caretImgWhite);
       }
     }
   }
 
-  .dropdown-content {
+  .dropdown-btn__content {
     display: none;
     position: absolute;
     background-color: $color-white;
@@ -67,7 +89,7 @@ $caretImgWhite: '../../assets/arrow_down_white.svg';
     max-height: 216px;
     overflow-y: auto;
 
-    .dropdown-item {
+    .dropdown-btn__item {
       padding: 8px 10px;
       text-decoration: none;
       display: block;
@@ -79,7 +101,7 @@ $caretImgWhite: '../../assets/arrow_down_white.svg';
     }
   }
 
-  &:hover .dropdown-content, &:focus-within .dropdown-content {
+  &:hover .dropdown-btn__content, &:focus-within .dropdown-btn__content {
     display: block;
   }
 }

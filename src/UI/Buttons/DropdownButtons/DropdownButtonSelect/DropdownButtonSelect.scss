@@ -1,9 +1,7 @@
 @import '../../../../styles/typography';
 @import '../../../../styles/variables';
 
-$caretHoverImagePath: '../assets/AmbAddDropdownCaretHover.svg';
-
-.dropdown {
+.dropdown-btn-select {
   position: relative;
   font-family: $font-body2-regular;
   font-size: 14px;
@@ -15,7 +13,6 @@ $caretHoverImagePath: '../assets/AmbAddDropdownCaretHover.svg';
   background-color: $color-white;
   margin: 5px 0 0 0;
   
-
   &__input {
     outline: none;
     padding: 10px;
@@ -59,7 +56,8 @@ $caretHoverImagePath: '../assets/AmbAddDropdownCaretHover.svg';
 
   &__list {
     position: absolute;
-    min-width: 98%;
+    // bottom: 38px;
+    min-width: 99%;
     list-style: none;
     padding: 0;
     margin: 0;
@@ -89,8 +87,9 @@ $caretHoverImagePath: '../assets/AmbAddDropdownCaretHover.svg';
     cursor: pointer;
     transition: background-color 0.3s;
 
-    &:hover {
-      background-color: #e9e9e9;
+    &:hover,
+    &_hovered {
+      background-color: $color-grey;
     }
 
     &:focus {
@@ -102,9 +101,7 @@ $caretHoverImagePath: '../assets/AmbAddDropdownCaretHover.svg';
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background-color: $color-blue-bg;
-      // color: #000;
-
+      background-color: $color-blue-bg !important;
 
       &::after {
         content: url('../../assets/checkedImg.svg');

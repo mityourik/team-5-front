@@ -1,4 +1,4 @@
-import { forwardRef, useImperativeHandle } from 'react';
+import { forwardRef, useImperativeHandle, useState } from 'react';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import PropTypes from 'prop-types';
@@ -24,12 +24,22 @@ const CustomInput = forwardRef(({ value, onClick, placeholder }, ref) => {
 function RangeDatePicker({
   startDate, setStartDate, endDate, setEndDate, id,
 }) {
+  const [startPickerOpen, setStartPickerOpen] = useState(false);
+  const [endPickerOpen, setEndPickerOpen] = useState(false);
+
   return (
     <div className="date-picker-container">
       <DatePicker
-        id={id}
+        id={`${id}-start`}
         selected={startDate}
-        onChange={(date) => setStartDate(date)}
+        onChange={(date) => {
+          setStartDate(date);
+          setStartPickerOpen(false);
+        }}
+        onClickOutside={() => setStartPickerOpen(false)}
+        onCalendarOpen={() => setStartPickerOpen(true)}
+        onCalendarClose={() => setStartPickerOpen(false)}
+        open={startPickerOpen}
         selectsStart
         startDate={startDate}
         endDate={endDate}
@@ -44,7 +54,7 @@ function RangeDatePicker({
           <button type="button" className="clear-button" onClick={() => { setStartDate(null); setEndDate(null); }}>
             Удалить
           </button>
-          <button type="button" className="save-button">
+          <button type="button" className="save-button" onClick={() => setStartPickerOpen(false)}>
             Сохранить
           </button>
         </div>
@@ -53,9 +63,16 @@ function RangeDatePicker({
       &thinsp;&mdash;&thinsp;
       </p>
       <DatePicker
-        id={id}
+        id={`${id}-end`}
         selected={endDate}
-        onChange={(date) => setEndDate(date)}
+        onChange={(date) => {
+          setEndDate(date);
+          setEndPickerOpen(false);
+        }}
+        onClickOutside={() => setEndPickerOpen(false)}
+        onCalendarOpen={() => setEndPickerOpen(true)}
+        onCalendarClose={() => setEndPickerOpen(false)}
+        open={endPickerOpen}
         selectsEnd
         startDate={startDate}
         endDate={endDate}
@@ -71,7 +88,7 @@ function RangeDatePicker({
           <button type="button" className="clear-button" onClick={() => { setStartDate(null); setEndDate(null); }}>
             Удалить
           </button>
-          <button type="button" className="save-button">
+          <button type="button" className="save-button" onClick={() => setEndPickerOpen(false)}>
             Сохранить
           </button>
         </div>

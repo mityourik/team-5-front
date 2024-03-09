@@ -1,30 +1,19 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setIsNewAmbassadorAddingTrue } from '../../services/slices/ambassadorSlice';
 import DropdownButton from '../../UI/Buttons/DropdownButtons/DropdownButton/DropdownButton';
 import SearchBar from '../../UI/SearchBar/SearchBar';
 import './MainPagePanel.scss';
 import Filter from '../FilterBar/Filter';
-import Header from '../Header/Header';
-import NavBar from '../NavBar/NavBar';
 import FilterButton from '../../UI/Buttons/FilterButton';
 import MailingButton from '../../UI/Buttons/MailingButton';
 
-const menuOptions = [
-  {
-    label: 'Добавить вручную',
-    action: () => console.log('Добавление вручную'),
-  },
-  {
-    label: 'Импортировать',
-    action: () => console.log('Импорт'),
-  },
-];
-
 function MainPagePanel() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const handleMouseEnter = () => setIsOpen(true);
-  const handleMouseLeave = () => setIsOpen(false);
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   const handleSearch = (searchTerm) => {
     console.log('Поиск:', searchTerm);
@@ -34,14 +23,23 @@ function MainPagePanel() {
     setIsFilterOpen(!isFilterOpen);
   };
 
+  const menuOptions = [
+    {
+      label: 'Добавить вручную',
+      // action: () => console.log('Добавление вручную'),
+      action: () => {
+        navigate('/new-ambassador');
+        dispatch(setIsNewAmbassadorAddingTrue());
+      },
+    },
+    {
+      label: 'Импортировать',
+      action: () => console.log('Импорт'),
+    },
+  ];
+
   return (
     <section className="main-page">
-      <Header isOpen={isOpen} />
-      <NavBar
-        isOpen={isOpen}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-      />
       <div className="main-page-panel">
         <div className="main-page-panel__container main-page-panel__container__content_search">
           <SearchBar
@@ -51,11 +49,13 @@ function MainPagePanel() {
           <FilterButton
             text="Фильтры"
             onClick={handleFilterClick}
+            isFilterOpen={isFilterOpen}
           />
         </div>
         <div className="main-page-panel__container main-page-panel__container__content_mailing">
           <MailingButton
             text="Написать"
+            onClick={() => console.log('откройся рассылка')}
           />
           <DropdownButton
             buttonLabel="Добавить Амбассадора"

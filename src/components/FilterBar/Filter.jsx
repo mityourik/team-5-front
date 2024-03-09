@@ -27,7 +27,6 @@ function Filter() {
   const optionsGender = [
     'Женский',
     'Мужской',
-    'Non-binary',
   ];
 
   const optionsStatus = [

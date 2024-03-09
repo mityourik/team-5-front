@@ -3,8 +3,8 @@ $font-h1-regular: 'YS Display Regular', 'Helvetica', sans-serif, 34px/40px;
 $font-h1-medium: 'YS Display Medium', 'Helvetica', sans-serif, 34px/40px;
 $font-h2-regular: 'YS Display Regular', 'Helvetica', sans-serif, 24px/32px;
 $font-h2-medium: 'YS Display Medium', 'Helvetica', sans-serif, 24px/32px;
-$font-h3-regular: 'YS Display Regular', 'Helvetica', sans-serif, 20px/24px;
-$font-h3-medium: 'YS Display Medium', 'Helvetica', sans-serif, 20px/24px;
+$font-h3-regular: 'YS-Display-Regular', 'Helvetica', sans-serif; // 20px/24px;
+$font-h3-medium: 'YS-Display-Regular-Medium', 'Helvetica', sans-serif; // 20px/24px;
 
 // Подзаголовки
 $font-subtitle-regular: 'YS Text Regular', 'Helvetica', sans-serif, 18px/24px;
@@ -15,9 +15,10 @@ $font-body1-regular: 'YS Text Regular', 'Helvetica', sans-serif, 16px/20px;
 $font-body1-medium: 'YS Text Medium', 'Helvetica', sans-serif, 16px/20px;
 
 // Дополнительные шрифты
-$font-body2-regular: 'YS Text Regular', 'Helvetica', sans-serif; // 14px/20px;
+$font-body2-regular: 'YS-Text-Regular', 'Helvetica', sans-serif; // 14px/20px;
 $font-body2-medium: 'YS Text Medium', 'Helvetica', sans-serif; // 14px/20px;
 $font-caption-regular: 'YS Text Regular', 'Helvetica', sans-serif; // 13px/16px;
 $font-caption-medium: 'YS Text Medium', 'Helvetica', sans-serif; // 13px/16px;
 $font-caption2-regular: 'YS Text Regular', 'Helvetica', sans-serif; // 11px/12px;
 $font-caption2-medium: 'YS Text Medium', 'Helvetica', sans-serif, 11px/12px;
+

@@ -1,0 +1,74 @@
+@import '../../styles/typography';
+@import '../../styles/variables';
+
+.content-link-cell {
+  width: 100%;
+  border-collapse: collapse;
+  position: relative;
+
+  &__cell-link {
+    margin: 0;
+    padding: 0;
+    color: $color-blue;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+      
+    &:hover {
+      text-decoration: underline;
+    }
+    &:visited {
+      color: $color-purple;
+    }
+
+    &-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+
+  &__link-span {
+    width: 16px;
+    height: 16px;
+    background-image: url('../../assets/linksIcon.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    display: flex;
+    margin-right: 8px;
+  }
+
+  &__link-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    box-sizing: border-box;
+    min-width: 160px;
+    width: 100%;
+    position: relative;
+  
+    &:hover .content-link-cell__link-delete-btn {
+      opacity: 1;
+    }
+  }
+
+  &__link-delete-btn {
+    background-image: url('../../assets/iconDeleteLink.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 16px;
+    height: 16px;
+    padding: 0;
+    margin-left: 8px;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    position: absolute;
+    right: 27px;
+    bottom: 22px;
+  }
+}

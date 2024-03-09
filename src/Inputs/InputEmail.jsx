@@ -1,16 +1,25 @@
 import { useCallback, useEffect } from 'react';
 import { Field, useFormikContext } from 'formik';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchAmbassadorInfo } from '../services/thunks/ambassadorThunk';
 import './InputContainer.scss';
 import InputContainer from './InputContainer';
 
 export default function InputEmail() {
   // const { errors } = useFormikContext();
 
-  const { values, setFieldValue } = useFormikContext();
+  const dispatch = useDispatch();
+
+  // const email = useSelector((state) => state.ambassador.ambassadorData.email);
+
+  // const { values, setFieldValue } = useFormikContext();
 
   useEffect(() => {
-    setFieldValue('email', values.email);
-  }, [values.email, setFieldValue]);
+    dispatch(fetchAmbassadorInfo());
+  }, [dispatch]);
+  // useEffect(() => {
+  //   setFieldValue('email', values.email);
+  // }, [values.email, setFieldValue]);
 
   const validateEmail = useCallback((value) => {
     if (!value) {
@@ -35,6 +44,7 @@ export default function InputEmail() {
         // className={`input ${errors.email && 'input-error'}`}
         validate={validateEmail}
         maxLength={250}
+        placeholder="@mail.ru"
       />
     </InputContainer>
   );

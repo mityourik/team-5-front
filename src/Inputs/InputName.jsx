@@ -5,14 +5,6 @@ import './InputContainer.scss';
 import InputContainer from './InputContainer';
 
 export default function InputName({ name }) {
-  // const { values, setFieldValue } = useFormikContext();
-  // const { values, setFieldValue, errors } = useFormikContext();
-
-  // не даём пользователю нажать пробел в начале и конце строки
-  // useEffect(() => {
-  //   setFieldValue('name', values.name.trim());
-  // }, [values.name, setFieldValue]);
-
   const validateName = useCallback((value) => {
     if (!value) {
       return 'Поле не может быть пустым';
@@ -35,6 +27,7 @@ export default function InputName({ name }) {
         className="input"
         validate={validateName}
         maxLength={250}
+        placeholder={name === 'name' ? 'Введите фамилию, имя и отчество' : 'Ник в Телеграм'}
       />
     </InputContainer>
   );
