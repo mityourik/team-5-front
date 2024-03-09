@@ -1,0 +1,84 @@
+import PropTypes from 'prop-types';
+import { Formik, Form } from 'formik';
+import { useSelector } from 'react-redux';
+import { getIsAmbassadorDataEditing, getIsNewAmbassadorAdding } from '../../services/selectors/ambassadorSelector';
+import './AmbassadorInfoTable.scss';
+
+export default function AmbassadorInfoTable({ data, children }) {
+  const isAmbassadorDataEditing = useSelector(getIsAmbassadorDataEditing);
+  const isIsNewAmbassadorAdding = useSelector(getIsNewAmbassadorAdding);
+
+  return (
+    !isAmbassadorDataEditing && !isIsNewAmbassadorAdding ? (
+      <table className="ambassador__info-table">
+        <tbody className="ambassador__table-container has-gap">
+          {data.map((item, index) => (
+            // eslint-disable-next-line react/no-array-index-key
+            <tr className="ambassador__table-row" key={index}>
+              <td className="ambassador__table-label">{item.label}</td>
+              <td className="ambassador__table-value">{item.value}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    ) : (
+      <Formik
+        initialValues={!isIsNewAmbassadorAdding ? {
+          promocode: 'VASYAPUPKIN',
+          goal: 'Смена профессии',
+          plans: 'Вести блог, Писать статьи, Снимать видео или сниматься в них, если продакшн будет на нашей стороне',
+          curator: 'Анастасия Борисова',
+          education: 'СПБГУПТД',
+          placeOfWork: 'Безработный дизайнер',
+          country: 'Россия',
+          city: 'Санкт-Петербург',
+          index: '190000',
+          address: 'Университетская наб., 3',
+          gender: 'Мужской',
+          clothingSize: 'M',
+          shoeSize: '40',
+          comment: 'Я готов на все ради мерча',
+        } : {
+          promocode: '',
+          goal: '',
+          plans: '',
+          curator: '',
+          education: '',
+          placeOfWork: '',
+          country: '',
+          city: '',
+          index: '',
+          address: '',
+          gender: '',
+          clothingSize: '',
+          shoeSize: '',
+          comment: '',
+        }}
+        onSubmit={() => console.log('submit')}
+      >
+        {() => (
+          <Form className="ambassador__table-container">
+            {children}
+          </Form>
+        )}
+      </Formik>
+
+    )
+
+  );
+}
+
+AmbassadorInfoTable.defaultProps = {
+  children: null,
+  data: [],
+};
+
+AmbassadorInfoTable.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.shape({
+    label: PropTypes.string,
+    value: PropTypes.string,
+  })),
+  children: PropTypes.node,
+};
+
+// use <tr key={index.id}> instead of <tr key={index}>

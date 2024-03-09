@@ -1,0 +1,119 @@
+.select {
+  display: flex;
+	flex-direction: column;
+	padding: 0;
+	text-transform: none;
+	width: calc(424px - (24px*2));
+  position: relative;
+  display: inline-block;
+}
+
+.select__label {
+  color: #797981;
+	font-family: "YS-Text-Regular", "Arial", sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 20px;
+	text-transform: none;
+}
+
+.select__wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.select__button {
+  margin: 8px 0 0;
+  padding: 10px 12px;
+  display: flex;
+  outline: none;
+  position: relative;
+  width: 100%;
+  appearance: none; // hide default arrow
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url('../assets/AmbassadorsPage/arrow_down.svg');
+  background-position: 98% center;
+  background-size: 24px;
+  background-repeat: no-repeat;
+  font-family: "YS-Text-Regular", "Arial", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  border: 1px solid #c9d1e5;
+  background-color: transparent;
+  align-items: flex-start;
+  border-radius: var(--xs, 4px);
+  text-transform: none;
+	-webkit-border-radius: var(--xs, 4px);
+	-moz-border-radius: var(--xs, 4px);
+	-ms-border-radius: var(--xs, 4px);
+	-o-border-radius: var(--xs, 4px);
+}
+
+.select__button_empty {
+  color: #797981;
+  padding: 10px 12px;
+  height: 40px;
+}
+
+.select__button_error {
+  border: 1px solid #FF0200;
+}
+
+.select__menu {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top: 83%;
+  left: 0;
+  width: fill-available;
+  width: -webkit-fill-available;
+  width: -moz-fill-available;
+  width: -ms-fill-available;
+  width: -o-fill-available;
+  // width: 376px;
+  height: 216px;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  border: 1px #B5B5B7 solid;
+  outline: none;
+  z-index: 1400;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+}
+
+.select__option {
+  padding: 6px 6px 10px 12px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  text-align: left;
+  background-color: #fff;
+  font-family: 'YS-Text-Regular', 'Arial', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.select__error-container {
+  margin-top: 2px;
+  height: 12px;
+  display: block;
+  position: relative;
+}
+
+.select__error {
+  color: #FF0200;
+  font-family: "YS-Text-Regular", "Arial", sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 12px;
+  min-height: 30px;
+  display: block;
+  text-transform: none;
+}

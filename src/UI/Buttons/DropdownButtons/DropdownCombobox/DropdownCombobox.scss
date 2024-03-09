@@ -1,0 +1,44 @@
+@import '../../../../shared/variables.scss';
+@import '../../../../styles/variables.scss';
+@import '../../../../styles/typography.scss';
+@import '../../../../shared/mixins.scss';
+
+.css-1u9des2-indicatorSeparator {
+    display: none;
+}
+
+.css-b62m3t-container {
+    width: 378px;
+    .css-13cymwt-control {
+        width: 378px;
+        background: url('../../../../assets/AmbassadorsPage/arrow_down.svg') no-repeat right;
+        background-position-x: 98%;
+    }
+    svg {
+        display: none;
+    }
+   
+}
+.css-t3ipsp-control {
+    width: 378px;
+    background: url('../../../../assets/AmbassadorsPage/arrow_down.svg') no-repeat right;
+    background-position-x: 98%;
+}
+
+.dropdown-multiselect-pack {
+    .css-1y7rh0y-MultiValueGeneric2 {
+        background-color: transparent;
+        font-family: $font-body2-regular;
+        color: $color-black-900;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 20px;
+    }
+    .css-1p3m7a8-multiValue {
+        background-color: transparent;
+    }
+    .css-1nmdiq5-menu {
+        margin: 0;
+    }
+}
+

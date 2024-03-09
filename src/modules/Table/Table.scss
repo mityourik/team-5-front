@@ -1,0 +1,49 @@
+@import '../../styles/typography';
+@import '../../styles/variables';
+
+.table {
+    box-sizing: border-box;
+    background-color: $color-white;
+    flex-wrap: wrap;
+    position: relative;
+
+    &__body {
+        width: 100%;
+        border-bottom: 1px solid #1A1B22;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        height: max-content;
+    }
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #1A1B22;
+        margin: 25px 0 0 0;
+    }
+
+    &__checkbox {
+        left: 0;
+        background-color: white;
+    }
+
+    &__settings-container {
+        position: sticky;
+        right: 0;
+        background-color: white;
+    }
+
+    &__settings-icon {
+        width: 14px;
+        height: 16px;
+    }
+
+    &__row-container {
+        width: max-content;
+        height: max-content;
+        // overflow: auto
+    }
+}
