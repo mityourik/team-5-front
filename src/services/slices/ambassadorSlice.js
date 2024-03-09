@@ -50,7 +50,6 @@ const ambassadorSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchAmbassadorInfo.fulfilled, (state, action) => {
-        console.log('action.payload', action.payload);
         state.ambassadorData = action.payload;
         state.ambassadorId = action.payload.id;
         state.isLoadingAmbassador = false;

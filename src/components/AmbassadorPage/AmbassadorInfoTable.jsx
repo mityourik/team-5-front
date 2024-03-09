@@ -1,12 +1,13 @@
 import PropTypes from 'prop-types';
 import { Formik, Form } from 'formik';
 import { useSelector } from 'react-redux';
-import { getIsAmbassadorDataEditing, getIsNewAmbassadorAdding } from '../../services/selectors/ambassadorSelector';
+import { getAmbassadorData, getIsAmbassadorDataEditing, getIsNewAmbassadorAdding } from '../../services/selectors/ambassadorSelector';
 import './AmbassadorInfoTable.scss';
 
-export default function AmbassadorInfoTable({ data, children }) {
+export default function AmbassadorInfoTable({ data, children, handleSubmit }) {
   const isAmbassadorDataEditing = useSelector(getIsAmbassadorDataEditing);
   const isIsNewAmbassadorAdding = useSelector(getIsNewAmbassadorAdding);
+  const ambassadorData = useSelector(getAmbassadorData);
 
   return (
     !isAmbassadorDataEditing && !isIsNewAmbassadorAdding ? (
@@ -24,20 +25,21 @@ export default function AmbassadorInfoTable({ data, children }) {
     ) : (
       <Formik
         initialValues={!isIsNewAmbassadorAdding ? {
-          promocode: 'VASYAPUPKIN',
-          goal: 'Смена профессии',
-          plans: 'Вести блог, Писать статьи, Снимать видео или сниматься в них, если продакшн будет на нашей стороне',
-          curator: 'Анастасия Борисова',
-          education: 'СПБГУПТД',
-          placeOfWork: 'Безработный дизайнер',
-          country: 'Россия',
-          city: 'Санкт-Петербург',
-          index: '190000',
-          address: 'Университетская наб., 3',
-          gender: 'Мужской',
-          clothingSize: 'M',
-          shoeSize: '40',
-          comment: 'Я готов на все ради мерча',
+          promocode: ambassadorData.promocode || 'VASYAPUPKIN', // если null (как на сервере), то VASYAPUPKIN
+          // promocode: 'VASYAPUPKIN',
+          goal: ambassadorData.aim || 'Смена профессии',
+          plans: ambassadorData.want_to_do || 'Вести блог, Писать статьи, Снимать видео или сниматься в них, если продакшн будет на нашей стороне',
+          curator: ambassadorData.supervisor || 'Анастасия Борисова',
+          education: ambassadorData.education || 'СПБГУПТД',
+          placeOfWork: ambassadorData.job || 'Безработный дизайнер',
+          country: ambassadorData.country || 'Россия',
+          city: ambassadorData.city || 'Санкт-Петербург',
+          index: ambassadorData.zip_code || '190000',
+          address: ambassadorData.address || 'Университетская наб., 3',
+          gender: ambassadorData.gender || 'Мужской',
+          clothingSize: ambassadorData.shirt_size || 'M',
+          shoeSize: ambassadorData.shoes_size || '40',
+          comment: ambassadorData.comment || 'Я готов на все ради мерча',
         } : {
           promocode: '',
           goal: '',
@@ -54,7 +56,7 @@ export default function AmbassadorInfoTable({ data, children }) {
           shoeSize: '',
           comment: '',
         }}
-        onSubmit={() => console.log('submit')}
+        onSubmit={handleSubmit}
       >
         {() => (
           <Form className="ambassador__table-container">
@@ -62,9 +64,7 @@ export default function AmbassadorInfoTable({ data, children }) {
           </Form>
         )}
       </Formik>
-
     )
-
   );
 }
 
@@ -79,6 +79,7 @@ AmbassadorInfoTable.propTypes = {
     value: PropTypes.string,
   })),
   children: PropTypes.node,
+  handleSubmit: PropTypes.func.isRequired,
 };
 
 // use <tr key={index.id}> instead of <tr key={index}>
