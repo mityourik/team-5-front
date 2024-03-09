@@ -3,13 +3,14 @@ import { useSelector, useDispatch } from 'react-redux';
 import Select from 'react-select';
 import PropTypes from 'prop-types';
 import { setStudyPurposes } from '../../../../services/slices/dropdownSlice';
-import { getIsNewAmbassadorAdding } from '../../../../services/selectors/ambassadorSelector';
+import { getAmbassadorData, getIsNewAmbassadorAdding } from '../../../../services/selectors/ambassadorSelector';
 import './DropdownCombobox.scss';
 import '../DropdownMultiselect/DropdownMultiselect.scss';
 
 function DropdownCombobox({ purposes, labelText }) {
   const studyPurposes = useSelector((state) => state.dropdown.studyPurposes);
   const isNewAmbassadorAdding = useSelector(getIsNewAmbassadorAdding);
+  const ambassadorData = useSelector(getAmbassadorData);
   const dispatch = useDispatch();
   const [interacted, setInteracted] = useState(false);
 
@@ -17,7 +18,8 @@ function DropdownCombobox({ purposes, labelText }) {
     if (isNewAmbassadorAdding) {
       dispatch(setStudyPurposes([]));
     } else {
-      dispatch(setStudyPurposes([{ label: 'Смена профессии', value: 'Смена профессии' }]));
+      dispatch(setStudyPurposes([{ label: ambassadorData.aim || 'Смена профессии', value: ambassadorData.aim || 'Смена профессии' }]));
+      // dispatch(setStudyPurposes([{ label: 'Смена профессии', value: 'Смена профессии' }]));
     }
   }, [dispatch, isNewAmbassadorAdding]);
 

@@ -13,6 +13,7 @@ export const fetchGetAllAmbassadors = createAsyncThunk('getAllAmbassadors/get', 
       Authorization: token,
     },
   });
+  console.log(`fetchGetAllAmbassadors, ${JSON.stringify(data)}`);
   return data;
 });
 
@@ -39,10 +40,8 @@ export const fetchAmbassadorInfo = createAsyncThunk('userInfo/get', async (ambas
       Accept: 'application/json',
       Authorization: token,
     },
-    // body: JSON.stringify({ ambassadorId }),
   });
-  console.log(`ambInfo, ${JSON.stringify(data)}`);
-  return data;
+  return data; // {} cо всеми свойствами
 });
 
 // Получение контента
@@ -55,22 +54,5 @@ export const fetchContent = createAsyncThunk('content/get', async () => {
       Authorization: token,
     },
   });
-  console.log(`content, ${JSON.stringify(data)}`);
   return data;
 });
-
-const urlGetStudyProgramms = `${baseURL}/api/study-programs/`;
-export const fetchGetStudyProgramms = createAsyncThunk(
-  'getStudyProgramms/get',
-  async () => {
-    const data = await request(urlGetStudyProgramms, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-        Authorization: token,
-      },
-    });
-    return data;
-  },
-);

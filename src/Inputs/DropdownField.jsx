@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFormikContext } from 'formik';
-import { getIsNewAmbassadorAdding } from '../services/selectors/ambassadorSelector';
+import { getAmbassadorData, getIsNewAmbassadorAdding } from '../services/selectors/ambassadorSelector';
 import './DropdownField.scss';
 
 function DropdownField({
@@ -13,6 +13,7 @@ function DropdownField({
   const [selectedOption, setSelectedOption] = useState(''); // Track selected option
   const dropdownError = useSelector((state) => state.dropdown.errorDropdown);
   const errorMessage = useSelector((state) => state.dropdown.errorMessageDropdown);
+  const ambassadorData = useSelector(getAmbassadorData);
   // const isAmbassadorDataEditing = useSelector(getIsAmbassadorDataEditing);
   const isNewAmbassadorAdding = useSelector(getIsNewAmbassadorAdding);
   const dispatch = useDispatch();
@@ -21,16 +22,16 @@ function DropdownField({
     if (!isNewAmbassadorAdding) {
       switch (htmlFor) {
         case 'studyProgramm':
-          setSelectedOption('UI/UX дизайнер');
+          setSelectedOption(ambassadorData.study_programm?.title || 'UI/UX дизайнер');
           break;
         case 'country':
-          setSelectedOption('Россия');
+          setSelectedOption(ambassadorData.country || 'Россия');
           break;
         case 'city':
-          setSelectedOption('Санкт-Петербург');
+          setSelectedOption(ambassadorData.city || 'Санкт-Петербург');
           break;
         case 'clothingSize':
-          setSelectedOption('M');
+          setSelectedOption(ambassadorData.shirt_size || 'M');
           break;
         default:
           break;
@@ -57,7 +58,6 @@ function DropdownField({
     }
     setIsOpen(false);
     setSelectedOption(option);
-    console.log('handleSelect', htmlFor, option);
   };
 
   return (

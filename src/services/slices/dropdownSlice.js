@@ -6,6 +6,7 @@ export const initialState = {
   selectedValue: '',
   errorDropdown: false,
   errorMessageDropdown: '',
+  studyProgramms: [],
   // Purpose of study
   studyPurposes: [],
   // Goals
@@ -39,6 +40,7 @@ const dropdownSlice = createSlice({
     builder
       .addCase(fetchGetStudyProgramms.fulfilled, (state, action) => {
         state.studyProgramms = action.payload;
+        console.log('action.payload', action.payload);
         state.errorDropdown = false;
         state.errorMessageDropdown = '';
         state.selectedValue = action.payload;
