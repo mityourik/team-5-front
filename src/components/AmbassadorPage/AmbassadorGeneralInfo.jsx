@@ -46,7 +46,7 @@ export default function AmbassadorGeneralInfo({ handleSubmit }) {
   ];
 
   const cities = [
-    ambassadorData.city,
+    'Москва',
     'Санкт-Петербург',
     'Екатеринбург',
     'Нижний Новгород',
@@ -63,7 +63,7 @@ export default function AmbassadorGeneralInfo({ handleSubmit }) {
 
   const goals = [
     { goal: ambassadorData.want_to_do },
-    { goal: 'Развивать локальное  провессиональное сообщество в своем городе' },
+    { goal: 'Развивать локальное  профессиональное сообщество в своем городе' },
     { goal: 'Вести блог' },
     { goal: 'Писать статьи' },
     { goal: 'Снимать видео или сниматься в них, если продакшн будет на нашей стороне' },

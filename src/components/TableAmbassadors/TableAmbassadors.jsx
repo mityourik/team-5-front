@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import ReactPaginate from 'react-paginate';
 import Checkbox from '../../UI/Checkbox/Checkbox';
 import { ambassadorData, headerListAmbs } from '../../utils/constants';
-import { fetchAmbassadorInfo } from '../../services/thunks/ambassadorThunk';
+import { getAmbassadorData } from '../../services/selectors/ambassadorSelector';
+import { fetchAmbassadorInfo, fetchGetAllAmbassadors } from '../../services/thunks/ambassadorThunk';
 import DropdownStatusSelect from '../../UI/Buttons/DropdownButtons/DropdownStatusSelect/DropdownStatusSelect';
 import './TableAmbassadors.scss';
 import TelegramCell from '../../modules/TelegramCell/TelegramCell';
@@ -43,6 +44,21 @@ function AmbassadorRow({
     console.log('Действие для амбассадора с ID:', ambassadorId);
     // тут открытие окна редактирования
   }
+
+  useEffect(() => {
+    dispatch(fetchGetAllAmbassadors());
+  }, [dispatch]);
+
+  // здесь будет список со всеми амб-ами с сервера
+  const ambassadorList = useSelector((state) => state.ambassador.ambassadorList);
+  // console.log('ambassadorList', ambassadorList);
+
+  // используем этот ambassadorData, и из него вытаскиваем нужные поля
+  // программа обучения вытаскивается через ambassadorData.study_programm.title (пример ниже)
+  const ambassadorData = useSelector(getAmbassadorData);
+
+  // имя амб-ра собирается из 3х частей:
+  const ambassadorName = `${ambassadorData.name || 'Василий'} ${ambassadorData.patronymic || 'Васильевич'} ${ambassadorData.surname || 'Пупкин'}`;
 
   return (
     <tr className="ambassador-table__row">
@@ -175,8 +191,8 @@ function AmbassadorTable() {
             {currentItems.map((ambassador, index) => (
               <AmbassadorRow
                 onStatusChange={handleStatusChange}
-                key={ambassador.id}
-                id={ambassador.id}
+                key={ambassadorData.id}
+                id={ambassadorData.id}
                 index={index}
                 isSelected={isSelected(ambassador.id)}
                 onToggle={toggleAmbassadorSelection}

@@ -13,7 +13,7 @@ export const fetchGetAllAmbassadors = createAsyncThunk('getAllAmbassadors/get', 
       Authorization: token,
     },
   });
-  console.log(`fetchGetAllAmbassadors, ${JSON.stringify(data)}`);
+  // console.log(`fetchGetAllAmbassadors, ${JSON.stringify(data)}`);
   return data;
 });
 
