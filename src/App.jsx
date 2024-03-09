@@ -13,7 +13,7 @@ function App() {
   return (
     <Routes>
       <Route
-        path="/ambassadors"
+        path="/"
         element={(
           <HeaderSidebarLayout>
             <AmbassadorsPage />
