@@ -24,7 +24,7 @@ import './AmbassadorPage.scss';
 
 export default function AmbassadorPersInfo({ handleSubmit }) {
   const studyProgramms = useSelector((state) => state.dropdown.studyProgramms);
-  console.log('studyProgramms', studyProgramms);
+  // console.log('studyProgramms', studyProgramms);
 
   const ambassadorData = useSelector(getAmbassadorData);
   // console.log('ambassadorData', ambassadorData);
@@ -32,6 +32,10 @@ export default function AmbassadorPersInfo({ handleSubmit }) {
 
   const isAmbassadorDataEditing = useSelector(getIsAmbassadorDataEditing);
   const isNewAmbassadorAdding = useSelector(getIsNewAmbassadorAdding);
+
+  const handleMailTo = () => {
+    window.location.href = `mailto:${ambassadorData.email || '@mail.ru'}`;
+  };
 
   return (
     <article className="ambassador-page__data">
@@ -125,6 +129,7 @@ export default function AmbassadorPersInfo({ handleSubmit }) {
           <button
             className="ambassador-page__contact-button"
             type="button"
+            onClick={handleMailTo}
           >
             <img className="ambassador-page__icon" alt="Иконка с конвертиком" src={messageIcon} />
             Написать

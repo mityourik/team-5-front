@@ -13,7 +13,7 @@ export const fetchGetStudyProgramms = createAsyncThunk(
         Authorization: token,
       },
     });
-    console.log('studyProgramms Thunks:', data.results);
+    // console.log('studyProgramms Thunks:', data.results);
     return data.results;
   },
 );

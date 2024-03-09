@@ -33,6 +33,7 @@ export default function AmbassadorPage() {
 
   const handleEditSubmit = () => {
     console.log('OK');
+    dispatch(setIsAmbassadorDataEditingFalse());
   };
 
   return (
