@@ -19,10 +19,16 @@ export default function NewAmbassadorPage() {
     dispatch(setIsNewAmbassadorAddingTrue());
   });
 
+  const handleSaveSubmit = () => {
+    // dispatch(setIsNewAmbassadorAddingFalse());
+    // navigate('/ambassadors');
+    console.log('Save OK');
+  };
+
   const handleCancelEditing = () => {
     // добавить модальное окно с уточнением выйти без сохранения изменений
     dispatch(setIsNewAmbassadorAddingFalse());
-    navigate('/');
+    navigate('/ambassadors');
   };
 
   return (
@@ -41,15 +47,16 @@ export default function NewAmbassadorPage() {
             </button>
             <button
               className="ambassador-page__save-button"
-              type="button"
+              type="submit"
+              onClick={handleSaveSubmit}
             >
               Добавить
             </button>
           </div>
         </nav>
         <section className="ambassador-page__content">
-          <AmbassadorPersInfo />
-          <AmbassadorGeneralInfo />
+          <AmbassadorPersInfo handleSubmit={handleSaveSubmit} />
+          <AmbassadorGeneralInfo handleSubmit={handleSaveSubmit} />
         </section>
       </main>
     </HeaderSidebarLayout>

@@ -1,20 +1,20 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { baseURL, request } from '../../utils/api';
+import { baseURL, request, token } from '../../utils/api';
 
-const urlGetStudyProgramms = `${baseURL}/study-programs/`;
+const urlGetStudyProgramms = `${baseURL}api/study_programms/`;
 export const fetchGetStudyProgramms = createAsyncThunk(
   'getStudyProgramms/get',
   async () => {
-    const token = '5b6c0882e80f5b171c77516e9a5b0702687653ec';
     const data = await request(urlGetStudyProgramms, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
-        Authorization: `Bearer ${token}`,
+        Authorization: token,
       },
     });
-    return data;
+    console.log('studyProgramms Thunks:', data.results);
+    return data.results;
   },
 );
 

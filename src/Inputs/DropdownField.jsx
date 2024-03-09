@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFormikContext } from 'formik';
-import { getIsNewAmbassadorAdding } from '../services/selectors/ambassadorSelector';
+import { getAmbassadorData, getIsNewAmbassadorAdding } from '../services/selectors/ambassadorSelector';
 import './DropdownField.scss';
 
 function DropdownField({
@@ -13,6 +13,7 @@ function DropdownField({
   const [selectedOption, setSelectedOption] = useState(''); // Track selected option
   const dropdownError = useSelector((state) => state.dropdown.errorDropdown);
   const errorMessage = useSelector((state) => state.dropdown.errorMessageDropdown);
+  const ambassadorData = useSelector(getAmbassadorData);
   // const isAmbassadorDataEditing = useSelector(getIsAmbassadorDataEditing);
   const isNewAmbassadorAdding = useSelector(getIsNewAmbassadorAdding);
   const dispatch = useDispatch();
@@ -21,27 +22,28 @@ function DropdownField({
     if (!isNewAmbassadorAdding) {
       switch (htmlFor) {
         case 'studyProgramm':
-          setSelectedOption('UI/UX дизайнер');
+          setSelectedOption(ambassadorData.study_programm?.title || 'UI/UX дизайнер');
           break;
         case 'country':
-          setSelectedOption('Россия');
+          setSelectedOption(ambassadorData.country || 'Россия');
           break;
         case 'city':
-          setSelectedOption('Санкт-Петербург');
+          setSelectedOption(ambassadorData.city || 'Санкт-Петербург');
           break;
         case 'clothingSize':
-          setSelectedOption('M');
+          setSelectedOption(ambassadorData.shirt_size || 'M');
           break;
         default:
           break;
       }
     }
-  }, [dispatch, htmlFor, isNewAmbassadorAdding]);
+  }, [ambassadorData.city, ambassadorData.country, ambassadorData.shirt_size,
+    ambassadorData.study_programm, dispatch, htmlFor, isNewAmbassadorAdding]);
 
   const handleSelect = (htmlFor, option) => {
     switch (htmlFor) {
       case 'studyProgramm':
-        setSelectedOption(option);
+        setSelectedOption(option.title);
         break;
       case 'country':
         setSelectedOption(option);
@@ -56,8 +58,8 @@ function DropdownField({
         break;
     }
     setIsOpen(false);
-    setSelectedOption(option);
-    console.log('handleSelect', htmlFor, option);
+    setSelectedOption(option.title || option);
+    console.log(selectedOption);
   };
 
   return (
@@ -86,12 +88,12 @@ function DropdownField({
         <div className="select__menu">
           {options.map((option) => (
             <button
-              key={option}
+              key={option.title || option}
               className="select__option"
               type="button"
               onClick={() => handleSelect(htmlFor, option)}
             >
-              {option}
+              {option.title || option}
             </button>
           ))}
         </div>
@@ -99,9 +101,19 @@ function DropdownField({
     </div>
   );
 }
+function dropdownPropTypes(labelText) {
+  if (labelText === 'Программа обучения') {
+    return PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+    }));
+  }
+  return PropTypes.arrayOf(PropTypes.string);
+}
 
 DropdownField.propTypes = {
-  options: PropTypes.arrayOf(PropTypes.string).isRequired,
+  options: dropdownPropTypes.isRequired,
+  // options: PropTypes.arrayOf(PropTypes.string).isRequired,
   labelText: PropTypes.string.isRequired,
   htmlFor: PropTypes.string.isRequired,
 };

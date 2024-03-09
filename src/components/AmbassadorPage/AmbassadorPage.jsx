@@ -1,5 +1,6 @@
-// import { useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate, useLocation } from 'react-router-dom';
 import {
   getIsAmbassadorDataEditing,
   getIsNewAmbassadorAdding,
@@ -8,6 +9,8 @@ import {
   setIsAmbassadorDataEditingTrue,
   setIsAmbassadorDataEditingFalse,
 } from '../../services/slices/ambassadorSlice';
+import { fetchAmbassadorInfo } from '../../services/thunks/ambassadorThunk';
+import { fetchGetStudyProgramms } from '../../services/thunks/dropdownThunk';
 import HeaderSidebarLayout from '../LayoutHeaderSidebar/HeaderSidebarLayout';
 import goBackIcon from '../../assets/AmbassadorsPage/go-back-button-icon.svg';
 import editIcon from '../../assets/AmbassadorsPage/edit-button-icon.svg';
@@ -18,13 +21,20 @@ import './AmbassadorPage.scss';
 export default function AmbassadorPage() {
   const isAmbassadorDataEditing = useSelector(getIsAmbassadorDataEditing);
   const isNewAmbassadorAdding = useSelector(getIsNewAmbassadorAdding);
-
-  // const [isOpen, setIsOpen] = useState(false);
-
-  // const handleMouseEnter = () => setIsOpen(true);
-  // const handleMouseLeave = () => setIsOpen(false);
-
+  const navigate = useNavigate();
+  const location = useLocation();
   const dispatch = useDispatch();
+
+  const ambassadorId = location.pathname.split('/').pop();
+  useEffect(() => {
+    dispatch(fetchAmbassadorInfo(ambassadorId));
+    dispatch(fetchGetStudyProgramms());
+  }, [dispatch, ambassadorId]);
+
+  const handleEditSubmit = () => {
+    console.log('OK');
+  };
+
   return (
     <HeaderSidebarLayout>
       <main className="ambassador-page">
@@ -34,6 +44,7 @@ export default function AmbassadorPage() {
               <button
                 className="go-back-button"
                 type="button"
+                onClick={() => navigate('/ambassadors')}
               >
                 <img className="ambassador-page__icon" alt="Иконка со стрелкой влево - переход назад" src={goBackIcon} />
                 Назад
@@ -64,7 +75,8 @@ export default function AmbassadorPage() {
                 </button>
                 <button
                   className="ambassador-page__save-button"
-                  type="button"
+                  type="submit"
+                  onClick={handleEditSubmit}
                 >
                   Сохранить
                 </button>
@@ -73,8 +85,8 @@ export default function AmbassadorPage() {
           )}
         </nav>
         <section className="ambassador-page__content">
-          <AmbassadorPersInfo />
-          <AmbassadorGeneralInfo />
+          <AmbassadorPersInfo handleSubmit={handleEditSubmit} />
+          <AmbassadorGeneralInfo handleSubmit={handleEditSubmit} />
         </section>
       </main>
     </HeaderSidebarLayout>

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { getIsAmbassadorDataEditing, getIsNewAmbassadorAdding } from '../../services/selectors/ambassadorSelector';
+import PropTypes from 'prop-types';
+import { getAmbassadorData, getIsAmbassadorDataEditing, getIsNewAmbassadorAdding } from '../../services/selectors/ambassadorSelector';
 import AmbassadorSectionTitle from './AmbassadorSectionTitle';
 import DropdownStatusSelect from '../../UI/Buttons/DropdownButtons/DropdownStatusSelect/DropdownStatusSelect';
 import DropdownCombobox from '../../UI/Buttons/DropdownButtons/DropdownCombobox/DropdownCombobox';
@@ -12,35 +13,36 @@ import { countries } from '../../utils/countries'; // будет подгруж�
 import RadioButton from '../../UI/Buttons/RadioButton/RadioButton';
 import './AmbassadorGeneralInfo.scss';
 
-export default function AmbassadorGeneralInfo() {
+export default function AmbassadorGeneralInfo({ handleSubmit }) {
   const isAmbassadorDataEditing = useSelector(getIsAmbassadorDataEditing);
   const isNewAmbassadorAdding = useSelector(getIsNewAmbassadorAdding);
+  const ambassadorData = useSelector(getAmbassadorData);
 
-  const [, setAmbassadorStatus] = useState(''); // ambassadorStatus
+  const [, setAmbassadorStatus] = useState(ambassadorData.status || ''); // ambassadorStatus
   const handleStatusSelect = (status) => {
     setAmbassadorStatus(status);
   };
 
   const generalData = [
-    { label: 'Промокод', value: 'VASYAPUPKIN' },
-    { label: 'Цель обучения', value: 'Смена профессии' },
-    { label: 'Куратор', value: 'Анастасия Борисова' },
-    { label: 'Что хочет делать', value: 'Вести блог, Писать статьи, Снимать видео или сниматься в них, если продакшн будет на нашей стороне' },
-    { label: 'Образование', value: 'СПБГУПТД' },
-    { label: 'Место работы ', value: 'Безработный дизайнер ' },
+    { label: 'Промокод', value: ambassadorData.promocode || 'VASYAPUPKIN' },
+    { label: 'Цель обучения', value: ambassadorData.aim || 'Смена профессии' },
+    { label: 'Куратор', value: ambassadorData.supervisor || 'Анастасия Борисова' },
+    { label: 'Что хочет делать', value: ambassadorData.want_to_do || 'Вести блог, Писать статьи, Снимать видео или сниматься в них, если продакшн будет на нашей стороне' },
+    { label: 'Образование', value: ambassadorData.education || 'СПБГУПТД' },
+    { label: 'Место работы ', value: ambassadorData.job || 'Безработный дизайнер' },
   ];
 
   const adresses = [
-    { label: 'Страна', value: 'Россия' },
-    { label: 'Город', value: 'Санкт-Петербург' },
-    { label: 'Индекс', value: '190000' },
-    { label: 'Адрес', value: 'Университетская наб., 3' },
+    { label: 'Страна', value: ambassadorData.country || 'Россия' },
+    { label: 'Город', value: ambassadorData.city || 'Санкт-Петербург' },
+    { label: 'Индекс', value: ambassadorData.zip_code || '190000' },
+    { label: 'Адрес', value: ambassadorData.address || 'Университетская наб., 3' },
   ];
 
   const merch = [
-    { label: 'Пол', value: 'Мужской' },
-    { label: 'Размер одежды', value: 'M' },
-    { label: 'Размер ноги', value: '40' },
+    { label: 'Пол', value: ambassadorData.gender || 'Мужской' },
+    { label: 'Размер одежды', value: ambassadorData.shirt_size || 'M' },
+    { label: 'Размер ноги', value: ambassadorData.shoes_size || '40' },
   ];
 
   const cities = [
@@ -60,7 +62,8 @@ export default function AmbassadorGeneralInfo() {
   ];
 
   const goals = [
-    { goal: 'Развивать локальное  провессиональное сообщество в своем городе' },
+    { goal: ambassadorData.want_to_do },
+    { goal: 'Развивать локальное  профессиональное сообщество в своем городе' },
     { goal: 'Вести блог' },
     { goal: 'Писать статьи' },
     { goal: 'Снимать видео или сниматься в них, если продакшн будет на нашей стороне' },
@@ -71,6 +74,7 @@ export default function AmbassadorGeneralInfo() {
   ];
 
   const purposes = [
+    { label: ambassadorData.aim, value: ambassadorData.aim },
     { label: 'Смена профессии', value: 'Смена профессии' },
     { label: 'Углубление имеющихся знаний', value: 'Углубление имеющихся знаний' },
     { label: 'Смена профессии', value: 'Смена профессии' },
@@ -86,7 +90,7 @@ export default function AmbassadorGeneralInfo() {
       </article>
       <article className="ambassador__info">
         <AmbassadorSectionTitle title="Общие данные" />
-        <AmbassadorInfoTable data={generalData}>
+        <AmbassadorInfoTable data={generalData} handleSubmit={handleSubmit}>
           {isAmbassadorDataEditing || isNewAmbassadorAdding ? (
             <>
               <InputText label="Промокод" name="promocode" placeholder="Введите промокод" />
@@ -101,7 +105,7 @@ export default function AmbassadorGeneralInfo() {
       </article>
       <article className="ambassador__info">
         <AmbassadorSectionTitle title="Адрес" />
-        <AmbassadorInfoTable data={adresses}>
+        <AmbassadorInfoTable data={adresses} handleSubmit={handleSubmit}>
           {isAmbassadorDataEditing || isNewAmbassadorAdding ? (
             <>
               <DropdownField htmlFor="country" labelText="Страна" options={countries} />
@@ -114,11 +118,11 @@ export default function AmbassadorGeneralInfo() {
       </article>
       <article className="ambassador__info">
         <AmbassadorSectionTitle title="Мерч" />
-        <AmbassadorInfoTable data={merch}>
+        <AmbassadorInfoTable data={merch} handleSubmit={handleSubmit}>
           {isAmbassadorDataEditing || isNewAmbassadorAdding ? (
             <>
-              <RadioButton labelText="Пол" inputId="gender" values={['Мужской', 'Женский']} initialValues="Мужской" />
-              <DropdownField htmlFor="clothingSize" labelText="Размер одежды" options={clothingSizes} selectedValue="M" />
+              <RadioButton labelText="Пол" inputId="gender" values={['Мужской', 'Женский']} initialValues={ambassadorData.gender} />
+              <DropdownField htmlFor="clothingSize" labelText="Размер одежды" options={clothingSizes} selectedValue={ambassadorData.shirt_size} />
               <InputText label="Размер ноги" name="shoeSize" placeholder="Введите размер ноги" />
             </>
           ) : null}
@@ -127,13 +131,17 @@ export default function AmbassadorGeneralInfo() {
       <article className="ambassador__info">
         <AmbassadorSectionTitle title="Комментарий" />
         {isAmbassadorDataEditing || isNewAmbassadorAdding ? (
-          <AmbassadorInfoTable>
+          <AmbassadorInfoTable handleSubmit={handleSubmit}>
             <InputText label="" name="comment" placeholder="Введите комментарий" />
           </AmbassadorInfoTable>
         ) : (
-          <p className="ambassador__comment">Я готов на все ради мерча </p>
+          <p className="ambassador__comment">{ambassadorData.comment || 'Я готов на все ради мерча'}</p>
         )}
       </article>
     </section>
   );
 }
+
+AmbassadorGeneralInfo.propTypes = {
+  handleSubmit: PropTypes.func.isRequired,
+};
