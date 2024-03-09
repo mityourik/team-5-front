@@ -34,8 +34,12 @@
   font-size: 14px;
   line-height: 20px;
   font-weight: 500;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: white;
+  box-shadow: 0 1.5px 6px 0 rgba(176, 190, 197, 0.3);
 }
-
 
 .ambassador-table__header {
   border-bottom: 1px solid $color-black-300;
@@ -108,8 +112,9 @@
   background: white;
   position: sticky;
   right: 0;
-  z-index: 10;
+  z-index: 0;
   cursor: pointer;
+  box-shadow: 0 4px 6px 0 rgba(176, 190, 197, 0.3);
 }
 
 // Пагинатор стили  ываы
