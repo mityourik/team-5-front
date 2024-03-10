@@ -64,7 +64,18 @@ export default function InputName({ name }) {
         validate={isAmbassadorDataEditing || isNewAmbassadorAdding ? validateName : null}
         maxLength={250}
         placeholder={name === 'name' ? 'Введите фамилию, имя и отчество' : 'Ник в Телеграм'}
-        value={(name === 'name' && isAmbassadorDataEditing) ? fullName : ambassadorData.telegram_handle || '@telega'}
+        value={
+          (() => {
+            if (name === 'name' && isAmbassadorDataEditing) {
+              return fullName;
+            } if (name === 'name' && !isAmbassadorDataEditing) {
+              return '';
+            } if (isNewAmbassadorAdding) {
+              return '';
+            }
+            return ambassadorData.telegram_handle || '@telega';
+          })()
+        }
         onChange={isAmbassadorDataEditing || isNewAmbassadorAdding ? handleChange : null}
       />
     </InputContainer>
