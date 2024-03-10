@@ -16,7 +16,7 @@ $YSDisplayRegular: 'YS-Display-Regular';
 
     &__container {
         display: flex;
-        max-width: 1440px;
+        width: 100%;
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
