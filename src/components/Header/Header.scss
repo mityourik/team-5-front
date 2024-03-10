@@ -3,7 +3,7 @@ $YSTextRegular: 'YS Text Regular';
 $YSDisplayRegular: 'YS-Display-Regular';
 
 .header {
-    max-width: 1440px;
+    max-width: 1920px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -16,7 +16,7 @@ $YSDisplayRegular: 'YS-Display-Regular';
 
     &__container {
         display: flex;
-        max-width: 100%;
+        max-width: 1440px;
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
