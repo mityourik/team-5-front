@@ -156,7 +156,7 @@ function AmbassadorTable({ settings, onSettingsClick, searchTerm }) {
       });
       setSelectedAmbassadors(newSelectedAmbassadors);
     }
-  }, [ambassadorList]); // Уберите selectedAmbassadors из массива зависимостей
+  }, [ambassadorList]);
 
   const toggleAmbassadorSelection = (id) => {
     setSelectedAmbassadors((prev) => ({

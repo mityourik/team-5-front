@@ -54,5 +54,5 @@ export const fetchContent = createAsyncThunk('content/get', async () => {
       Authorization: token,
     },
   });
-  return data;
+  return data.results; // дима добавил к data results
 });

@@ -17,12 +17,15 @@ function NavBar({ isOpen, onMouseEnter, onMouseLeave }) {
   useEffect(() => {
     if (isOpen) {
       window.addEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'hidden';
     } else {
       window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = '';
     }
 
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = '';
     };
   }, [isOpen, onMouseLeave]);
 
