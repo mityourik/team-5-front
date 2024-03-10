@@ -32,3 +32,44 @@
     height: min-content;
     margin-top: 5px;
 }
+
+// ====================================== //
+
+// Пагинатор стили  ываы
+.paginator {
+  display: flex;
+  list-style-type: none;
+  align-items: center;
+}
+
+/* Стили для каждой кнопки (предыдущая, номера страниц, следующая) */
+.paginator__item {
+  margin: 0 4px;
+  display: flex;
+}
+
+/* Стили для ссылок внутри кнопок */
+.paginator__link {
+  padding: 8px 12px;
+  border: 1px solid #000; /* измените на нужный цвет рамки */
+  text-decoration: none;
+  color: #000; /* измените на нужный цвет текста */
+  background-color: #fff; /* измените на нужный фоновый цвет */
+  border-radius: 4px; /* скругление углов */
+}
+
+/* Стили для активной страницы */
+.paginator__link--active {
+  background-color: #000; /* измените на нужный фоновый цвет активной страницы */
+  color: #fff; /* измените на нужный цвет текста активной страницы */
+}
+
+/* Стили для элемента "..." */
+.paginator__item--break {
+  cursor: default;
+}
+
+/* Дополнительные стили для наведения на ссылки, если нужно */
+.paginator__link:hover {
+  background-color: #eee; /* измените на нужный фоновый цвет при наведении */
+}

@@ -156,7 +156,7 @@ function AmbassadorTable({ settings, onSettingsClick, searchTerm }) {
       });
       setSelectedAmbassadors(newSelectedAmbassadors);
     }
-  }, [ambassadorList]);
+  }, [ambassadorList]); // Уберите selectedAmbassadors из массива зависимостей
 
   const toggleAmbassadorSelection = (id) => {
     setSelectedAmbassadors((prev) => ({
@@ -244,20 +244,6 @@ function AmbassadorTable({ settings, onSettingsClick, searchTerm }) {
           </tbody>
         </table>
       </div>
-      {/* <ReactPaginate
-        previousLabel="<"
-        nextLabel=">"
-        breakLabel="..."
-        pageCount={pageCount}
-        marginPagesDisplayed={2}
-        pageRangeDisplayed={5}
-        onPageChange={(selectedItem) => setPage(selectedItem.selected)}
-        containerClassName="paginator"
-        pageClassName="paginator__item"
-        pageLinkClassName="paginator__link"
-        activeClassName="paginator__link--active"
-        breakClassName="paginator__item--break"
-      /> */}
     </div>
   );
 }
