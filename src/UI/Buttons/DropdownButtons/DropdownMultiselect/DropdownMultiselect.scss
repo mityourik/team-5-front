@@ -1,0 +1,114 @@
+@import '../../../../shared/variables.scss';
+@import '../../../../styles/variables.scss';
+@import '../../../../styles/typography.scss';
+@import '../../../../shared/mixins.scss';
+
+.dropdown-multiselect__label {
+    color: $color-black-500;
+    font-family: $font-body2-regular;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    text-transform: none;
+    min-width: 151px;
+}
+
+.dropdown-multiselect-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+// переделываю кастомные стили
+.dropdown-multiselect-pack {
+    .p-multiselect {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin: 0;
+        padding: 10px 12px;
+        display: flex;
+        width: 378px;
+        font-family: $font-body2-regular;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 20px;
+        color: #1a1b22;
+        border: 1px solid #c9d1e5;
+        align-items: flex-start;
+        border-radius: var(--xs, 4px);
+        text-transform: none;
+        -webkit-border-radius: var(--xs, 4px);
+    }
+}
+
+.p-multiselect-header {
+    display: none;
+}
+
+.p-multiselect-close-icon {
+    display: none;
+}
+
+.p-checkbox-icon {
+    display: none;
+}
+
+.p-multiselect-panel .p-multiselect-items {
+    display: flex;
+    flex-direction: column;
+    column-gap: 5px;
+    width: 376px;
+    max-height: 236px;
+    background-color: $color-white;
+    border: 1px solid $color-black-300;
+    @include border-radius(4px);
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+}
+
+.p-multiselect-items-wrapper .p-multiselect-item {
+    width: 100%;
+    min-height: 36px;
+    margin: 10px 0 0;
+    padding: 0 12px;
+    font-family: $font-body2-regular;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    text-wrap: wrap;
+}
+
+.p-placeholder{
+    color: $color-black-500;
+}
+
+.p-multiselect-items-wrapper .p-multiselect-item.p-highlight {
+    background: url(../../assets/checkedImg.svg) no-repeat right $color-blue-bg;
+    background-position: 97%;
+    background-size: 16.5px 11.5px;
+}
+
+.dropdown-multiselect__error-container {
+    display: flex;
+    margin-top: 2px;
+    min-height: 12px;
+}
+
+.dropdown-multiselect__error {
+    // margin-top: 2px;
+    height: 12px;
+    display: block;
+    color: $color-red;
+    font-family: $font-body2-regular;
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 12px;
+    // min-height: 12px;
+    display: block;
+    text-transform: none;
+}

@@ -1,0 +1,50 @@
+@import '../../styles/variables';
+@import '../../styles/typography';
+
+// todo - check scss rules. 
+
+.segmented-control {
+    margin: 0;
+    margin-left: 100px;
+    padding: 0px 1px;
+    box-sizing: border-box;
+    width: 284px;
+    height: 39px;
+    display: flex;
+    align-items: center;
+    border: 1px solid $color-blue-main;
+    border-radius: 6px;
+    background-color: $color-white;
+    list-style: none;
+}
+
+// .segmented-control__item {
+// }
+
+.segmented-control__button {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    width: 140px;
+    height: 35px;
+    border-width: 0px;
+    border-radius: 4px;
+    background-color: transparent;
+    color: $color-blue-main;
+    //styleName: Body 2 Regular;
+    font-family: YS Text;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0em;
+    text-align: center;
+    cursor: pointer;
+}
+
+// .segmented-control__item > .segmented-control__button {
+// }
+
+.segmented-control__item_active > .segmented-control__button {
+    color: $color-white;
+    background-color: $color-blue-main;
+}

@@ -1,0 +1,35 @@
+@mixin subtitle-style($subtitle) {
+    @each $property, $value in $subtitle {
+        #{$property}: $value;
+    }
+}
+
+@mixin text-style($text) {
+    @each $property, $value in $text {
+        #{$property}: $value;
+    }
+}
+
+@mixin bordered-button-style($bordered-button) {
+    @each $property, $value in $bordered-button {
+        #{$property}: $value;
+    }
+}
+
+@mixin blue-button-style($blue-button) {
+    @each $property, $value in $blue-button {
+        #{$property}: $value;
+    }
+}
+
+@mixin input-style($input) {
+    @each $property, $value in $input {
+        #{$property}: $value;
+    }
+}
+
+@mixin input-label-style($input-label) {
+    @each $property, $value in $input-label {
+        #{$property}: $value;
+    }
+}

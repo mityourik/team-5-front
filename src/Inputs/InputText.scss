@@ -1,0 +1,78 @@
+.text-input__container {
+    display: flex;
+    padding: 0;
+    text-transform: none;
+    align-items: center;
+    width: 100%;
+    gap: 8px;
+}
+
+.text-input__label {
+    color: #797981;
+    font-family: "YS-Text-Regular", "Arial", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    text-transform: none;
+    min-width: 151px;
+}
+
+.text-input__label_comment {
+    display: none;
+}
+
+.text-input {
+    margin: 0;
+    padding: 10px 12px;
+    display: flex;
+    width: calc(376px - (12px*2));
+    font-family: "YS-Text-Regular", "Arial", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    color: #1a1b22;
+    border: 1px solid #c9d1e5;
+    align-items: flex-start;
+    border-radius: var(--xs, 4px);
+    text-transform: none;
+    -webkit-border-radius: var(--xs, 4px);
+    -moz-border-radius: var(--xs, 4px);
+    -ms-border-radius: var(--xs, 4px);
+    -o-border-radius: var(--xs, 4px);
+}
+
+.text-input:focus {
+	outline: 1px solid #5A9BFF;
+}
+
+.text-input::placeholder {
+    color: #797981;
+    font-family: "YS-Text-Regular", "Arial", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    text-transform: none;
+}
+
+.text-input_comment {
+    display: flex;
+    min-height: 80px;
+    min-width: calc(535px - (12px*2));
+}
+
+.input-container__error {
+    margin-top: 2px;
+    height: 12px;
+    display: block;
+}
+
+.input-error {
+    color: #FF0200;
+    font-family: "YS-Text-Regular", "Arial", sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 12px;
+    min-height: 30px;
+    display: block;
+    text-transform: none;
+}
