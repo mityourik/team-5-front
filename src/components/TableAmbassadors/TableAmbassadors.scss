@@ -20,6 +20,8 @@
   overflow-y: auto;
   max-height: 638px;
   min-height: 638px;
+  position: relative;
+  z-index: 0;
 }
 
 .ambassador-table {
