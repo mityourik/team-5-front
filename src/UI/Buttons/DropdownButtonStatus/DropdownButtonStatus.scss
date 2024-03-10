@@ -76,8 +76,6 @@
 
   &__list {
     position: absolute;
-    // // bottom: 38px;
-    // top: 0;
     min-width: 99%;
     list-style: none;
     padding: 0;
@@ -93,6 +91,7 @@
     color: $color-black-900;
     max-height: 216px;
     overflow-y: auto;
+    z-index: 1;
   }
 
   &__item {

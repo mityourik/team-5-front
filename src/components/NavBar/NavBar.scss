@@ -2,27 +2,30 @@ $YSTextRegular: 'YS Text Regular';
 
 .nav-bar {
     position: fixed;
-    left: -246px;
+    left: 0;
     top: 0;
-    width: 290px;
+    width: 64px;
+    min-width: 64px;
     height: 100vh;
     background: #1A1B22;
-    transition: left 0.3s ease;
-    padding: 48px 0 0 20px;
-    z-index: 1000;
-    margin-top: 64px;
+    transition: width 0.4s ease-in-out;
+    padding: 110px 0 0 0;
+    z-index: 999;
+    overflow: hidden;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 
     &:hover {
-        left: 0;
+        width: 290px;
     }
 
     &__container {
         padding: 0;
         display: flex;
-        margin: 0 0 100px 0;
+        margin: 0 0 100px 20px;
+        justify-content: flex-start;
     }
 
     &__list {
@@ -183,12 +186,12 @@ $YSTextRegular: 'YS Text Regular';
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 999; /* Убедитесь, что z-index оверлея меньше, чем у боковой панели */
+  z-index: 999;
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: opacity 2s ease;
 }
 
 .overlay--visible {
   display: block;
-  opacity: 1;
+  opacity: 0.5;
 }
