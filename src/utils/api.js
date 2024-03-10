@@ -1,6 +1,6 @@
 export const baseURL = 'http://89.111.174.233/';
 
-export const token = 'Token 9eb4012798c9638ff7c1c75de773ac02e7233734';
+export const token = 'Token 53437c067baedca038b398014255e885db1ac481';
 export const email = 'backend@crm.ru';
 export const password = '364809rdUY';
 

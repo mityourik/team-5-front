@@ -36,8 +36,8 @@ function App() {
           </HeaderSidebarLayout>
       )}
       />
-      <Route path="/ambassadors/ambassador-page/:ambassadorId" element={<AmbassadorPage />} />
-      <Route path="/ambassadors/new-ambassador" element={<NewAmbassadorPage />} />
+      <Route path="/ambassador-page/:ambassadorId" element={<AmbassadorPage />} />
+      <Route path="/new-ambassador" element={<NewAmbassadorPage />} />
     </Routes>
   );
 }

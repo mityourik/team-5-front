@@ -5,6 +5,7 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   base: '/team-5-front/',
   plugins: [react()],
+  base: '/ambassadors/',
   css: {
     preprocessorOptions: {
       scss: {
