@@ -30,7 +30,7 @@ export default function InputName({ name }) {
   const [fullName, setFullName] = useState('');
 
   useEffect(() => {
-    if (isAmbassadorDataEditing || isNewAmbassadorAdding) {
+    if (isAmbassadorDataEditing) {
       setFullName(ambassadorName);
     }
   }, [isAmbassadorDataEditing, isNewAmbassadorAdding, ambassadorName]);
@@ -69,14 +69,14 @@ export default function InputName({ name }) {
             if (name === 'name' && isAmbassadorDataEditing) {
               return fullName;
             } if (name === 'name' && !isAmbassadorDataEditing) {
-              return '';
+              return fullName;
             } if (isNewAmbassadorAdding) {
-              return '';
+              return fullName;
             }
             return ambassadorData.telegram_handle || '@telega';
           })()
         }
-        onChange={isAmbassadorDataEditing || isNewAmbassadorAdding ? handleChange : null}
+        onChange={handleChange}
       />
     </InputContainer>
   );
@@ -84,5 +84,4 @@ export default function InputName({ name }) {
 
 InputName.propTypes = {
   name: PropTypes.string.isRequired,
-  // setFieldValue: PropTypes.func.isRequired,
 };

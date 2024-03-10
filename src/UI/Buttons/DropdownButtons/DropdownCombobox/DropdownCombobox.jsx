@@ -65,11 +65,15 @@ function DropdownCombobox({ purposes, labelText }) {
   );
 }
 
+DropdownCombobox.defaultProps = {
+  purposes: [],
+};
+
 DropdownCombobox.propTypes = {
   purposes: PropTypes.arrayOf(PropTypes.shape({
     value: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
-  })).isRequired,
+  })),
   labelText: PropTypes.string.isRequired,
 };
 
