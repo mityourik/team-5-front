@@ -1,6 +1,6 @@
-// import { useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import {
   getIsAmbassadorDataEditing,
   getIsNewAmbassadorAdding,
@@ -9,6 +9,8 @@ import {
   setIsAmbassadorDataEditingTrue,
   setIsAmbassadorDataEditingFalse,
 } from '../../services/slices/ambassadorSlice';
+import { fetchAmbassadorInfo } from '../../services/thunks/ambassadorThunk';
+import { fetchGetStudyProgramms } from '../../services/thunks/dropdownThunk';
 import HeaderSidebarLayout from '../LayoutHeaderSidebar/HeaderSidebarLayout';
 import goBackIcon from '../../assets/AmbassadorsPage/go-back-button-icon.svg';
 import editIcon from '../../assets/AmbassadorsPage/edit-button-icon.svg';
@@ -20,11 +22,18 @@ export default function AmbassadorPage() {
   const isAmbassadorDataEditing = useSelector(getIsAmbassadorDataEditing);
   const isNewAmbassadorAdding = useSelector(getIsNewAmbassadorAdding);
   const navigate = useNavigate();
-
+  const location = useLocation();
   const dispatch = useDispatch();
+
+  const ambassadorId = location.pathname.split('/').pop();
+  useEffect(() => {
+    dispatch(fetchAmbassadorInfo(ambassadorId));
+    dispatch(fetchGetStudyProgramms());
+  }, [dispatch, ambassadorId]);
 
   const handleEditSubmit = () => {
     console.log('OK');
+    dispatch(setIsAmbassadorDataEditingFalse());
   };
 
   return (

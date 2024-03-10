@@ -1,18 +1,21 @@
-import { useCallback } from 'react';
-
-// import { useSelector } from 'react-redux';
-import { Field } from 'formik';
+import { useCallback, useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { Field, useFormikContext } from 'formik';
 import PropTypes from 'prop-types';
-// import {
-//   getIsAmbassadorDataEditing,
-//   getIsNewAmbassadorAdding,
-// } from '../services/selectors/ambassadorSelector';
+import {
+  getIsAmbassadorDataEditing,
+  getIsNewAmbassadorAdding,
+  getAmbassadorData,
+} from '../services/selectors/ambassadorSelector';
 import './InputContainer.scss';
 import InputContainer from './InputContainer';
 
 export default function InputName({ name }) {
-  // const isAmbassadorDataEditing = useSelector(getIsAmbassadorDataEditing);
-  // const isNewAmbassadorAdding = useSelector(getIsNewAmbassadorAdding);
+  const { setFieldValue } = useFormikContext();
+  const isAmbassadorDataEditing = useSelector(getIsAmbassadorDataEditing);
+  const isNewAmbassadorAdding = useSelector(getIsNewAmbassadorAdding);
+  const ambassadorData = useSelector(getAmbassadorData);
+  const ambassadorName = `${ambassadorData.name || 'Василий'} ${ambassadorData.patronymic || 'Васильевич'} ${ambassadorData.surname || 'Пупкин'}`;
 
   const validateName = useCallback((value) => {
     if (!value) {
@@ -24,40 +27,32 @@ export default function InputName({ name }) {
     return null; // Возвращаем null, если ошибок нет
   }, []);
 
-  // const [fullName, setFullName] = useState('');
+  const [fullName, setFullName] = useState('');
 
-  // useEffect(() => {
-  //   console.log('fullName:', fullName);
-  //   // Split the full name into parts based on spaces
-  //   const parts = fullName.split(' ');
+  useEffect(() => {
+    if (isAmbassadorDataEditing || isNewAmbassadorAdding) {
+      setFullName(ambassadorName);
+    }
+  }, [isAmbassadorDataEditing, isNewAmbassadorAdding, ambassadorName]);
 
-  //   let name = '';
-  //   let patronymic = '';
-  //   let surname = '';
+  useEffect(() => {
+    console.log('fullName:', fullName);
+    // разделяем ФИО на части через пробелы
+    const [name, ...rest] = fullName.split(' ');
+    const patronymic = rest.slice(0, -1).join(' '); // добавляем отчество в середину массива
+    const surname = rest[rest.length - 1]; // добавляем серидину в конец
 
-  //   // Assign values based on the number of parts in the array
-  //   if (parts.length >= 1) {
-  //     name = parts[0]; // First part is always the name
+    // собираем ФИО в одну строку
+    const combinedValue = `${name} ${patronymic} ${surname}`;
 
-  //     if (parts.length >= 2) {
-  //       patronymic = parts.slice(1, -1).join(' '); // Join parts between first and last as patronymic
-  //       surname = parts[parts.length - 1]; // Last part is surname
-  //     }
-  //   }
+    console.log('combinedValue:', combinedValue);
 
-  //   // Combine name, patronymic, and surname into one constant
-  //   const combinedValue = `${name} ${patronymic} ${surname}`;
+    setFieldValue('combinedValue', combinedValue);
+  }, [fullName, setFieldValue]);
 
-  //   console.log('combinedValue:', combinedValue);
-
-  //   // Update the form field value with the combined value
-  //   setFieldValue('combinedValue', combinedValue);
-  // }, [fullName, setFieldValue]);
-
-  // const handleChange = (e) => {
-  //   // Update the state with the new value
-  //   setFullName(e.target.value);
-  // };
+  const handleChange = (e) => {
+    setFullName(e.target.value);
+  };
 
   return (
     <InputContainer labelText={name === 'name' ? 'ФИО' : 'Ник в Телеграм'} inputId={name}>
@@ -66,12 +61,11 @@ export default function InputName({ name }) {
         type="text"
         name={name}
         className="input"
-        validate={validateName}
+        validate={isAmbassadorDataEditing || isNewAmbassadorAdding ? validateName : null}
         maxLength={250}
         placeholder={name === 'name' ? 'Введите фамилию, имя и отчество' : 'Ник в Телеграм'}
-        // value={isAmbassadorDataEditing || isNewAmbassadorAdding ? fullName : ''}
-        // onChange={isAmbassadorDataEditing || isNewAmbassadorAdding ? handleChange : null}
-        // validationSchema={validateName}
+        value={(name === 'name' && isAmbassadorDataEditing) ? fullName : ambassadorData.telegram_handle || '@telega'}
+        onChange={isAmbassadorDataEditing || isNewAmbassadorAdding ? handleChange : null}
       />
     </InputContainer>
   );

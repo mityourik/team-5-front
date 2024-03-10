@@ -88,6 +88,7 @@ $caretImgWhite: '../../assets/arrow_down_white.svg';
     color: $color-black-900;
     max-height: 216px;
     overflow-y: auto;
+    z-index: 11;
 
     .dropdown-btn__item {
       padding: 8px 10px;

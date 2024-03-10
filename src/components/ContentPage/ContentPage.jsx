@@ -1,15 +1,22 @@
+import { useState } from 'react';
 import MainPagePanel from '../MainPagePanel/MainPagePanel';
 import TabsNavigation from '../TabsNavigation/TabsNavigation';
 import './ContentPage.scss';
-// import TableContent from '../TableContent/TableContent';
 import TableContentGrid from '../TableContent/TableContentGrid';
 
 function ContentPage() {
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const handleSearch = (newSearchTerm) => {
+    setSearchTerm(newSearchTerm);
+    console.log('search in Cpage', newSearchTerm);
+  };
+
   return (
     <main className="ambassadors-page">
       <TabsNavigation>
-        <MainPagePanel />
-        <TableContentGrid />
+        <MainPagePanel onSearch={handleSearch} />
+        <TableContentGrid searchTerm={searchTerm} />
       </TabsNavigation>
     </main>
   );

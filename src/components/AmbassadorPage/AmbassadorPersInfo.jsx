@@ -1,16 +1,13 @@
-import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+// import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Formik, Form, Field } from 'formik';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import {
   getIsAmbassadorDataEditing,
   getIsNewAmbassadorAdding,
   // getIsLoadingAmbassadorData,
   getAmbassadorData,
 } from '../../services/selectors/ambassadorSelector';
-// import { fetchGetStudyProgramms } from '../../services/thunks/dropdownThunk';
-import { fetchAmbassadorInfo } from '../../services/thunks/ambassadorThunk';
 import AmbassadorSectionTitle from './AmbassadorSectionTitle';
 import InputName from '../../Inputs/InputName';
 import DropdownField from '../../Inputs/DropdownField';
@@ -24,26 +21,10 @@ import tgIcon from '../../assets/AmbassadorsPage/telegram-icon.svg';
 import linkIcon from '../../assets/AmbassadorsPage/link-icon.svg';
 import messageIcon from '../../assets/AmbassadorsPage/message-button-icon.svg';
 import './AmbassadorPage.scss';
-// import { useEffect } from 'react';
 
 export default function AmbassadorPersInfo({ handleSubmit }) {
-  const dispatch = useDispatch();
-  const location = useLocation();
-  const ambassadorId = location.pathname.split('/').pop();
-  // console.log('ambassadorId', ambassadorId);
-  const options = ['List item', 'UI/UX дизайнер', 'List item1', 'List item2', 'List item3', 'List item4', 'List item5', 'List item6', 'List item7'];
-  // useEffect(() => {
-  //   dispatch(fetchGetStudyProgramms());
-  // }, [dispatch]);
-  // const studyProgramms = useSelector((state) => state.dropdown.studyProgramms);
-  // const options = () => {
-  //   dispatch(fetchGetStudyProgramms());
-  // };
-
-  // const options = useSelector((state) => state.dropdown.studyProgramms);
-  useEffect(() => {
-    dispatch(fetchAmbassadorInfo(ambassadorId));
-  }, [dispatch, ambassadorId]);
+  const studyProgramms = useSelector((state) => state.dropdown.studyProgramms);
+  // console.log('studyProgramms', studyProgramms);
 
   const ambassadorData = useSelector(getAmbassadorData);
   // console.log('ambassadorData', ambassadorData);
@@ -51,6 +32,10 @@ export default function AmbassadorPersInfo({ handleSubmit }) {
 
   const isAmbassadorDataEditing = useSelector(getIsAmbassadorDataEditing);
   const isNewAmbassadorAdding = useSelector(getIsNewAmbassadorAdding);
+
+  const handleMailTo = () => {
+    window.location.href = `mailto:${ambassadorData.email || '@mail.ru'}`;
+  };
 
   return (
     <article className="ambassador-page__data">
@@ -73,8 +58,8 @@ export default function AmbassadorPersInfo({ handleSubmit }) {
                       // eslint-disable-next-line react/jsx-props-no-spreading
                       {...field}
                       labelText="Программа обучения"
-                      // options={studyProgramms}
-                      options={options}
+                      options={studyProgramms}
+                      // options={options}
                       htmlFor="studyProgramm"
                     />
                   )}
@@ -144,6 +129,7 @@ export default function AmbassadorPersInfo({ handleSubmit }) {
           <button
             className="ambassador-page__contact-button"
             type="button"
+            onClick={handleMailTo}
           >
             <img className="ambassador-page__icon" alt="Иконка с конвертиком" src={messageIcon} />
             Написать

@@ -1,65 +1,17 @@
-import React, { useState } from 'react';
-// import axios from 'axios';
+import React, { useMemo, useState } from 'react';
+import PropTypes from 'prop-types';
 import './TableContentGrid.scss';
 import ContentLinkCell from '../../UI/ContentLinkCell/ContentLinkCell';
 import DropdownButtonStatus from '../../UI/Buttons/DropdownButtonStatus/DropdownButtonStatus';
 import ContentLinkCellAfterGuide from '../../UI/ContentLinkCellAfterGuide/ContentLinkCellAfterGuide';
 import mockData from '../../utils/contentPageConstants.json';
 
-function TableContentGrid() {
-  // const [ambassadorsContent, setAmbassadorsContent] = useState([]);
+function TableContentGrid({ searchTerm }) {
   const [ambassadorsContent, setAmbassadorsContent] = useState(mockData.results);
-
-  // useEffect(() => {
-  //   const fetchContent = async () => {
-  //     const apiUrl = 'http://89.111.174.233/api/content';
-  //     const token = 'Token 9eb4012798c9638ff7c1c75de773ac02e7233734';
-  //     try {
-  //       const response = await axios.get(apiUrl, {
-  //         headers: { Authorization: token },
-  //       });
-  //       setAmbassadorsContent(response.data.results);
-  //     } catch (error) {
-  //       console.error('Ошибка при получении данных:', error);
-  //     }
-  //   };
-
-  //   fetchContent();
-  // }, []);
 
   const handleDeleteLink = (contentId, ambassadorName, contentTypeTitle) => {
     console.log('Удаление ссылки из контента', contentId, ambassadorName, contentTypeTitle);
   };
-
-  //   const handleDeleteLink = async (contentId, ambassadorName, contentTypeTitle) => {
-  //     const deleteUrl = `http://89.111.174.233/api/content/${contentId}`;
-  //     const token = 'Token 9eb4012798c9638ff7c1c75de773ac02e7233734';
-  //     try {
-  //       await axios.delete(deleteUrl, {
-  //         headers: { Authorization: token },
-  //       });
-  //       setAmbassadorsContent((currentContent) => currentContent.map((ambassador) => {
-  //         if (ambassador.ambassadorName === ambassadorName) {
-  //           return {
-  //             ...ambassador,
-  //             contentTypes: ambassador.contentTypes.map((contentType) => {
-  //               if (contentType.title === contentTypeTitle) {
-  //                 // Удаляем контент из списка
-  //                 return {
-  //                   ...contentType,
-  //                   contents: contentType.contents.filter((content) => content.id !== contentId),
-  //                 };
-  //               }
-  //               return contentType;
-  //             }),
-  //           };
-  //         }
-  //         return ambassador;
-  //       }));
-  //     } catch (error) {
-  //       console.error('Ошибка при удалении ссылки:', error);
-  //     }
-  //   };
 
   const handleStatusChange = async (selectedValue, ambassadorName, contentTypeTitle) => {
     setAmbassadorsContent((currentContent) => currentContent.map((ambassador) => {
@@ -78,6 +30,9 @@ function TableContentGrid() {
     }));
   };
 
+  // eslint-disable-next-line max-len
+  const filteredContent = useMemo(() => ambassadorsContent.filter((ambassador) => ambassador.ambassadorName.toLowerCase().includes(searchTerm.toLowerCase())), [ambassadorsContent, searchTerm]);
+
   return (
     <div className="table-content-grid-wrapper">
       <div className="table-content-grid">
@@ -89,8 +44,7 @@ function TableContentGrid() {
           <div className="table-content-grid__column">Статус</div>
           <div className="table-content-grid__column">После Гайда</div>
         </div>
-        {/* {ambassadorsContent.map((ambassador) => ( */}
-        {ambassadorsContent.map((ambassador) => (
+        {filteredContent.map((ambassador) => (
           <div key={ambassador.ambassadorName} className="table-content-grid__row">
             <div className="table-content-grid__cell">{ambassador.ambassadorName}</div>
             {ambassador.contentTypes.map((type) => (
@@ -145,5 +99,9 @@ function TableContentGrid() {
     </div>
   );
 }
+
+TableContentGrid.propTypes = {
+  searchTerm: PropTypes.string.isRequired,
+};
 
 export default TableContentGrid;

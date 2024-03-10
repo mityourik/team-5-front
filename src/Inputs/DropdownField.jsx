@@ -37,12 +37,13 @@ function DropdownField({
           break;
       }
     }
-  }, [dispatch, htmlFor, isNewAmbassadorAdding]);
+  }, [ambassadorData.city, ambassadorData.country, ambassadorData.shirt_size,
+    ambassadorData.study_programm, dispatch, htmlFor, isNewAmbassadorAdding]);
 
   const handleSelect = (htmlFor, option) => {
     switch (htmlFor) {
       case 'studyProgramm':
-        setSelectedOption(option);
+        setSelectedOption(option.title);
         break;
       case 'country':
         setSelectedOption(option);
@@ -57,7 +58,8 @@ function DropdownField({
         break;
     }
     setIsOpen(false);
-    setSelectedOption(option);
+    setSelectedOption(option.title || option);
+    console.log(selectedOption);
   };
 
   return (
@@ -86,12 +88,12 @@ function DropdownField({
         <div className="select__menu">
           {options.map((option) => (
             <button
-              key={option}
+              key={option.title || option}
               className="select__option"
               type="button"
               onClick={() => handleSelect(htmlFor, option)}
             >
-              {option}
+              {option.title || option}
             </button>
           ))}
         </div>
@@ -99,9 +101,19 @@ function DropdownField({
     </div>
   );
 }
+function dropdownPropTypes(labelText) {
+  if (labelText === 'Программа обучения') {
+    return PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+    }));
+  }
+  return PropTypes.arrayOf(PropTypes.string);
+}
 
 DropdownField.propTypes = {
-  options: PropTypes.arrayOf(PropTypes.string).isRequired,
+  options: dropdownPropTypes.isRequired,
+  // options: PropTypes.arrayOf(PropTypes.string).isRequired,
   labelText: PropTypes.string.isRequired,
   htmlFor: PropTypes.string.isRequired,
 };

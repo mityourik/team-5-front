@@ -3,13 +3,16 @@ $YSTextRegular: 'YS Text Regular';
 $YSDisplayRegular: 'YS-Display-Regular';
 
 .header {
-    max-width: 100%;
+    max-width: 1440px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     min-height: 64px;
     padding: 0 58px 0 16px;
     background-color: #1A1B22;
+    position: relative;
+    z-index: 1000;
+    overflow: hidden;
 
     &__container {
         display: flex;

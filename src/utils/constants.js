@@ -1,3 +1,4 @@
+/* eslint-disable quote-props */
 import { nanoid } from 'nanoid';
 
 export const headerListAmbs = [
@@ -20,6 +21,28 @@ export const headerListAmbs = [
   { value: 'Размер одежды', id: nanoid() },
   { value: 'Размер ноги', id: nanoid() },
 ];
+
+export const settingsKeyMap = {
+  'ФИО': 'isCredentials',
+  'Программа обучения': 'isCurriculum',
+  'Статус': 'isStatus',
+  'Промокод': 'isPromoCode',
+  'Телеграмм': 'isTelegram',
+  'Дата добавления': 'isCreated',
+  'Электронная почта': 'isEmail',
+  'Номер телефона': 'isPhone',
+  'Способ связи': 'isContacts',
+  'Страна': 'isCountry',
+  'Город': 'isCity',
+  'Образование': 'isEducation',
+  'Место работы и должность': 'isWorkPlaceAndPosition',
+  'Цель обучения': 'isEducationGoal',
+  'Что хочет делать?': 'isWantsToDo',
+  'Что будет делать': 'isAim',
+  'Ссылка на блог': 'isBlogLink',
+  'Размер одежды': 'isClothesSize',
+  'Размер ноги': 'isShoeSize',
+};
 
 export const settings = [
   { value: 'ФИО', id: nanoid() },
