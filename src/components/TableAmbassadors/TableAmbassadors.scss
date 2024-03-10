@@ -108,12 +108,59 @@
   width: auto;
 }
 
+.ambassador-table__cell__button-edit {
+  background-image: url('../../assets/bi_three-dots-vertical.svg');
+  background-repeat: no-repeat;
+  width: 16px;
+  height: 16px;
+  background-color: transparent;
+  border: none;
+  display: flex;
+  cursor: pointer;
+}
+
 .ambassador-table__cell__edit {
   background: white;
   position: sticky;
   right: 0;
   z-index: 0;
   cursor: pointer;
+  box-shadow: 0 4px 6px 0 rgba(176, 190, 197, 0.3);
+  max-width: 50px;
+}
+
+.ambassador-table__header__button-settings {
+  background-image: url('../../assets/settingsIcon.svg');
+  background-repeat: no-repeat;
+  width: 20px;
+  height: 20px;
+  background-color: transparent;
+  border: none;
+  display: flex;
+  cursor: pointer;
+}
+
+.ambassador-table__head th:last-child {
+  width: 50px; /* Устанавливаем ширину заголовка столбца */
+  min-width: 50px; /* Устанавливаем минимальную ширину заголовка столбца */
+}
+
+/* Стиль для каждой ячейки в столбце с кнопкой редактирования */
+.ambassador-table__body td:last-child {
+  width: 50px; /* Устанавливаем ширину ячеек */
+  min-width: 50px; /* Устанавливаем минимальную ширину ячеек */
+  padding: 14px 8px; /* Немного отрегулируем padding для содержимого */
+}
+
+.ambassador-table__head th.edit-column,
+.ambassador-table__body td.edit-column {
+  width: 20px !important;
+  min-width: 20px !important;
+  padding: 8px 8px !important;
+  position: sticky;
+  right: 0;
+  background: $color-white;
+  z-index: 10;
   box-shadow: 0 4px 6px 0 rgba(176, 190, 197, 0.3);
 }
 

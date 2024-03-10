@@ -1,11 +1,12 @@
-import { useEffect, useState, useRef } from 'react';
+import {
+  useEffect, useState, useRef, useMemo,
+} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 // import ReactPaginate from 'react-paginate';
 import Checkbox from '../../UI/Checkbox/Checkbox';
-import { headerListAmbs } from '../../utils/constants';
-// import { getAmbassadorData } from '../../services/selectors/ambassadorSelector';
+import { headerListAmbs, settingsKeyMap } from '../../utils/constants';
 import { fetchAmbassadorInfo, fetchGetAllAmbassadors } from '../../services/thunks/ambassadorThunk';
 import DropdownStatusSelect from '../../UI/Buttons/DropdownButtons/DropdownStatusSelect/DropdownStatusSelect';
 import './TableAmbassadors.scss';
@@ -19,6 +20,7 @@ function AmbassadorRow({
   onToggle,
   onStatusChange,
   ambassadorData,
+  settings,
 }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -27,10 +29,6 @@ function AmbassadorRow({
     dispatch(fetchAmbassadorInfo(id));
     navigate(`/ambassador-page/${id}`);
   }
-
-  // const ambassadorList = useSelector((state) => state.ambassador.ambassadorList);
-
-  // const ambassadorData = useSelector(getAmbassadorData);
 
   const ambassadorName = `${ambassadorData.name || 'Василий'} ${ambassadorData.patronymic || 'Васильевич'} ${ambassadorData.surname || 'Пупкин'}`;
   const promoCode = `${ambassadorData.promocode || 'PROMOCODE'}`;
@@ -43,22 +41,25 @@ function AmbassadorRow({
         {' '}
         <Checkbox isChecked={isSelected} onChange={() => onToggle(id)} label="" />
       </td>
-      <td className="ambassador-table__cell">{ambassadorName}</td>
-      <td className="ambassador-table__cell">{ambassadorData.study_programm.title}</td>
+      {settings.isCredentials && <td className="ambassador-table__cell">{ambassadorName}</td>}
+      {settings.isCurriculum && <td className="ambassador-table__cell">{ambassadorData.study_programm.title}</td>}
+      {settings.isStatus && (
       <td className="ambassador-table__cell">
         {' '}
         <DropdownStatusSelect
           onSelect={(newValue) => onStatusChange(id, newValue)}
         />
       </td>
-      <td className="ambassador-table__cell">{promoCode}</td>
+      )}
+      {settings.isPromoCode && <td className="ambassador-table__cell">{promoCode}</td>}
       <td
         className="ambassador-table__cell"
       >
         {' '}
-        <TelegramCell nickname={ambassadorData.telegram_handle} />
+        {settings.isTelegram && <TelegramCell nickname={ambassadorData.telegram_handle} />}
       </td>
-      <td className="ambassador-table__cell">{ambassadorData.date_created}</td>
+      {settings.isCreated && <td className="ambassador-table__cell">{ambassadorData.date_created}</td>}
+      {settings.isEmail && (
       <td className="ambassador-table__cell">
         {' '}
         <ContactCell
@@ -67,6 +68,8 @@ function AmbassadorRow({
           type="email"
         />
       </td>
+      )}
+      {settings.isPhone && (
       <td className="ambassador-table__cell">
         {' '}
         <ContactCell
@@ -75,29 +78,51 @@ function AmbassadorRow({
           type="phone"
         />
       </td>
-      <td className="ambassador-table__cell">{contPreferences}</td>
-      <td className="ambassador-table__cell">{ambassadorData.country}</td>
-      <td className="ambassador-table__cell">{ambassadorData.city}</td>
-      <td className="ambassador-table__cell">{ambassadorData.education}</td>
-      <td className="ambassador-table__cell">{ambassadorData.job}</td>
-      <td className="ambassador-table__cell">{ambassadorData.want_to_do}</td>
-      <td className="ambassador-table__cell">{ambassadorData.aim}</td>
-      <td className="ambassador-table__cell"><a className="ambassador-table__cell-link" href={ambassadorData.blog_url} target="_blank" rel="noopener noreferrer">Ссылка на блог</a></td>
-      <td className="ambassador-table__cell">{ambassadorData.shirt_size}</td>
-      <td className="ambassador-table__cell">{ambassadorData.shoes_size}</td>
-      <td className="ambassador-table__cell ambassador-table__cell__edit" onClick={() => onEditAmbClick(id)}>
-        Изменить
+      )}
+      {settings.isContacts && <td className="ambassador-table__cell">{contPreferences}</td>}
+      {settings.isCountry && <td className="ambassador-table__cell">{ambassadorData.country}</td>}
+      {settings.isCity && <td className="ambassador-table__cell">{ambassadorData.city}</td>}
+      {settings.isEducation && <td className="ambassador-table__cell">{ambassadorData.education}</td>}
+      {settings.isWorkPlaceAndPosition && <td className="ambassador-table__cell">{ambassadorData.job}</td>}
+      {settings.isWantsToDo && <td className="ambassador-table__cell">{ambassadorData.want_to_do}</td>}
+      {settings.isAim && <td className="ambassador-table__cell">{ambassadorData.aim}</td>}
+      {settings.isBlogLink && (
+      <td className="ambassador-table__cell">
+        <a className="ambassador-table__cell-link" href={ambassadorData.blog_url} target="_blank" rel="noopener noreferrer">Ссылка на блог</a>
+      </td>
+      )}
+      {settings.isClothesSize && <td className="ambassador-table__cell">{ambassadorData.shirt_size}</td>}
+      {settings.isShoeSize && <td className="ambassador-table__cell">{ambassadorData.shoes_size}</td>}
+      <td
+        className="ambassador-table__cell edit-column"
+        onClick={() => onEditAmbClick(id)}
+      >
+        <button
+          className="ambassador-table__cell ambassador-table__cell__button-edit"
+          type="button"
+        >
+          {' '}
+        </button>
       </td>
     </tr>
   );
 }
 
-function AmbassadorTable() {
+function AmbassadorTable({ settings, onSettingsClick, searchTerm }) {
   const dispatch = useDispatch();
   const ambassadorList = useSelector((state) => state.ambassador.ambassadorList);
   const [selectedAmbassadors, setSelectedAmbassadors] = useState({});
   const [page] = useState(0);
   const itemsPerPage = 25;
+
+  const filteredAmbassadors = useMemo(() => {
+    if (!ambassadorList.results || !Array.isArray(ambassadorList.results)) {
+      return [];
+    }
+    return ambassadorList.results.filter(
+      (ambassador) => ambassador.name.toLowerCase().includes(searchTerm.toLowerCase()),
+    );
+  }, [ambassadorList, searchTerm]);
 
   useEffect(() => {
     dispatch(fetchGetAllAmbassadors());
@@ -105,9 +130,8 @@ function AmbassadorTable() {
 
   // const pageCount = Math.ceil(ambassadorList.length / itemsPerPage);
 
-  const currentItems = ambassadorList && ambassadorList.results
-    ? ambassadorList.results.slice(page * itemsPerPage, (page + 1) * itemsPerPage)
-    : [];
+  // eslint-disable-next-line max-len
+  const currentItems = useMemo(() => filteredAmbassadors.slice(page * itemsPerPage, (page + 1) * itemsPerPage), [filteredAmbassadors, page, itemsPerPage]);
 
   const count = Object.values(selectedAmbassadors).filter(Boolean).length;
 
@@ -132,7 +156,7 @@ function AmbassadorTable() {
       });
       setSelectedAmbassadors(newSelectedAmbassadors);
     }
-  }, [ambassadorList]); // Уберите selectedAmbassadors из массива зависимостей
+  }, [ambassadorList]);
 
   const toggleAmbassadorSelection = (id) => {
     setSelectedAmbassadors((prev) => ({
@@ -142,15 +166,18 @@ function AmbassadorTable() {
   };
 
   const toggleSelectAll = (newChecked) => {
-    const newSelectedAmbassadors = {};
-    // Исправление: Используйте ambassadorList вместо ambassadorData
-    ambassadorList.results.forEach((ambassador) => {
-      newSelectedAmbassadors[ambassador.id] = newChecked;
+    setSelectedAmbassadors((prevSelected) => {
+      const newSelected = {};
+      Object.keys(prevSelected).forEach((id) => {
+        newSelected[id] = newChecked;
+      });
+      return newSelected;
     });
-    setSelectedAmbassadors(newSelectedAmbassadors);
   };
 
   // const isSelected = (id) => !!selectedAmbassadors[id];
+  const allSelected = Object.values(selectedAmbassadors).every(Boolean);
+  const noneSelected = Object.values(selectedAmbassadors).every((isSelected) => !isSelected);
 
   const handleStatusChange = (id, newStatus) => {
     console.log(`Status for id: ${id} changed to ${newStatus}`);
@@ -160,11 +187,12 @@ function AmbassadorTable() {
   return (
     <div className="ambassador-table__container">
       <div className="ambassador-table__selection-count">
-        Выбрано амбассадоров:
+        Выбрано амбассадоров
         {' '}
         {count}
         {' '}
         /
+        {' '}
         {ambassadorList.count}
       </div>
       <div className="ambassador-table__scroll-container">
@@ -174,15 +202,30 @@ function AmbassadorTable() {
               <th className="ambassador-table__header">#</th>
               <th className="ambassador-table__header">
                 <Checkbox
-                  isChecked={count === ambassadorList.length && ambassadorList.length > 0}
+                  isChecked={allSelected}
+                  isIndeterminate={!allSelected && !noneSelected}
                   onChange={(newChecked) => toggleSelectAll(newChecked)}
                   label="Выбрать все"
                 />
               </th>
-              {headerListAmbs.map((header) => (
+              {headerListAmbs.map(({ id, value }) => {
+                const settingKey = settingsKeyMap[value];
+                return settings[settingKey] && <th key={id} className="ambassador-table__header">{value}</th>;
+              })}
+              {/* {headerListAmbs.map((header) => (
                 <th key={header.id} className="ambassador-table__header">{header.value}</th>
-              ))}
-              <th className="ambassador-table__header ambassador-table__cell__edit">Действие</th>
+              ))} */}
+              <th
+                className="ambassador-table__header edit-column"
+                onClick={onSettingsClick}
+              >
+                <button
+                  className="ambassador-table__header ambassador-table__header__button-settings"
+                  type="button"
+                >
+                  {' '}
+                </button>
+              </th>
             </tr>
           </thead>
           <tbody className="ambassador-table__body">
@@ -195,6 +238,7 @@ function AmbassadorTable() {
                 onToggle={toggleAmbassadorSelection}
                 onStatusChange={handleStatusChange}
                 ambassadorData={ambassador}
+                settings={settings}
               />
             ))}
           </tbody>
@@ -246,8 +290,54 @@ AmbassadorRow.propTypes = {
     blog_url: PropTypes.string,
     shirt_size: PropTypes.string,
     shoes_size: PropTypes.number,
-    // Добавьте остальные поля, если они используются в вашем компоненте
   }).isRequired,
+  settings: PropTypes.shape({
+    isCredentials: PropTypes.bool,
+    isCurriculum: PropTypes.bool,
+    isStatus: PropTypes.bool,
+    isPromoCode: PropTypes.bool,
+    isTelegram: PropTypes.bool,
+    isCreated: PropTypes.bool,
+    isEmail: PropTypes.bool,
+    isPhone: PropTypes.bool,
+    isContacts: PropTypes.bool,
+    isCountry: PropTypes.bool,
+    isCity: PropTypes.bool,
+    isEducation: PropTypes.bool,
+    isWorkPlaceAndPosition: PropTypes.bool,
+    isEducationGoal: PropTypes.bool,
+    isWantsToDo: PropTypes.bool,
+    isAim: PropTypes.bool,
+    isBlogLink: PropTypes.bool,
+    isClothesSize: PropTypes.bool,
+    isShoeSize: PropTypes.bool,
+  }).isRequired,
+};
+
+AmbassadorTable.propTypes = {
+  settings: PropTypes.shape({
+    isCredentials: PropTypes.bool,
+    isCurriculum: PropTypes.bool,
+    isStatus: PropTypes.bool,
+    isPromoCode: PropTypes.bool,
+    isTelegram: PropTypes.bool,
+    isCreated: PropTypes.bool,
+    isEmail: PropTypes.bool,
+    isPhone: PropTypes.bool,
+    isContacts: PropTypes.bool,
+    isCountry: PropTypes.bool,
+    isCity: PropTypes.bool,
+    isEducation: PropTypes.bool,
+    isWorkPlaceAndPosition: PropTypes.bool,
+    isEducationGoal: PropTypes.bool,
+    isWantsToDo: PropTypes.bool,
+    isAim: PropTypes.bool,
+    isBlogLink: PropTypes.bool,
+    isClothesSize: PropTypes.bool,
+    isShoeSize: PropTypes.bool,
+  }).isRequired,
+  onSettingsClick: PropTypes.func.isRequired,
+  searchTerm: PropTypes.string.isRequired,
 };
 
 export default AmbassadorTable;

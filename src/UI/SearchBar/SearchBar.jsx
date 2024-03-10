@@ -2,20 +2,16 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import './SearchBar.scss';
 
-function SearchBar({ placeholder, onSearch }) {
+function SearchBar({ placeholder, onSearchChange }) {
   const [searchTerm, setSearchTerm] = useState('');
 
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
-  };
-
-  const handleSearchSubmit = (e) => {
-    e.preventDefault();
-    onSearch(searchTerm);
+    onSearchChange(e.target.value); // Вызываем onSearchChange при каждом изменении
   };
 
   return (
-    <form onSubmit={handleSearchSubmit} className="search-bar">
+    <form onChange={handleSearchChange} className="search-bar">
       <div className="search-bar__img" aria-label="Поиск" />
       <input
         type="text"
@@ -30,7 +26,7 @@ function SearchBar({ placeholder, onSearch }) {
 
 SearchBar.propTypes = {
   placeholder: PropTypes.string,
-  onSearch: PropTypes.func.isRequired,
+  onSearchChange: PropTypes.func.isRequired,
 };
 
 SearchBar.defaultProps = {

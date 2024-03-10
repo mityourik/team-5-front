@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setIsNewAmbassadorAddingTrue } from '../../services/slices/ambassadorSlice';
@@ -9,15 +10,11 @@ import Filter from '../FilterBar/Filter';
 import FilterButton from '../../UI/Buttons/FilterButton';
 import MailingButton from '../../UI/Buttons/MailingButton';
 
-function MainPagePanel() {
+function MainPagePanel({ onSearch }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const [isFilterOpen, setIsFilterOpen] = useState(false);
-
-  const handleSearch = (searchTerm) => {
-    console.log('Поиск:', searchTerm);
-  };
 
   const handleFilterClick = () => {
     setIsFilterOpen(!isFilterOpen);
@@ -42,10 +39,7 @@ function MainPagePanel() {
     <section className="main-page">
       <div className="main-page-panel">
         <div className="main-page-panel__container main-page-panel__container__content_search">
-          <SearchBar
-            placeholder="Поиск амбассадора"
-            onSearch={handleSearch}
-          />
+          <SearchBar placeholder="Поиск амбассадора" onSearchChange={onSearch} />
           <FilterButton
             text="Фильтры"
             onClick={handleFilterClick}
@@ -71,5 +65,9 @@ function MainPagePanel() {
     </section>
   );
 }
+
+MainPagePanel.propTypes = {
+  onSearch: PropTypes.func.isRequired,
+};
 
 export default MainPagePanel;
