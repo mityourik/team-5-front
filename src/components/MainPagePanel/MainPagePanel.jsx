@@ -25,7 +25,7 @@ function MainPagePanel({ onSearch }) {
       label: 'Добавить вручную',
       // action: () => console.log('Добавление вручную'),
       action: () => {
-        navigate('/ambassadors/new-ambassador');
+        navigate('/new-ambassador');
         dispatch(setIsNewAmbassadorAddingTrue());
       },
     },
