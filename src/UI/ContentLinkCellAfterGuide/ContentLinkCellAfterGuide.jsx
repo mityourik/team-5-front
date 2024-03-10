@@ -9,7 +9,7 @@ function ContentLinkCellAfterGuide({
   handleDeleteLink,
 }) {
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
-  const [isMerchSent, setIsMerchSent] = useState(null);
+  const isMerchSent = content.merchStatus === 'Не отправлено';
 
   const statusButtonClass = `content-link-cell-ag__status-button ${
     isMerchSent ? 'content-link-cell-ag__status-button_visible' : ''
@@ -21,12 +21,12 @@ function ContentLinkCellAfterGuide({
 
   function handleSendMerch() {
     console.log('отправка мерча');
-    setIsMerchSent(true);
+    // setIsMerchSent(true);
     setIsDropdownVisible(false);
   }
 
   function handleCancelSend() {
-    setIsMerchSent(false);
+    // setIsMerchSent(false);
     setIsDropdownVisible(false);
   }
 
@@ -98,6 +98,7 @@ ContentLinkCellAfterGuide.propTypes = {
   content: PropTypes.shape({
     id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
     link: PropTypes.string.isRequired,
+    merchStatus: PropTypes.string.isRequired,
   }).isRequired,
   ambassadorName: PropTypes.string.isRequired,
   contentTypeTitle: PropTypes.string.isRequired,
