@@ -5,8 +5,13 @@ import { Field } from 'formik';
 import './RadioButton.scss';
 
 export default function RadioButton({
-  labelText, inputId, values, initialValues,
+  labelText, inputId, values, initialValue, handleChange,
 }) {
+  const handleRadioChange = (e) => {
+    const { value } = e.target;
+    handleChange(value);
+  };
+
   return (
     <div className="radio-buttons__containter">
       <label htmlFor={inputId} className="radio-buttons__label">
@@ -21,7 +26,8 @@ export default function RadioButton({
               type="radio"
               name="gender"
               value={value}
-              checked={initialValues === value}
+              checked={initialValue === value || index === 0}
+              onChange={handleRadioChange}
               className="radio-button"
             />
             <label htmlFor={`${inputId}_${index}`} className="radio-button__label">
@@ -39,6 +45,6 @@ RadioButton.propTypes = {
   labelText: PropTypes.string.isRequired,
   inputId: PropTypes.string.isRequired,
   values: PropTypes.arrayOf(PropTypes.string).isRequired,
-  initialValues: PropTypes.string.isRequired,
-//   values: PropTypes.string.isRequired,
+  initialValue: PropTypes.string.isRequired,
+  handleChange: PropTypes.func.isRequired,
 };

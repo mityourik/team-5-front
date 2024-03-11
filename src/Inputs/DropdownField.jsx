@@ -108,7 +108,7 @@ function dropdownPropTypes(labelText) {
       title: PropTypes.string.isRequired,
     }));
   }
-  return PropTypes.arrayOf(PropTypes.string);
+  return PropTypes.func;
 }
 
 DropdownField.propTypes = {

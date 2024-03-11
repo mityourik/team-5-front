@@ -76,7 +76,10 @@ AmbassadorInfoTable.defaultProps = {
 AmbassadorInfoTable.propTypes = {
   data: PropTypes.arrayOf(PropTypes.shape({
     label: PropTypes.string,
-    value: PropTypes.string || PropTypes.number,
+    value: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+    ]),
   })),
   children: PropTypes.node,
   handleSubmit: PropTypes.func.isRequired,

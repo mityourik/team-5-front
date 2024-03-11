@@ -23,6 +23,11 @@ export default function AmbassadorGeneralInfo({ handleSubmit }) {
     setAmbassadorStatus(status);
   };
 
+  const [selectedGender, setSelectedGender] = useState(ambassadorData.gender || 'Мужской');
+  const handleGenderChange = (newGender) => {
+    setSelectedGender(newGender); // Update selected gender
+  };
+
   const generalData = [
     { label: 'Промокод', value: ambassadorData.promocode || 'VASYAPUPKIN' },
     { label: 'Цель обучения', value: ambassadorData.aim || 'Смена профессии' },
@@ -121,7 +126,13 @@ export default function AmbassadorGeneralInfo({ handleSubmit }) {
         <AmbassadorInfoTable data={merch} handleSubmit={handleSubmit}>
           {isAmbassadorDataEditing || isNewAmbassadorAdding ? (
             <>
-              <RadioButton labelText="Пол" inputId="gender" values={['Мужской', 'Женский']} initialValues={ambassadorData.gender} />
+              <RadioButton
+                labelText="Пол"
+                inputId="gender"
+                values={['Мужской', 'Женский']}
+                initialValue={selectedGender}
+                handleChange={handleGenderChange}
+              />
               <DropdownField htmlFor="clothingSize" labelText="Размер одежды" options={clothingSizes} selectedValue={ambassadorData.shirt_size} />
               <InputText label="Размер ноги" name="shoeSize" placeholder="Введите размер ноги" />
             </>

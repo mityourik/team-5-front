@@ -27,9 +27,12 @@ export default function AmbassadorPage() {
 
   const ambassadorId = location.pathname.split('/').pop();
   useEffect(() => {
+    if (isAmbassadorDataEditing) {
+      dispatch(fetchAmbassadorInfo(ambassadorId));
+    }
     dispatch(fetchAmbassadorInfo(ambassadorId));
     dispatch(fetchGetStudyProgramms());
-  }, [dispatch, ambassadorId]);
+  }, [dispatch, ambassadorId, isAmbassadorDataEditing]);
 
   const handleEditSubmit = () => {
     console.log('OK');
