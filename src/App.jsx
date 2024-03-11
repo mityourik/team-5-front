@@ -9,6 +9,14 @@ function App() {
   return (
     <Routes>
       <Route
+        path="/"
+        element={(
+          <HeaderSidebarLayout>
+            <AmbassadorsPage />
+          </HeaderSidebarLayout>
+      )}
+      />
+      <Route
         path="/ambassadors"
         element={(
           <HeaderSidebarLayout>
