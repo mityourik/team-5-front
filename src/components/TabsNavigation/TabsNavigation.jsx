@@ -4,7 +4,7 @@ import './TabsNavigation.scss';
 import { useState } from 'react';
 
 function TabsNavigation({ children }) {
-  const [count] = useState('+4');
+  const [count] = useState('+6');
 
   return (
     <main className="main">
@@ -20,19 +20,19 @@ function TabsNavigation({ children }) {
             <li className="navigation-tabs__item">
               <NavLink to="/content" className="navigation-tabs__link">
                 Контент
-                <span className="navigation-tabs__link-count">{count}</span>
+                <span className="navigation-tabs__link-count">+12</span>
               </NavLink>
             </li>
             <li className="navigation-tabs__item">
               <NavLink to="/merch-sending" className="navigation-tabs__link">
                 Отправка мерча
-                <span className="navigation-tabs__link-count">{count}</span>
+                <span className="navigation-tabs__link-count">{' '}</span>
               </NavLink>
             </li>
             <li className="navigation-tabs__item">
               <NavLink to="/merch-budget" className="navigation-tabs__link">
                 Бюджет на мерч
-                <span className="navigation-tabs__link-count">{count}</span>
+                <span className="navigation-tabs__link-count">{' '}</span>
               </NavLink>
             </li>
           </ul>
